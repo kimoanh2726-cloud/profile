@@ -1,0 +1,63 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  TAGS — Danh sách tag phân loại                                 ║
+# ║  Nguồn sự thật duy nhất cho tất cả tag trong hệ thống          ║
+# ╚══════════════════════════════════════════════════════════════════╝
+#
+# Mỗi tag có:
+#   id:    mã định danh duy nhất (dùng trong các file YAML khác)
+#   label: nhãn hiển thị song ngữ
+
+- id: hoc-bong
+  label:
+    vi: "Học bổng"
+    en: "Scholarship"
+
+- id: viec-lam
+  label:
+    vi: "Việc làm"
+    en: "Employment"
+
+- id: hoc-thuat
+  label:
+    vi: "Học thuật"
+    en: "Academic"
+
+- id: nghien-cuu
+  label:
+    vi: "Nghiên cứu"
+    en: "Research"
+
+- id: ky-nang
+  label:
+    vi: "Kỹ năng"
+    en: "Skills"
+
+- id: hoat-dong
+  label:
+    vi: "Hoạt động"
+    en: "Activities"
+
+- id: tinh-nguyen
+  label:
+    vi: "Tình nguyện"
+    en: "Volunteering"
+
+- id: giai-thuong
+  label:
+    vi: "Giải thưởng"
+    en: "Awards"
+
+- id: ngon-ngu
+  label:
+    vi: "Ngôn ngữ"
+    en: "Languages"
+
+- id: cong-nghe
+  label:
+    vi: "Công nghệ"
+    en: "Technology"
+
+- id: khac
+  label:
+    vi: "Khác"
+    en: "Other"

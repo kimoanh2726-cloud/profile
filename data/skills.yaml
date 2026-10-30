@@ -1,0 +1,112 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  SKILLS — Kỹ năng                                              ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
+# ── Phương pháp nghiên cứu ──
+
+- id: skill-ethnography
+  name:
+    vi: "Phương pháp Dân tộc học (Ethnography)"
+    en: "Ethnographic Methods"
+  category:
+    vi: "Phương pháp nghiên cứu"
+    en: "Research Methods"
+  level: advanced
+  description:
+    vi: "Phỏng vấn sâu, quan sát tham dự, ghi chép điền dã, phân tích định tính."
+    en: "In-depth interviews, participant observation, field notes, qualitative analysis."
+  tags: [nghien-cuu, hoc-thuat]
+  visibility: public
+
+- id: skill-comparative-religion
+  name:
+    vi: "Tôn giáo so sánh"
+    en: "Comparative Religion"
+  category:
+    vi: "Phương pháp nghiên cứu"
+    en: "Research Methods"
+  level: advanced
+  tags: [nghien-cuu, hoc-thuat]
+  visibility: public
+
+- id: skill-textual-analysis
+  name:
+    vi: "Phân tích văn bản tôn giáo"
+    en: "Religious Text Analysis"
+  category:
+    vi: "Phương pháp nghiên cứu"
+    en: "Research Methods"
+  level: intermediate
+  tags: [nghien-cuu, hoc-thuat]
+  visibility: public
+
+# ── Ngôn ngữ ──
+
+- id: skill-vietnamese
+  name:
+    vi: "Tiếng Việt"
+    en: "Vietnamese"
+  category:
+    vi: "Ngôn ngữ"
+    en: "Languages"
+  level: expert
+  description:
+    vi: "Tiếng mẹ đẻ"
+    en: "Native speaker"
+  tags: [ngon-ngu]
+  visibility: public
+
+- id: skill-english
+  name:
+    vi: "Tiếng Anh"
+    en: "English"
+  category:
+    vi: "Ngôn ngữ"
+    en: "Languages"
+  level: advanced
+  description:
+    vi: "IELTS 7.0 — Đọc hiểu tài liệu học thuật tốt"
+    en: "IELTS 7.0 — Strong academic reading and writing"
+  tags: [ngon-ngu, hoc-bong]
+  visibility: public
+
+- id: skill-pali
+  name:
+    vi: "Tiếng Pali"
+    en: "Pali"
+  category:
+    vi: "Ngôn ngữ"
+    en: "Languages"
+  level: beginner
+  description:
+    vi: "Đọc kinh điển Phật giáo Theravāda cơ bản"
+    en: "Basic reading of Theravāda Buddhist canonical texts"
+  tags: [ngon-ngu, hoc-thuat]
+  visibility: public
+
+# ── Công nghệ ──
+
+- id: skill-gis
+  name:
+    vi: "GIS & Bản đồ số"
+    en: "GIS & Digital Mapping"
+  category:
+    vi: "Công nghệ"
+    en: "Technology"
+  level: intermediate
+  description:
+    vi: "QGIS, Google Earth Pro — lập bản đồ cơ sở tôn giáo"
+    en: "QGIS, Google Earth Pro — mapping religious sites"
+  tags: [cong-nghe, nghien-cuu]
+  visibility: public
+
+- id: skill-nvivo
+  name:
+    vi: "Phân tích định tính (NVivo)"
+    en: "Qualitative Analysis (NVivo)"
+  category:
+    vi: "Công nghệ"
+    en: "Technology"
+  level: intermediate
+  tags: [cong-nghe, nghien-cuu]
+  visibility: public

@@ -1,0 +1,36 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  LINKS — Liên kết & Dự án                                      ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
+- id: link-gis-map
+  title:
+    vi: "Bản đồ GIS Chùa Khmer Nam Bộ"
+    en: "GIS Map of Khmer Pagodas in Southern Vietnam"
+  url: "https://example.com/khmer-pagoda-map"
+  type: project
+  description:
+    vi: "Bản đồ tương tác hiển thị vị trí và thông tin 120+ chùa Khmer tại ĐBSCL"
+    en: "Interactive map showing locations and info of 120+ Khmer pagodas in the Mekong Delta"
+  tags: [nghien-cuu, cong-nghe]
+  visibility: public
+
+- id: link-blog
+  title:
+    vi: "Blog cá nhân — Góc nhìn Tôn giáo"
+    en: "Personal Blog — Religious Perspectives"
+  url: "https://example.com/blog"
+  type: portfolio
+  description:
+    vi: "Nơi chia sẻ bài viết phổ thông về tôn giáo và văn hóa"
+    en: "A space sharing accessible articles on religion and culture"
+  tags: [hoc-thuat]
+  visibility: public
+
+- id: link-github
+  title:
+    vi: "GitHub — Dự án code"
+    en: "GitHub — Code Projects"
+  url: "https://github.com/minhthien-example"
+  type: social
+  tags: [cong-nghe]
+  visibility: public

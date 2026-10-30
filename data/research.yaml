@@ -1,0 +1,61 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  RESEARCH — Nghiên cứu & bài viết                              ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
+- id: res-theravada-mekong
+  title:
+    vi: "Phật giáo Theravāda và tín ngưỡng dân gian trong đời sống cộng đồng Khmer Nam Bộ"
+    en: "Theravāda Buddhism and Folk Beliefs in Khmer Communities of Southern Vietnam"
+  type: paper
+  abstract:
+    vi: >
+      Bài nghiên cứu phân tích sự đan xen giữa Phật giáo Theravāda và tín ngưỡng 
+      dân gian (thờ Neak Tà, cúng Óc Om Bóc) trong sinh hoạt hằng ngày của cộng đồng 
+      Khmer tại Trà Vinh. Sử dụng phương pháp dân tộc học, bài viết chỉ ra rằng hai 
+      hệ thống tín ngưỡng không đối lập mà bổ trợ lẫn nhau, tạo nên bản sắc tôn giáo 
+      đặc thù của vùng Đồng bằng Sông Cửu Long.
+    en: >
+      This paper analyzes the interweaving of Theravāda Buddhism and folk beliefs 
+      (Neak Ta worship, Ok Om Bok rituals) in the daily life of Khmer communities 
+      in Tra Vinh province. Using ethnographic methods, the study demonstrates that 
+      these two belief systems are not oppositional but complementary, forming a 
+      distinctive religious identity of the Mekong Delta region.
+  authors:
+    - "Nguyễn Minh Thiện"
+    - "PGS.TS. Trần Văn Đạo"
+  publication:
+    vi: "Tạp chí Nghiên cứu Tôn giáo, số 5/2026"
+    en: "Journal of Religious Studies, No. 5/2026"
+  date: "2026-05"
+  doi: "10.xxxx/example-doi-001"
+  tags: [nghien-cuu, hoc-thuat, hoc-bong]
+  visibility: public
+  documentPath: "/documents/research/theravada-mekong-2026.pdf"
+
+- id: res-digital-pagoda
+  title:
+    vi: "Số hóa di sản: Ứng dụng GIS trong bảo tồn chùa Khmer"
+    en: "Digitizing Heritage: GIS Applications in Khmer Pagoda Conservation"
+  type: presentation
+  abstract:
+    vi: "Bài thuyết trình tại Hội thảo Sinh viên Nghiên cứu Khoa học 2026 về việc ứng dụng GIS để lập bản đồ và phân tích phân bố chùa Khmer."
+    en: "Presentation at the 2026 Student Scientific Research Conference on applying GIS to map and analyze the distribution of Khmer pagodas."
+  authors:
+    - "Nguyễn Minh Thiện"
+  date: "2026-03"
+  link: "https://example.com/presentation-gis-pagoda"
+  tags: [nghien-cuu, hoc-thuat, cong-nghe]
+  visibility: public
+
+- id: res-blog-syncretism
+  title:
+    vi: "Syncretism là gì? — Khi các tôn giáo hòa trộn"
+    en: "What is Syncretism? — When Religions Blend"
+  type: blog
+  abstract:
+    vi: "Bài viết blog giải thích khái niệm syncretism (tôn giáo hỗn dung) cho đại chúng, lấy ví dụ từ Việt Nam."
+    en: "A blog post explaining syncretism for a general audience, with examples from Vietnam."
+  date: "2025-11"
+  link: "https://example.com/blog/syncretism"
+  tags: [hoc-thuat]
+  visibility: public

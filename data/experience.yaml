@@ -1,0 +1,59 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  EXPERIENCE — Kinh nghiệm                                      ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
+- id: exp-fieldwork-mekong
+  title:
+    vi: "Trưởng nhóm điền dã"
+    en: "Fieldwork Team Lead"
+  organization:
+    vi: "Viện Nghiên cứu Tôn giáo — Viện Hàn lâm KHXH Việt Nam"
+    en: "Institute of Religious Studies — Vietnam Academy of Social Sciences"
+  type: project
+  startDate: "2026-01"
+  endDate: "2026-06"
+  description:
+    vi: "Dẫn đầu nhóm 5 sinh viên khảo sát thực hành Phật giáo Theravāda tại 12 chùa Khmer ở Trà Vinh và Sóc Trăng."
+    en: "Led a team of 5 students surveying Theravāda Buddhist practices across 12 Khmer temples in Tra Vinh and Soc Trang."
+  highlights:
+    - vi: "Thu thập 40+ giờ phỏng vấn sâu với sư sãi và cư sĩ"
+      en: "Collected 40+ hours of in-depth interviews with monks and laypeople"
+    - vi: "Xây dựng cơ sở dữ liệu GIS đánh dấu 120+ cơ sở tín ngưỡng"
+      en: "Built a GIS database mapping 120+ religious sites"
+  tags: [nghien-cuu, hoc-bong]
+  visibility: public
+
+- id: exp-ta-religion-101
+  title:
+    vi: "Trợ giảng môn Đại cương Tôn giáo"
+    en: "Teaching Assistant — Introduction to Religion"
+  organization:
+    vi: "Khoa Triết học — ĐHKHXH&NV TP.HCM"
+    en: "Faculty of Philosophy — USSH HCMC"
+  type: work
+  startDate: "2025-09"
+  endDate: "2026-06"
+  description:
+    vi: "Hỗ trợ giảng viên soạn slide, chấm bài, hướng dẫn 45 sinh viên năm nhất."
+    en: "Assisted professor with lecture slides, grading, and mentoring 45 freshmen."
+  highlights:
+    - vi: "Thiết kế bài tập thực hành điền dã cho sinh viên"
+      en: "Designed hands-on fieldwork assignments for students"
+  tags: [viec-lam, hoc-thuat]
+  visibility: public
+
+- id: exp-volunteer-pagoda
+  title:
+    vi: "Tình nguyện viên dịch thuật"
+    en: "Translation Volunteer"
+  organization:
+    vi: "Chùa Giác Ngộ — Quỹ Từ thiện & Văn hóa Phật giáo"
+    en: "Giac Ngo Pagoda — Buddhist Cultural & Charity Foundation"
+  type: volunteer
+  startDate: "2025-03"
+  endDate: "2025-12"
+  description:
+    vi: "Dịch tài liệu Phật học từ tiếng Anh sang tiếng Việt cho chương trình giáo dục cộng đồng."
+    en: "Translated Buddhist educational materials from English to Vietnamese for community programs."
+  tags: [tinh-nguyen, hoat-dong]
+  visibility: public

@@ -1,0 +1,43 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  PROFILE — Thông tin cá nhân                                    ║
+# ║  ⚠️ Trường phone & căn cước KHÔNG BAO GIỜ hiển thị public      ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
+id: profile
+
+name:
+  vi: "Nguyễn Minh Thiện"
+  en: "Nguyen Minh Thien"
+
+title:
+  vi: "Sinh viên ngành Tôn giáo học — Nhà nghiên cứu tôn giáo so sánh"
+  en: "Religious Studies Student — Comparative Religion Researcher"
+
+bio:
+  vi: >
+    Tôi là sinh viên năm 3 ngành Tôn giáo học tại Đại học Khoa học Xã hội 
+    và Nhân văn TP.HCM. Đam mê nghiên cứu tôn giáo so sánh, đặc biệt là 
+    mối quan hệ giữa Phật giáo Theravāda và tín ngưỡng dân gian Nam Bộ. 
+    Đã tham gia nhiều dự án điền dã tại các cộng đồng Khmer ở Đồng bằng 
+    Sông Cửu Long.
+  en: >
+    I am a third-year Religious Studies student at the University of Social 
+    Sciences and Humanities (HCMC). Passionate about comparative religion, 
+    with a focus on the interplay between Theravāda Buddhism and folk beliefs 
+    in Southern Vietnam. Experienced in ethnographic fieldwork among Khmer 
+    communities in the Mekong Delta.
+
+avatar: "/documents/avatar.jpg"
+
+email: "thien.nguyen@example.edu.vn"
+phone: "0901-xxx-xxx"  # ⚠️ Private — không bao giờ lên web
+
+location:
+  vi: "TP. Hồ Chí Minh, Việt Nam"
+  en: "Ho Chi Minh City, Vietnam"
+
+social:
+  github: "https://github.com/minhthien-example"
+  linkedin: "https://linkedin.com/in/minhthien-example"
+  orcid: "https://orcid.org/0000-0000-0000-0001"
+  scholar: "https://scholar.google.com/citations?user=example"

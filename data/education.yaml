@@ -1,0 +1,40 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  EDUCATION — Học vấn                                            ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
+- id: edu-ussh-bachelor
+  title:
+    vi: "Cử nhân Tôn giáo học"
+    en: "Bachelor of Arts in Religious Studies"
+  institution:
+    vi: "Đại học Khoa học Xã hội và Nhân văn — ĐHQG TP.HCM"
+    en: "University of Social Sciences and Humanities — VNU-HCM"
+  degree:
+    vi: "Cử nhân"
+    en: "Bachelor of Arts"
+  field:
+    vi: "Tôn giáo học"
+    en: "Religious Studies"
+  startDate: "2024-09"
+  # endDate: chưa tốt nghiệp
+  gpa: "3.52/4.0"
+  description:
+    vi: "Chuyên ngành Tôn giáo so sánh. Hoạt động tại CLB Nghiên cứu Tôn giáo."
+    en: "Major in Comparative Religion. Active member of the Religious Studies Club."
+  tags: [hoc-thuat, hoc-bong]
+  visibility: public
+
+- id: edu-highschool
+  title:
+    vi: "Tốt nghiệp THPT"
+    en: "High School Diploma"
+  institution:
+    vi: "Trường THPT Chuyên Lê Hồng Phong"
+    en: "Le Hong Phong High School for the Gifted"
+  startDate: "2021-09"
+  endDate: "2024-06"
+  description:
+    vi: "Lớp chuyên Văn. Đạt giải Ba kỳ thi HSG Quốc gia môn Ngữ văn."
+    en: "Literature track. Third Prize at the National Literature Olympiad."
+  tags: [hoc-thuat]
+  visibility: public

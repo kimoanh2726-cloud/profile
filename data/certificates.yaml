@@ -1,0 +1,75 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  CERTIFICATES — Chứng chỉ                                      ║
+# ║  ⚠️ Chứng chỉ sắp hết hạn sẽ được cảnh báo tự động            ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
+- id: cert-ielts
+  title:
+    vi: "IELTS Academic 7.0"
+    en: "IELTS Academic 7.0"
+  issuer:
+    vi: "British Council"
+    en: "British Council"
+  date: "2025-06-15"
+  expiryDate: "2027-06-15"
+  credentialId: "25VN-XXXXX"
+  description:
+    vi: "L: 7.5 / R: 7.5 / W: 6.5 / S: 6.5"
+    en: "L: 7.5 / R: 7.5 / W: 6.5 / S: 6.5"
+  tags: [ngon-ngu, hoc-bong, viec-lam]
+  visibility: public
+  documentPath: "/documents/certificates/ielts-2025.pdf"
+
+- id: cert-gis-coursera
+  title:
+    vi: "GIS, Mapping, and Spatial Analysis"
+    en: "GIS, Mapping, and Spatial Analysis"
+  issuer:
+    vi: "University of Toronto (Coursera)"
+    en: "University of Toronto (Coursera)"
+  date: "2025-08"
+  credentialId: "COURSERA-GIS-XXXX"
+  credentialUrl: "https://coursera.org/verify/example"
+  description:
+    vi: "Chứng chỉ chuyên sâu về GIS và phân tích không gian"
+    en: "Specialization certificate in GIS and spatial analysis"
+  tags: [cong-nghe, nghien-cuu]
+  visibility: public
+  documentPath: "/documents/certificates/gis-coursera-2025.pdf"
+
+- id: cert-nvivo-training
+  title:
+    vi: "Chứng nhận hoàn thành khóa NVivo cơ bản"
+    en: "NVivo Fundamentals Training Certificate"
+  issuer:
+    vi: "Lumivero (QSR International)"
+    en: "Lumivero (QSR International)"
+  date: "2025-04"
+  credentialUrl: "https://example.com/nvivo-cert"
+  tags: [cong-nghe, nghien-cuu]
+  visibility: public
+
+- id: cert-first-aid
+  title:
+    vi: "Chứng chỉ Sơ cấp cứu"
+    en: "First Aid Certificate"
+  issuer:
+    vi: "Hội Chữ thập đỏ Việt Nam"
+    en: "Vietnam Red Cross Society"
+  date: "2024-03"
+  expiryDate: "2026-03"  # ⚠️ Sắp hết hạn! Script sẽ cảnh báo
+  tags: [hoat-dong]
+  visibility: private
+
+- id: cert-expired-example
+  title:
+    vi: "Chứng chỉ Tin học văn phòng (MOS)"
+    en: "Microsoft Office Specialist (MOS)"
+  issuer:
+    vi: "Microsoft"
+    en: "Microsoft"
+  date: "2022-01"
+  expiryDate: "2024-01"  # ⚠️ ĐÃ HẾT HẠN — sẽ bị ẩn trên web
+  credentialId: "MOS-XXXX"
+  tags: [cong-nghe]
+  visibility: private
