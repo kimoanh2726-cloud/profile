@@ -227,3 +227,139 @@
 .section-container {
   @apply max-w-6xl mx-auto;
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   THEME STYLES & CUSTOM PROPERTIES (Theme A & Theme B)
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --color-bg: #FAF7F2;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F7F2EA;
+  --color-text: #1A1108;
+  --color-text-muted: #66584B;
+  --color-accent: #B45309;
+  --color-accent-hover: #92400E;
+  --color-border: #E6DDD0;
+  --color-border-subtle: #F0E8DC;
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-be-vietnam);
+}
+
+/* ─── Theme A: Academic Editorial (Biên tập học thuật) ─── */
+[data-theme="a"] {
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-be-vietnam);
+}
+
+[data-theme="a"][data-mode="light"],
+[data-theme="a"]:not([data-mode="dark"]) {
+  --color-bg: #FAF7F2;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F8F3EC;
+  --color-text: #1A1108;
+  --color-text-muted: #66584B;
+  --color-accent: #B45309;
+  --color-accent-hover: #92400E;
+  --color-border: #E5DECE;
+  --color-border-subtle: #F0E9DC;
+}
+
+[data-theme="a"][data-mode="dark"] {
+  --color-bg: #1C1814;
+  --color-surface: #25201B;
+  --color-surface-hover: #2E2822;
+  --color-text: #EDE8E1;
+  --color-text-muted: #9E9382;
+  --color-accent: #D97706;
+  --color-accent-hover: #F59E0B;
+  --color-border: #3A3228;
+  --color-border-subtle: #2C261E;
+}
+
+/* ─── Theme B: Modern Dark Minimalist (Tối giản hiện đại tối màu) ─── */
+[data-theme="b"] {
+  --font-heading: var(--font-be-vietnam);
+  --font-body: var(--font-be-vietnam);
+}
+
+[data-theme="b"][data-mode="dark"],
+[data-theme="b"]:not([data-mode="light"]) {
+  --color-bg: #0A0A0A;
+  --color-surface: #141414;
+  --color-surface-hover: #1E1E1E;
+  --color-text: #EDEDED;
+  --color-text-muted: #8E8E8E;
+  --color-accent: #00D4FF;
+  --color-accent-hover: #38E1FF;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="b"][data-mode="light"] {
+  --color-bg: #F5F5F5;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #EFEFEF;
+  --color-text: #111111;
+  --color-text-muted: #666666;
+  --color-accent: #008CA8;
+  --color-accent-hover: #007088;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-border-subtle: rgba(0, 0, 0, 0.05);
+}
+
+/* Applied dynamically to body and elements */
+body {
+  background-color: var(--color-bg) !important;
+  color: var(--color-text) !important;
+  font-family: var(--font-body), sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, .font-heading {
+  font-family: var(--font-heading), serif;
+}
+
+/* Theme A Texture */
+.theme-a-noise {
+  display: none;
+}
+[data-theme="a"] .theme-a-noise {
+  display: block;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Cursor styling */
+.custom-cursor-dot {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.custom-cursor-dot.cursor-hover {
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  border: 2px solid var(--color-accent);
+  opacity: 0.85;
+}
+
+@media (pointer: coarse) {
+  .custom-cursor-dot {
+    display: none !important;
+  }
+}

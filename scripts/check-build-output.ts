@@ -157,6 +157,11 @@ function checkBundleForSensitiveData(): boolean {
 
   let issueCount = 0;
   for (const file of filesToCheck) {
+    // Bỏ qua file polyfills chuẩn của Next.js (chứa chuỗi test JS engine "0123456789")
+    if (path.basename(file).startsWith("polyfills")) {
+      continue;
+    }
+
     let content: string;
     try {
       content = fs.readFileSync(file, "utf-8");
@@ -233,3 +238,4 @@ async function main() {
 }
 
 main();
+

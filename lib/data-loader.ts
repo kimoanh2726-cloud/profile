@@ -26,7 +26,7 @@ import {
   type CertificateItem,
   type LinkItem,
   type TagDefinition,
-} from "./schema.js";
+} from "./schema";
 
 // ─── Đường dẫn ──────────────────────────────────────────────────────
 
@@ -104,8 +104,8 @@ export function loadLinks(): LinkItem[] {
 
 // ─── Load tags ───────────────────────────────────────────────────────
 
-export { loadTagDefinitions } from "./schema.js";
-export type { TagDefinition } from "./schema.js";
+export { loadTagDefinitions } from "./schema";
+export type { TagDefinition } from "./schema";
 
 // ─── Load toàn bộ Hub ────────────────────────────────────────────────
 

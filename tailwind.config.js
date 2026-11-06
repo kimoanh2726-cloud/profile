@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -51,10 +51,24 @@ module.exports = {
           border: "rgba(255, 255, 255, 0.12)",
           hover: "rgba(255, 255, 255, 0.15)",
         },
+        // ── CSS Custom Properties Themes ──
+        "theme-bg": "var(--color-bg)",
+        "theme-surface": "var(--color-surface)",
+        "theme-surface-hover": "var(--color-surface-hover)",
+        "theme-text": "var(--color-text)",
+        "theme-muted": "var(--color-text-muted)",
+        "theme-accent": "var(--color-accent)",
+        "theme-accent-hover": "var(--color-accent-hover)",
+        "theme-border": "var(--color-border)",
+        "theme-border-subtle": "var(--color-border-subtle)",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Outfit", "Inter", "system-ui", "sans-serif"],
+        playfair: ["var(--font-playfair)", "serif"],
+        "be-vietnam": ["var(--font-be-vietnam)", "sans-serif"],
+        heading: ["var(--font-heading)", "serif"],
+        body: ["var(--font-body)", "sans-serif"],
+        sans: ["var(--font-be-vietnam)", "Inter", "system-ui", "sans-serif"],
+        display: ["var(--font-playfair)", "Outfit", "serif"],
         mono: ["JetBrains Mono", "Fira Code", "monospace"],
       },
       backgroundImage: {
