@@ -5,6 +5,7 @@ import { SectionWrapper } from "../ui/SectionWrapper";
 import { CertCard } from "../ui/CertCard";
 import { TagFilter } from "../ui/TagFilter";
 import { useTheme } from "../theme/ThemeProvider";
+import { useSettings } from "@/hooks/useSettings";
 import type { CertificateItem, TagDefinition } from "@/lib/schema";
 import { checkCertificateExpiry } from "@/lib/cert-utils";
 import { Award } from "lucide-react";
@@ -19,26 +20,47 @@ export function Certificates({
   tagDefinitions,
 }: CertificatesProps) {
   const { lang } = useTheme();
+  const { settings } = useSettings();
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  // 1. Filter out expired certificates and sort by date descending
+  const warningDays = parseInt(settings.expiryWarningDays, 10);
+
+  // 1. Filter and sort certificates based on settings
   const activeCertificates = useMemo(() => {
     return certificates
       .filter((cert) => {
-        const expiry = checkCertificateExpiry(cert);
-        return expiry.status !== "expired";
+        const expiry = checkCertificateExpiry(cert, warningDays);
+        // Show expired only if setting is on
+        if (expiry.status === "expired" && !settings.showExpiredCerts) return false;
+        return true;
       })
-      .sort((a, b) => b.date.localeCompare(a.date));
-  }, [certificates]);
+      .sort((a, b) => {
+        if (settings.certSortBy === "expiring") {
+          // Sort by days until expiry ascending (soonest first); no-expiry at end
+          const exA = checkCertificateExpiry(a, warningDays);
+          const exB = checkCertificateExpiry(b, warningDays);
+          const dA = exA.daysUntilExpiry ?? Infinity;
+          const dB = exB.daysUntilExpiry ?? Infinity;
+          return dA - dB;
+        }
+        if (settings.certSortBy === "tag") {
+          const tagA = a.tags?.[0] ?? "";
+          const tagB = b.tags?.[0] ?? "";
+          return tagA.localeCompare(tagB);
+        }
+        // Default: newest first
+        return b.date.localeCompare(a.date);
+      });
+  }, [certificates, settings.showExpiredCerts, settings.certSortBy, warningDays]);
 
-  // Extract all tag IDs that are actually used by active certificates
+  // Extract all tag IDs used by active certificates
   const relevantTags = useMemo(() => {
     const usedTagIds = new Set<string>();
     activeCertificates.forEach((c) => c.tags?.forEach((t) => usedTagIds.add(t)));
     return tagDefinitions.filter((t) => usedTagIds.has(t.id));
   }, [activeCertificates, tagDefinitions]);
 
-  // Filter by currently selected tag
+  // Filter by selected tag
   const displayedCertificates = useMemo(() => {
     if (!selectedTag) return activeCertificates;
     return activeCertificates.filter((c) => c.tags?.includes(selectedTag));
@@ -69,7 +91,7 @@ export function Certificates({
       {displayedCertificates.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedCertificates.map((cert) => (
-            <CertCard key={cert.id} cert={cert} />
+            <CertCard key={cert.id} cert={cert} warningDays={warningDays} />
           ))}
         </div>
       ) : (

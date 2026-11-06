@@ -363,3 +363,81 @@ h1, h2, h3, .font-heading {
     display: none !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SETTINGS PANEL — CSS DATA-ATTRIBUTE OVERRIDES
+   Applied by SettingsProvider via applySettingsToDOM() + anti-flash script
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Font size ──────────────────────────────────────────────────────────── */
+[data-font-size="sm"] body { font-size: 14px; }
+[data-font-size="lg"] body { font-size: 18px; }
+
+/* ── Content width ──────────────────────────────────────────────────────── */
+[data-content-width="narrow"] .max-w-6xl,
+[data-content-width="narrow"] .max-w-5xl { max-width: 50rem; }
+[data-content-width="wide"] .max-w-6xl,
+[data-content-width="wide"] .max-w-5xl { max-width: 90rem; }
+
+/* ── Card radius ────────────────────────────────────────────────────────── */
+[data-card-radius="none"] .cert-card,
+[data-card-radius="none"] .skill-badge { border-radius: 0 !important; }
+[data-card-radius="sm"] .cert-card,
+[data-card-radius="sm"] .skill-badge { border-radius: 0.25rem !important; }
+[data-card-radius="lg"] .cert-card,
+[data-card-radius="lg"] .skill-badge { border-radius: 1.5rem !important; }
+
+/* ── Section numbers ────────────────────────────────────────────────────── */
+[data-section-numbers="false"] .section-number { display: none; }
+
+/* ── Accent color override ──────────────────────────────────────────────── */
+[data-accent-override="true"] {
+  --color-accent: var(--color-accent-override);
+}
+
+/* ── Animations / reduced motion ────────────────────────────────────────── */
+[data-animations="false"] *,
+[data-animations="false"] *::before,
+[data-animations="false"] *::after,
+[data-reduced-motion="true"] *,
+[data-reduced-motion="true"] *::before,
+[data-reduced-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ── High contrast ──────────────────────────────────────────────────────── */
+[data-high-contrast="true"] {
+  --color-fg: #000000;
+  --color-bg: #ffffff;
+  --color-border: #000000;
+}
+[data-theme="b"][data-high-contrast="true"] {
+  --color-fg: #ffffff;
+  --color-bg: #000000;
+  --color-border: #ffffff;
+}
+
+/* ── Focus ring enhanced ────────────────────────────────────────────────── */
+[data-focus-ring="true"] :focus-visible {
+  outline: 3px solid var(--color-accent) !important;
+  outline-offset: 3px !important;
+}
+
+/* ── Dyslexia-friendly font ─────────────────────────────────────────────── */
+[data-dyslexia-font="true"] body,
+[data-dyslexia-font="true"] p,
+[data-dyslexia-font="true"] li,
+[data-dyslexia-font="true"] span {
+  font-family: "Arial", var(--font-be-vietnam), sans-serif;
+  letter-spacing: 0.03em;
+  word-spacing: 0.1em;
+  line-height: 1.8;
+}
+
+/* ── Settings panel scrollbar ────────────────────────────────────────────── */
+.settings-scroll::-webkit-scrollbar { width: 4px; }
+.settings-scroll::-webkit-scrollbar-track { background: transparent; }
+.settings-scroll::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }

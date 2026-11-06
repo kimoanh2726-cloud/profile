@@ -10,9 +10,9 @@ import {
 } from "@/lib/cert-utils";
 import { Award, ExternalLink, ShieldCheck, Clock, CheckCircle2 } from "lucide-react";
 
-export function CertCard({ cert }: { cert: CertificateItem }) {
+export function CertCard({ cert, warningDays = 60 }: { cert: CertificateItem; warningDays?: number }) {
   const { theme, lang, t } = useTheme();
-  const expiryStatus = checkCertificateExpiry(cert);
+  const expiryStatus = checkCertificateExpiry(cert, warningDays);
   const verifyUrl = getCertVerifyUrl(cert);
   const credentialId = getCertCredentialId(cert);
 

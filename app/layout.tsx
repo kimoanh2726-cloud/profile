@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Playfair_Display, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { SettingsProvider } from "@/components/settings/SettingsProvider";
 import { CustomCursor } from "@/components/cursor/CustomCursor";
+import { ANTI_FLASH_SCRIPT } from "@/lib/settings/apply";
 
 const playfair = Playfair_Display({
   subsets: ["vietnamese", "latin"],
@@ -44,16 +46,22 @@ export default function RootLayout({
       className={`${playfair.variable} ${beVietnamPro.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Anti-flash: apply settings from localStorage before hydration */}
+        <script dangerouslySetInnerHTML={{ __html: ANTI_FLASH_SCRIPT }} />
+      </head>
       <body className="antialiased min-h-screen selection:bg-amber-500/20 selection:text-amber-900 dark:selection:text-amber-100">
         <ThemeProvider>
-          {/* Subtle noise overlay for Theme A */}
-          <div className="theme-a-noise" aria-hidden="true" />
+          <SettingsProvider>
+            {/* Subtle noise overlay for Theme A */}
+            <div className="theme-a-noise" aria-hidden="true" />
 
-          {/* Custom Cursor (desktop only) */}
-          <CustomCursor />
+            {/* Custom Cursor (desktop only) */}
+            <CustomCursor />
 
-          {/* Page contents */}
-          {children}
+            {/* Page contents */}
+            {children}
+          </SettingsProvider>
         </ThemeProvider>
       </body>
     </html>

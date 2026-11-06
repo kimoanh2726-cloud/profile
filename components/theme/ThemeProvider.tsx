@@ -11,7 +11,7 @@ import React, {
 
 export type Theme = "a" | "b";
 export type Lang = "vi" | "en";
-export type ColorMode = "light" | "dark";
+export type ColorMode = "light" | "dark" | "system";
 
 interface ThemeContextType {
   theme: Theme;
@@ -61,9 +61,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
           : "vi";
 
       let initialMode: ColorMode;
-      if (urlMode === "light" || urlMode === "dark") {
+      if (urlMode === "light" || urlMode === "dark" || urlMode === "system") {
         initialMode = urlMode;
-      } else if (storedMode === "light" || storedMode === "dark") {
+      } else if (storedMode === "light" || storedMode === "dark" || storedMode === "system") {
         initialMode = storedMode;
       } else {
         // Theme A defaults to light; Theme B defaults to dark
@@ -88,7 +88,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.setAttribute("data-mode", colorMode);
     root.setAttribute("lang", lang);
 
-    if (colorMode === "dark") {
+    // Resolve "system" → actual light/dark
+    const resolvedMode =
+      colorMode === "system"
+        ? window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"
+        : colorMode;
+
+    if (resolvedMode === "dark") {
       root.classList.add("dark");
     } else {
       root.classList.remove("dark");
@@ -116,6 +124,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setThemeState(newTheme);
     // When switching theme, adjust default color mode if user hasn't explicitly set one
     setColorModeState((prevMode) => {
+      if (prevMode === "system") return "system";
       if (newTheme === "b" && prevMode === "light") return "dark";
       if (newTheme === "a" && prevMode === "dark") return "light";
       return prevMode;

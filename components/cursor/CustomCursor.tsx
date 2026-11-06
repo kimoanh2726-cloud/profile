@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
+import { useSettings } from "@/hooks/useSettings";
 
 export function CustomCursor() {
+  const { settings } = useSettings();
   const [enabled, setEnabled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -17,7 +19,7 @@ export function CustomCursor() {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    if (!hasFinePointer || prefersReducedMotion) {
+    if (!hasFinePointer || prefersReducedMotion || !settings.customCursor) {
       return;
     }
 

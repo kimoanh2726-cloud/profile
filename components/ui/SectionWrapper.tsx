@@ -47,7 +47,7 @@ export function SectionWrapper({
           <div className="flex items-center gap-3 mb-2">
             {number && (
               <span
-                className={`text-xs md:text-sm tracking-widest font-mono font-medium ${
+                className={`section-number text-xs md:text-sm tracking-widest font-mono font-medium ${
                   theme === "a"
                     ? "text-[#B45309] dark:text-[#D97706]"
                     : "text-[#00D4FF]"
