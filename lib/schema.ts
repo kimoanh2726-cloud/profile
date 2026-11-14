@@ -249,6 +249,14 @@ export const ResearchSchema = z.array(ResearchItemSchema);
 
 // ─── Certificates (chứng chỉ) ──────────────────────────────────────
 
+/** Dự án liên quan đến chứng chỉ */
+export const RelatedProjectSchema = z.object({
+  title_vi: z.string().min(1),
+  title_en: z.string().optional(),
+  url:      z.string().url().optional(),
+});
+export type RelatedProject = z.infer<typeof RelatedProjectSchema>;
+
 export const CertificateItemSchema = z.object({
   id:            z.string().min(1),
   title:         BilingualText,
@@ -261,6 +269,16 @@ export const CertificateItemSchema = z.object({
   credential_id: z.string().optional(),               // snake_case alias
   credentialUrl: z.string().url().optional(),
   verify_url:    z.string().url().optional(),          // snake_case alias
+  /** v2.1: đường dẫn ảnh chứng chỉ trong /public (vd: /certificates/ielts.jpg) */
+  image:         z.string().optional(),
+  /** v2.1: đường dẫn PDF công khai trong /public */
+  pdfUrl:        z.string().optional(),
+  /** v2.1: thời lượng khóa học (giờ) */
+  durationHours: z.number().int().min(0).optional(),
+  /** v2.1: dự án liên quan */
+  relatedProject: RelatedProjectSchema.optional(),
+  /** v2.1: thứ tự sắp xếp trong khu nổi bật (nhỏ hơn = ưu tiên hơn) */
+  featuredOrder: z.number().int().min(0).optional(),
   description:   BilingualText.optional(),
   description_lengths: z.object({
     vi: MultiLengthDescription,

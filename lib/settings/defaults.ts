@@ -38,6 +38,11 @@ export const SettingsSchema = z.object({
   showExpiredCerts: z.boolean().default(false),
   expiryWarningDays: z.enum(["30", "60", "90"]).default("60"),
   certSortBy: z.enum(["newest", "expiring", "tag"]).default("newest"),
+  // v2.1 — Certificates display
+  certSupplementalView: z.enum(["grid", "list"]).default("grid"),
+  certGridCols: z.enum(["2", "3"]).default("3"),
+  certShowImage: z.boolean().default(true),
+  certShowRelatedProject: z.boolean().default(true),
 
   // — Accessibility —
   highContrast: z.boolean().default(false),

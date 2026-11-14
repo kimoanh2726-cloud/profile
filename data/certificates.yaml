@@ -1,7 +1,15 @@
 # ╔══════════════════════════════════════════════════════════════════╗
 # ║  CERTIFICATES — Chứng chỉ                                      ║
 # ║  ⚠️ Chứng chỉ sắp hết hạn sẽ được cảnh báo tự động            ║
+# ║                                                                 ║
+# ║  Hướng dẫn thêm chứng chỉ nổi bật:                            ║
+# ║    featured: true                                               ║
+# ║    featuredOrder: 1   (số nhỏ = ưu tiên trước)                 ║
+# ║    image: /certificates/ten-chung-chi.jpg  (để vào /public)    ║
+# ║    pdfUrl: /certificates/ten-chung-chi.pdf (nếu có)            ║
 # ╚══════════════════════════════════════════════════════════════════╝
+
+# ── CHỨNG CHỈ NỔI BẬT ─────────────────────────────────────────────────────
 
 - id: cert-ielts
   title:
@@ -13,9 +21,14 @@
   date: "2025-06-15"
   expiryDate: "2027-06-15"
   credentialId: "25VN-XXXXX"
+  verify_url: "https://www.ielts.org/en-us/certificate-verification"
   description:
-    vi: "L: 7.5 / R: 7.5 / W: 6.5 / S: 6.5"
-    en: "L: 7.5 / R: 7.5 / W: 6.5 / S: 6.5"
+    vi: "L: 7.5 / R: 7.5 / W: 6.5 / S: 6.5 — Đạt yêu cầu học bổng và visa du học"
+    en: "L: 7.5 / R: 7.5 / W: 6.5 / S: 6.5 — Meets scholarship and study visa requirements"
+  image: "/certificates/ielts-2025.jpg"
+  pdfUrl: "/certificates/ielts-2025.pdf"
+  featured: true
+  featuredOrder: 1
   tags: [ngon-ngu, hoc-bong, viec-lam]
   visibility: public
   documentPath: "/documents/certificates/ielts-2025.pdf"
@@ -30,12 +43,22 @@
   date: "2025-08"
   credentialId: "COURSERA-GIS-XXXX"
   credentialUrl: "https://coursera.org/verify/example"
+  verify_url: "https://coursera.org/verify/example"
   description:
-    vi: "Chứng chỉ chuyên sâu về GIS và phân tích không gian"
+    vi: "Chứng chỉ chuyên sâu về GIS và phân tích không gian địa lý"
     en: "Specialization certificate in GIS and spatial analysis"
+  image: "/certificates/gis-coursera-2025.jpg"
+  relatedProject:
+    title_vi: "Bản đồ phân bố cơ sở tín ngưỡng tỉnh An Giang"
+    title_en: "Religious Site Distribution Map — An Giang Province"
+    url: "https://example.com/gis-project"
+  featured: true
+  featuredOrder: 2
   tags: [cong-nghe, nghien-cuu]
   visibility: public
   documentPath: "/documents/certificates/gis-coursera-2025.pdf"
+
+# ── CHỨNG CHỈ BỔ SUNG ─────────────────────────────────────────────────────
 
 - id: cert-nvivo-training
   title:
@@ -46,7 +69,25 @@
     en: "Lumivero (QSR International)"
   date: "2025-04"
   credentialUrl: "https://example.com/nvivo-cert"
+  verify_url: "https://example.com/nvivo-cert"
+  durationHours: 8
   tags: [cong-nghe, nghien-cuu]
+  visibility: public
+
+- id: cert-research-method
+  title:
+    vi: "Phương pháp nghiên cứu định tính"
+    en: "Qualitative Research Methods"
+  issuer:
+    vi: "Đại học Khoa học Xã hội & Nhân văn TP.HCM"
+    en: "University of Social Sciences and Humanities, HCMC"
+  date: "2024-11"
+  no_expiry: true
+  durationHours: 30
+  description:
+    vi: "Phỏng vấn sâu, phân tích nội dung, nghiên cứu trường hợp"
+    en: "In-depth interviews, content analysis, case study methodology"
+  tags: [hoc-thuat, nghien-cuu]
   visibility: public
 
 - id: cert-first-aid
@@ -57,7 +98,7 @@
     vi: "Hội Chữ thập đỏ Việt Nam"
     en: "Vietnam Red Cross Society"
   date: "2024-03"
-  expiryDate: "2026-03"  # ⚠️ Sắp hết hạn! Script sẽ cảnh báo
+  expiryDate: "2026-03"
   tags: [hoat-dong]
   visibility: private
 
@@ -69,7 +110,7 @@
     vi: "Microsoft"
     en: "Microsoft"
   date: "2022-01"
-  expiryDate: "2024-01"  # ⚠️ ĐÃ HẾT HẠN — sẽ bị ẩn trên web
+  expiryDate: "2024-01"
   credentialId: "MOS-XXXX"
   tags: [cong-nghe]
   visibility: private

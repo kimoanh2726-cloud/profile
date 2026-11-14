@@ -140,3 +140,4 @@ Sau khi thêm setting mới, kiểm tra:
 - [ ] Mobile (bottom sheet) → hiển thị và hoạt động bình thường
 - [ ] Tab/Shift+Tab trong Panel → không thoát khỏi focus trap
 - [ ] `showWhen` (nếu có) → ẩn/hiện đúng điều kiện
+

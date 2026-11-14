@@ -285,6 +285,56 @@ export const SETTINGS_REGISTRY: SettingDef[] = [
       { value: "tag", labelVi: "Theo tag", labelEn: "By Tag" },
     ],
   },
+  {
+    id: "certSupplementalView",
+    group: "certificates",
+    type: "select",
+    labelVi: "Kiểu hiển thị bổ sung",
+    labelEn: "Supplemental View",
+    default: "grid",
+    options: [
+      { value: "grid", labelVi: "Lưới", labelEn: "Grid" },
+      { value: "list", labelVi: "Danh sách", labelEn: "List" },
+    ],
+    applyToDOM: (val, root) => {
+      root.setAttribute("data-cert-supplemental-view", String(val));
+    },
+  },
+  {
+    id: "certGridCols",
+    group: "certificates",
+    type: "select",
+    labelVi: "Số cột lưới bổ sung",
+    labelEn: "Supplemental Grid Columns",
+    default: "3",
+    showWhen: (s) => (s as Record<string, unknown>).certSupplementalView !== "list",
+    options: [
+      { value: "2", labelVi: "2 cột", labelEn: "2 columns" },
+      { value: "3", labelVi: "3 cột", labelEn: "3 columns" },
+    ],
+  },
+  {
+    id: "certShowImage",
+    group: "certificates",
+    type: "toggle",
+    labelVi: "Hiện ảnh chứng chỉ",
+    labelEn: "Show Certificate Image",
+    default: true,
+    applyToDOM: (val, root) => {
+      root.setAttribute("data-cert-show-image", val ? "true" : "false");
+    },
+  },
+  {
+    id: "certShowRelatedProject",
+    group: "certificates",
+    type: "toggle",
+    labelVi: "Hiện dự án liên quan",
+    labelEn: "Show Related Project",
+    default: true,
+    applyToDOM: (val, root) => {
+      root.setAttribute("data-cert-show-related", val ? "true" : "false");
+    },
+  },
 
   // ── Accessibility ────────────────────────────────────────────────────────
   {

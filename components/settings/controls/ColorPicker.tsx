@@ -100,3 +100,4 @@ export function ColorPicker({ value, onChange, theme, lang }: ColorPickerProps) 
     </div>
   );
 }
+
