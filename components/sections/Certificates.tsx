@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, Award } from "lucide-react";
+import { ChevronDown, ChevronUp, Award, FolderOpen, ExternalLink } from "lucide-react";
 import clsx from "clsx";
 import { SectionWrapper } from "../ui/SectionWrapper";
 import { FeaturedCertCard } from "../ui/FeaturedCertCard";
@@ -118,6 +118,49 @@ export function Certificates({ certificates, tagDefinitions }: CertificatesProps
           en: "Accredited certifications, language proficiencies, and specialized training",
         }}
       >
+        {/* Google Drive Repository Banner */}
+        <div className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl border transition-all duration-200 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md shadow-sm border-neutral-200/80 dark:border-neutral-800">
+          <div className="flex items-center gap-3.5">
+            <div
+              className={clsx(
+                "w-10 h-10 rounded-xl flex items-center justify-center shrink-0",
+                themeA
+                  ? "bg-amber-500/10 text-[#B45309] dark:text-[#D97706]"
+                  : "bg-[#00D4FF]/10 text-[#00D4FF]"
+              )}
+            >
+              <FolderOpen className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="font-semibold text-sm sm:text-base text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+                <span>
+                  {lang === "vi"
+                    ? "Kho lưu trữ chứng chỉ gốc (Google Drive)"
+                    : "Original Credentials Repository (Google Drive)"}
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
+                {lang === "vi"
+                  ? "Toàn bộ bản scan PDF & ảnh bằng cấp đầy đủ được đồng bộ trực tiếp từ Google Drive"
+                  : "Full archive of PDF scans and credential images synced directly from Google Drive"}
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://drive.google.com/drive/folders/1eiHNJXMydGjJnk1iSkGMNmXcTDM499Tu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={clsx(
+              "inline-flex items-center justify-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 shrink-0",
+              themeA
+                ? "bg-[#B45309] hover:bg-[#92400e] text-white shadow-sm hover:shadow-md"
+                : "bg-[#00D4FF] hover:bg-[#00b8e6] text-black font-mono shadow-[0_0_15px_rgba(0,212,255,0.3)] hover:shadow-[0_0_20px_rgba(0,212,255,0.5)]"
+            )}
+          >
+            <span>{lang === "vi" ? "Mở thư mục Drive" : "Open Drive Folder"}</span>
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        </div>
         {/* ════ KHU 1: CHỨNG CHỈ NỔI BẬT ════ */}
         {featuredCerts.length > 0 && (
           <div className="mb-14 3xl:mb-20">

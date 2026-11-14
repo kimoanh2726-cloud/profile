@@ -26,6 +26,18 @@
   tags: [hoc-thuat]
   visibility: public
 
+- id: link-certificates-drive
+  title:
+    vi: "Kho chứng chỉ tổng hợp (Google Drive)"
+    en: "Certificates Repository (Google Drive)"
+  url: "https://drive.google.com/drive/folders/1eiHNJXMydGjJnk1iSkGMNmXcTDM499Tu"
+  type: portfolio
+  description:
+    vi: "Lưu trữ toàn bộ bản scan và PDF văn bằng, chứng chỉ năng lực gốc"
+    en: "Complete repository of original credential scans and certificate PDFs"
+  tags: [hoc-thuat, ky-nang]
+  visibility: public
+
 - id: link-github
   title:
     vi: "GitHub — Dự án code"
