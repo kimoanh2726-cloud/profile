@@ -100,7 +100,7 @@ export function Hero({ profile }: { profile: Profile }) {
             className="mb-8"
           >
             <div
-              className={`relative w-28 h-28 md:w-36 md:h-36 rounded-full p-1.5 flex items-center justify-center transition-all ${
+              className={`relative w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 3xl:w-48 3xl:h-48 rounded-full p-1.5 flex items-center justify-center transition-all ${
                 theme === "a"
                   ? "bg-[#FAF7F2] dark:bg-[#25201B] border-2 border-[#B45309] shadow-md"
                   : "bg-[#141414] border-2 border-[#00D4FF] shadow-[0_0_24px_rgba(0,212,255,0.3)]"
@@ -125,10 +125,10 @@ export function Hero({ profile }: { profile: Profile }) {
                       : "bg-[#0A0A0A] text-[#00D4FF] font-be-vietnam font-extrabold"
                   }`}
                 >
-                  <span className="text-2xl md:text-3xl tracking-widest">
+                  <span className="text-xl sm:text-2xl md:text-3xl 3xl:text-4xl tracking-widest">
                     {initials}
                   </span>
-                  <span className="text-[10px] uppercase font-mono tracking-wider opacity-60">
+                  <span className="text-[9px] sm:text-[10px] 3xl:text-xs uppercase font-mono tracking-wider opacity-60">
                     Portfolio
                   </span>
                 </div>
@@ -142,7 +142,7 @@ export function Hero({ profile }: { profile: Profile }) {
             className="overflow-hidden mb-3"
           >
             <h1
-              className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight ${
+              className={`text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl 3xl:text-8xl font-bold tracking-tight ${
                 theme === "a"
                   ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]"
                   : "font-be-vietnam text-white"
@@ -158,7 +158,7 @@ export function Hero({ profile }: { profile: Profile }) {
             className="overflow-hidden mb-6"
           >
             <p
-              className={`text-lg sm:text-xl md:text-2xl font-medium max-w-2xl mx-auto leading-relaxed ${
+              className={`text-base sm:text-lg md:text-xl 3xl:text-3xl font-medium max-w-2xl 3xl:max-w-4xl mx-auto leading-relaxed ${
                 theme === "a"
                   ? "text-[#B45309] dark:text-[#D97706]"
                   : "text-[#00D4FF]"
@@ -171,10 +171,10 @@ export function Hero({ profile }: { profile: Profile }) {
           {/* Short Bio */}
           <motion.div
             variants={shouldReduceMotion ? undefined : lineVariants}
-            className="overflow-hidden mb-8 max-w-2xl mx-auto"
+            className="overflow-hidden mb-8 max-w-2xl 3xl:max-w-4xl mx-auto"
           >
             <p
-              className={`text-sm sm:text-base leading-relaxed ${
+              className={`text-sm sm:text-base 3xl:text-xl leading-relaxed ${
                 theme === "a"
                   ? "text-[#66584B] dark:text-[#9E9382]"
                   : "text-stone-300"

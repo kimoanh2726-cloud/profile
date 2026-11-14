@@ -49,11 +49,11 @@ export function Navbar({ name }: NavbarProps) {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 3xl:px-12 h-14 sm:h-16 md:h-20 3xl:h-24 flex items-center justify-between gap-4">
           {/* Brand / Logo */}
           <a
             href="#hero"
-            className={`font-bold tracking-tight text-base md:text-lg transition-colors hover:opacity-80 ${
+            className={`font-bold tracking-tight text-sm sm:text-base md:text-lg 3xl:text-2xl transition-colors hover:opacity-80 ${
               theme === "a"
                 ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]"
                 : "font-be-vietnam text-white"
@@ -62,13 +62,13 @@ export function Navbar({ name }: NavbarProps) {
             <span>{t(name)}</span>
           </a>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-6" aria-label="Main Navigation">
+          {/* Desktop & TV Nav Links */}
+          <nav className="hidden lg:flex items-center gap-6 3xl:gap-10" aria-label="Main Navigation">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-xs uppercase tracking-wider font-medium transition-colors ${
+                className={`text-xs 3xl:text-base uppercase tracking-wider font-medium transition-colors ${
                   theme === "a"
                     ? "text-[#66584B] hover:text-[#B45309] dark:text-[#9E9382] dark:hover:text-[#D97706]"
                     : "text-stone-300 hover:text-[#00D4FF]"
@@ -80,10 +80,10 @@ export function Navbar({ name }: NavbarProps) {
           </nav>
 
           {/* Theme Controls + Gear + Mobile Toggle */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 3xl:gap-3">
             <ThemeToggle />
 
-            {/* Gear button — desktop */}
+            {/* Gear button — desktop & TV */}
             <motion.button
               ref={gearButtonRef}
               onClick={() => setSettingsPanelOpen(true)}
@@ -93,14 +93,14 @@ export function Navbar({ name }: NavbarProps) {
               whileHover={{ rotate: 45 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className={clsx(
-                "hidden md:flex p-2 rounded-lg transition-colors",
+                "hidden md:flex p-2 3xl:p-3 rounded-lg transition-colors",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]",
                 theme === "a"
                   ? "text-[#66584B] hover:text-[#B45309] hover:bg-amber-50 dark:text-[#9E9382] dark:hover:bg-[#2A2218]"
                   : "text-stone-300 hover:text-[#00D4FF] hover:bg-white/5"
               )}
             >
-              <Settings className="w-4 h-4" />
+              <Settings className="w-4 h-4 3xl:w-6 3xl:h-6" />
             </motion.button>
 
             {/* Mobile hamburger button */}

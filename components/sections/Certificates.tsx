@@ -101,11 +101,11 @@ export function Certificates({ certificates, tagDefinitions }: CertificatesProps
 
   const closeLightbox = useCallback(() => setLightboxCert(null), []);
 
-  // ── Grid cols from settings ───────────────────────────────────────────────
+  // ── Grid cols from settings (tự động co giãn theo Mobile, Tablet, Desktop và TV) ────
   const gridCols =
     settings.certGridCols === "2"
-      ? "grid-cols-1 sm:grid-cols-2"
-      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+      ? "grid-cols-1 sm:grid-cols-2 3xl:grid-cols-3 4xl:grid-cols-4"
+      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 5xl:grid-cols-5";
 
   return (
     <>
@@ -120,12 +120,12 @@ export function Certificates({ certificates, tagDefinitions }: CertificatesProps
       >
         {/* ════ KHU 1: CHỨNG CHỈ NỔI BẬT ════ */}
         {featuredCerts.length > 0 && (
-          <div className="mb-14">
+          <div className="mb-14 3xl:mb-20">
             <SectionSubheading theme={theme} lang={lang}>
               {lang === "vi" ? "Chứng chỉ nổi bật" : "Featured Certificates"}
             </SectionSubheading>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 gap-6 3xl:gap-8">
               {featuredCerts.map((cert) => (
                 <FeaturedCertCard
                   key={cert.id}

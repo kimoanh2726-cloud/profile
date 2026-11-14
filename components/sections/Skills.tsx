@@ -68,7 +68,7 @@ export function Skills({ skills }: { skills: SkillItem[] }) {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 gap-4 3xl:gap-6">
             {languageSkills.map((skill) => (
               <SkillBadge key={skill.id} skill={skill} />
             ))}
@@ -97,7 +97,7 @@ export function Skills({ skills }: { skills: SkillItem[] }) {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 gap-4 3xl:gap-6">
               {cat.items.map((skill) => (
                 <SkillBadge key={skill.id} skill={skill} />
               ))}

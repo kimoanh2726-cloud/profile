@@ -151,10 +151,10 @@ export function CertLightbox({
             animate="visible"
             exit="exit"
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className={`fixed inset-0 z-[61] flex items-center justify-center p-4 pointer-events-none`}
+            className={`fixed inset-0 z-[61] flex items-center justify-center p-3 sm:p-4 3xl:p-8 pointer-events-none`}
           >
             <div
-              className={`relative w-full max-w-3xl max-h-[90vh] flex flex-col rounded-2xl overflow-hidden pointer-events-auto shadow-2xl
+              className={`relative w-full max-w-3xl 3xl:max-w-5xl 4xl:max-w-6xl 5xl:max-w-7xl max-h-[92vh] 3xl:max-h-[88vh] flex flex-col rounded-2xl overflow-hidden pointer-events-auto shadow-2xl
                 ${themeA
                   ? "bg-[#FAF7F2] dark:bg-[#1C1814] border border-[#E5DECE] dark:border-[#3A3228]"
                   : "bg-[#111111] border border-white/10"

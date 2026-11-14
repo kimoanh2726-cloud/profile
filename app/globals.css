@@ -462,3 +462,89 @@ h1, h2, h3, .font-heading {
 
 /* Hide related project via setting */
 [data-cert-show-related="false"] .cert-related-project { display: none !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN SUITE: MOBILE, TABLET & TV / LARGE DISPLAYS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. TV & Ultra-wide Screen Root Font Scaling ────────────────────────── */
+/* 
+   Tự động tăng font-size gốc trên TV (1080p, 2K, 4K) để mọi đơn vị rem
+   (văn bản, khoảng cách, lề, bo góc) co giãn tự nhiên theo khoảng cách ngồi xa
+*/
+@media (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media (min-width: 2560px) {
+  html {
+    font-size: 21px;
+  }
+}
+@media (min-width: 3840px) {
+  html {
+    font-size: 28px;
+  }
+}
+
+/* ── 2. TV Remote & Gamepad D-Pad Focus Visibility ──────────────────────── */
+/* 
+   Khi duyệt web trên TV bằng điều khiển từ xa (Remote / D-Pad navigation),
+   vòng focus (:focus-visible) phải cực kỳ rõ nét và phát sáng nhẹ
+*/
+@media (min-width: 1920px) {
+  :focus-visible {
+    outline: 4px solid var(--color-accent) !important;
+    outline-offset: 4px !important;
+    box-shadow: 0 0 24px var(--color-accent) !important;
+  }
+}
+
+/* ── 3. TV & Ultra-wide Container Max-Widths ────────────────────────────── */
+@media (min-width: 1920px) {
+  .max-w-6xl { max-width: 82rem; }
+  .max-w-5xl { max-width: 72rem; }
+  .max-w-4xl { max-width: 60rem; }
+}
+@media (min-width: 2560px) {
+  .max-w-6xl { max-width: 104rem; }
+  .max-w-5xl { max-width: 92rem; }
+  .max-w-4xl { max-width: 76rem; }
+}
+@media (min-width: 3840px) {
+  .max-w-6xl { max-width: 130rem; }
+  .max-w-5xl { max-width: 112rem; }
+  .max-w-4xl { max-width: 96rem; }
+}
+
+/* ── 4. Mobile Safe-Area & Touch Targets ─────────────────────────────────── */
+body {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+@media (max-width: 640px) {
+  /* Tối ưu vùng chạm tối thiểu 44px trên mobile chuẩn WCAG */
+  button, 
+  a[role="button"],
+  input,
+  select {
+    min-height: 40px;
+  }
+
+  /* Tránh tràn ngang trên màn hình điện thoại siêu nhỏ (320px - 360px) */
+  h1, h2, h3, h4, p {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}
+
+/* ── 5. Tablet Smooth Scrollbar & Layout Flow ───────────────────────────── */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Tablet viewport adjustments */
+  .tablet-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}

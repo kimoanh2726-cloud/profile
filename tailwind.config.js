@@ -7,6 +7,12 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      screens: {
+        xs: "360px",
+        "3xl": "1920px", // Full HD / Standard TV (1080p)
+        "4xl": "2560px", // 2K QHD / Large TV
+        "5xl": "3840px", // 4K UHD TV
+      },
       colors: {
         // ── Gradient tím-xanh chủ đạo ──
         primary: {

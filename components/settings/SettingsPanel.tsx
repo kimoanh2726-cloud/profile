@@ -157,7 +157,7 @@ export function SettingsPanel({ isOpen, onClose, triggerRef }: SettingsPanelProp
             className={clsx(
               "fixed top-0 right-0 h-full z-50",
               "hidden md:flex flex-col",
-              "w-[380px] max-w-[90vw]",
+              "w-[360px] sm:w-[380px] 3xl:w-[480px] 4xl:w-[560px] max-w-[90vw]",
               theme === "a"
                 ? "bg-[var(--color-bg)] border-l border-[var(--color-border)]"
                 : "bg-[var(--color-surface)] border-l border-[var(--color-border)]"
