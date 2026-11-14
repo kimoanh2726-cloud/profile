@@ -121,18 +121,44 @@ export function loadProfileHub(): ProfileHub {
   };
 }
 
-// ─── Lọc chỉ mục public ────────────────────────────────────────────
+// ─── Lọc chỉ mục public & loại bỏ thông tin nhạy cảm ─────────────
+
+/**
+ * Loại bỏ các trường nhạy cảm/nội bộ (như documentPath) khỏi dữ liệu trước khi gửi tới client
+ */
+function sanitizePublicItem<T extends { documentPath?: string }>(item: T): T {
+  const sanitized = { ...item };
+  delete sanitized.documentPath;
+  return sanitized;
+}
 
 export function loadPublicHub(): ProfileHub {
   const hub = loadProfileHub();
+
+  // 1. Loại bỏ trường phone (private) khỏi profile để không bị serialize vào client payload
+  const { phone: _phone, ...safeProfile } = hub.profile;
+
+  // 2. Lọc chỉ các mục public và loại bỏ đường dẫn file nội bộ documentPath
   return {
-    profile: hub.profile,
-    education: hub.education.filter((e) => e.visibility === "public"),
-    experience: hub.experience.filter((e) => e.visibility === "public"),
-    skills: hub.skills.filter((e) => e.visibility === "public"),
-    research: hub.research.filter((e) => e.visibility === "public"),
-    certificates: hub.certificates.filter((e) => e.visibility === "public"),
-    links: hub.links.filter((e) => e.visibility === "public"),
+    profile: safeProfile as Profile,
+    education: hub.education
+      .filter((e) => e.visibility === "public")
+      .map(sanitizePublicItem),
+    experience: hub.experience
+      .filter((e) => e.visibility === "public")
+      .map(sanitizePublicItem),
+    skills: hub.skills
+      .filter((e) => e.visibility === "public")
+      .map(sanitizePublicItem),
+    research: hub.research
+      .filter((e) => e.visibility === "public")
+      .map(sanitizePublicItem),
+    certificates: hub.certificates
+      .filter((e) => e.visibility === "public")
+      .map(sanitizePublicItem),
+    links: hub.links
+      .filter((e) => e.visibility === "public")
+      .map(sanitizePublicItem),
   };
 }
 

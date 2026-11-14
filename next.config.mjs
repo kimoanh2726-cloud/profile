@@ -9,6 +9,9 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Tắt header X-Powered-By để tránh làm lộ stack công nghệ
+  poweredByHeader: false,
+
   // Ảnh — dùng next/image để tối ưu
   images: {
     unoptimized: false,
