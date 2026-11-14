@@ -191,3 +191,4 @@ export function SupplementalCertCard({
     </motion.div>
   );
 }
+

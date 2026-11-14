@@ -70,6 +70,14 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
 
   const importSettings = useCallback((json: string): boolean => {
     try {
+      // 1. Giới hạn kích thước file import tối đa 50KB (chống DoS / tràn bộ nhớ)
+      if (typeof json !== "string" || json.length > 50000) return false;
+
+      // 2. Ngăn chặn tấn công Prototype Pollution
+      if (json.includes("__proto__") || json.includes("constructor") || json.includes("prototype")) {
+        return false;
+      }
+
       const parsed = JSON.parse(json) as unknown;
       if (typeof parsed !== "object" || parsed === null) return false;
       const result = SettingsSchema.safeParse(parsed);

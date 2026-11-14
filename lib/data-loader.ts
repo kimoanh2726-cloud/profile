@@ -126,10 +126,13 @@ export function loadProfileHub(): ProfileHub {
 /**
  * Loại bỏ các trường nhạy cảm/nội bộ (như documentPath) khỏi dữ liệu trước khi gửi tới client
  */
-function sanitizePublicItem<T extends { documentPath?: string }>(item: T): T {
-  const sanitized = { ...item };
-  delete sanitized.documentPath;
-  return sanitized;
+function sanitizePublicItem<T>(item: T): T {
+  if (item && typeof item === "object" && "documentPath" in item) {
+    const sanitized = { ...(item as Record<string, unknown>) };
+    delete sanitized.documentPath;
+    return sanitized as T;
+  }
+  return item;
 }
 
 export function loadPublicHub(): ProfileHub {

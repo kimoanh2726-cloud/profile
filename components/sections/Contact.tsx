@@ -19,6 +19,11 @@ import {
 export function Contact({ profile }: { profile: Profile }) {
   const { theme, lang, t } = useTheme();
   const [copied, setCopied] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const copyEmail = async () => {
     try {
@@ -28,6 +33,11 @@ export function Contact({ profile }: { profile: Profile }) {
     } catch {
       // Fallback
     }
+  };
+
+  const handleEmailClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.location.href = `mailto:${profile.email}`;
   };
 
   const socialItems = [
@@ -102,10 +112,12 @@ export function Contact({ profile }: { profile: Profile }) {
               : "To prevent spam, please reach out via my direct academic email below:"}
           </p>
 
-          {/* Email Box & Buttons */}
+          {/* Email Box & Buttons (Obfuscated against automated bots) */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href={`mailto:${profile.email}`}
+              href={mounted ? `mailto:${profile.email}` : "#contact"}
+              onClick={handleEmailClick}
+              aria-label={lang === "vi" ? `Gửi email tới ${profile.email}` : `Send email to ${profile.email}`}
               className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all shadow-sm ${
                 theme === "a"
                   ? "bg-[#B45309] hover:bg-[#92400E] text-white"
@@ -113,7 +125,7 @@ export function Contact({ profile }: { profile: Profile }) {
               }`}
             >
               <Mail className="w-4 h-4" />
-              <span>{profile.email}</span>
+              <span>{mounted ? profile.email : profile.email.replace("@", " [at] ")}</span>
             </a>
 
             <button
