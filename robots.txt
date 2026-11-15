@@ -1,0 +1,11 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Chặn bot quét các thư mục nội bộ
+Disallow: /documents/
+Disallow: /api/
+Disallow: /_next/
+
+# Sitemap (khi triển khai production)
+# Sitemap: https://thien-nguyen.dev/sitemap.xml
