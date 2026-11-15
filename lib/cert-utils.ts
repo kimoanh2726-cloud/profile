@@ -64,3 +64,23 @@ export function getCertVerifyUrl(cert: CertItemLike): string | undefined {
 export function getCertCredentialId(cert: CertItemLike): string | undefined {
   return cert.credential_id ?? cert.credentialId;
 }
+
+/**
+ * Trả về URL asset có kèm basePath khi deploy GitHub Pages subpath
+ */
+export function getAssetUrl(url?: string): string | undefined {
+  if (!url) return undefined;
+  if (
+    url.startsWith("http://") ||
+    url.startsWith("https://") ||
+    url.startsWith("//") ||
+    url.startsWith("#") ||
+    url.startsWith("data:") ||
+    url.startsWith("blob:")
+  ) {
+    return url;
+  }
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const cleanUrl = url.startsWith("/") ? url : `/${url}`;
+  return `${basePath}${cleanUrl}`;
+}

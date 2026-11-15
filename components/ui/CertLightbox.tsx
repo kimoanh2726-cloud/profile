@@ -12,7 +12,7 @@ import { X, ExternalLink, FileText, ZoomIn, ZoomOut, ChevronLeft, ChevronRight }
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { useSettings } from "@/hooks/useSettings";
 import type { CertificateItem } from "@/lib/schema";
-import { getCertVerifyUrl } from "@/lib/cert-utils";
+import { getCertVerifyUrl, getAssetUrl } from "@/lib/cert-utils";
 
 interface CertLightboxProps {
   cert: CertificateItem | null;
@@ -36,7 +36,7 @@ export function CertLightbox({
   const dialogRef = useRef<HTMLDivElement>(null);
 
   const verifyUrl = cert ? getCertVerifyUrl(cert) : undefined;
-  const pdfUrl = cert?.pdfUrl;
+  const pdfUrl = cert?.pdfUrl ? getAssetUrl(cert.pdfUrl) : undefined;
   const hasImage = !!cert?.image;
 
   // Current index in certs array for navigation

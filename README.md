@@ -3,7 +3,8 @@
 > **Sinh viên năm 3 chuyên ngành Tôn giáo học**  
 > Khoa Nhân học và Tôn giáo — Trường Đại học Khoa học Xã hội và Nhân văn Hà Nội (VNU-USSH)  
 > *Đại học Quốc gia Hà Nội (VNU)*  
-> 🔗 **GitHub:** [@kimoanh2726-cloud](https://github.com/kimoanh2726-cloud)
+> 🔗 **GitHub Repository:** [kimoanh2726-cloud/profile](https://github.com/kimoanh2726-cloud/profile)  
+> 🌐 **Live Website (GitHub Pages):** [kimoanh2726-cloud.github.io/profile](https://kimoanh2726-cloud.github.io/profile/)  
 
 ---
 

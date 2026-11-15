@@ -11,7 +11,7 @@ import clsx from "clsx";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { useSettings } from "@/hooks/useSettings";
 import type { CertificateItem } from "@/lib/schema";
-import { checkCertificateExpiry, getCertVerifyUrl } from "@/lib/cert-utils";
+import { checkCertificateExpiry, getCertVerifyUrl, getAssetUrl } from "@/lib/cert-utils";
 
 interface FeaturedCertCardProps {
   cert: CertificateItem;
@@ -178,7 +178,7 @@ export function FeaturedCertCard({
           )}
           {cert.pdfUrl && (
             <ActionButton
-              href={cert.pdfUrl}
+              href={getAssetUrl(cert.pdfUrl)}
               theme={theme}
               variant="ghost"
               icon={<FileText className="w-3.5 h-3.5" />}
