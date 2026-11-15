@@ -2,25 +2,25 @@
 # ║  EDUCATION — Học vấn                                            ║
 # ╚══════════════════════════════════════════════════════════════════╝
 
-- id: edu-ussh-bachelor
+- id: edu-ussh-hanoi-bachelor
   title:
-    vi: "Cử nhân Tôn giáo học"
-    en: "Bachelor of Arts in Religious Studies"
+    vi: "Cử nhân Tôn giáo học (Đang học năm 3)"
+    en: "Bachelor of Arts in Religious Studies (3rd Year)"
   institution:
-    vi: "Đại học Khoa học Xã hội và Nhân văn — ĐHQG TP.HCM"
-    en: "University of Social Sciences and Humanities — VNU-HCM"
+    vi: "Trường Đại học Khoa học Xã hội và Nhân văn — Đại học Quốc gia Hà Nội (VNU-USSH)"
+    en: "University of Social Sciences and Humanities — Vietnam National University, Hanoi (VNU-USSH)"
   degree:
     vi: "Cử nhân"
     en: "Bachelor of Arts"
   field:
-    vi: "Tôn giáo học"
-    en: "Religious Studies"
+    vi: "Khoa Nhân học và Tôn giáo — Chuyên ngành Tôn giáo học"
+    en: "Faculty of Anthropology and Religion — Religious Studies"
   startDate: "2024-09"
   # endDate: chưa tốt nghiệp
-  gpa: "3.52/4.0"
+  gpa: "3.6/4.0"
   description:
-    vi: "Chuyên ngành Tôn giáo so sánh. Hoạt động tại CLB Nghiên cứu Tôn giáo."
-    en: "Major in Comparative Religion. Active member of the Religious Studies Club."
+    vi: "Sinh viên năm 3 chuyên ngành Tôn giáo học, Khoa Nhân học và Tôn giáo. Tham gia nghiên cứu tôn giáo so sánh, nhân học tôn giáo và các hoạt động nghiên cứu khoa học sinh viên."
+    en: "Third-year student majoring in Religious Studies, Faculty of Anthropology and Religion. Active in comparative religion, anthropology of religion, and student scientific research."
   tags: [hoc-thuat, hoc-bong]
   visibility: public
 
@@ -29,12 +29,12 @@
     vi: "Tốt nghiệp THPT"
     en: "High School Diploma"
   institution:
-    vi: "Trường THPT Chuyên Lê Hồng Phong"
-    en: "Le Hong Phong High School for the Gifted"
+    vi: "Trường THPT Chuyên"
+    en: "High School for the Gifted"
   startDate: "2021-09"
   endDate: "2024-06"
   description:
-    vi: "Lớp chuyên Văn. Đạt giải Ba kỳ thi HSG Quốc gia môn Ngữ văn."
-    en: "Literature track. Third Prize at the National Literature Olympiad."
+    vi: "Đạt thành tích xuất sắc trong học tập và các hoạt động ngoại khóa."
+    en: "Achieved outstanding academic performance and extracurricular activities."
   tags: [hoc-thuat]
   visibility: public

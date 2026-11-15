@@ -6,38 +6,38 @@
 id: profile
 
 name:
-  vi: "Nguyễn Minh Thiện"
-  en: "Nguyen Minh Thien"
+  vi: "Trần Kim Oanh"
+  en: "Tran Kim Oanh"
 
 title:
-  vi: "Sinh viên ngành Tôn giáo học — Nhà nghiên cứu tôn giáo so sánh"
-  en: "Religious Studies Student — Comparative Religion Researcher"
+  vi: "Sinh viên năm 3 chuyên ngành Tôn giáo học — Khoa Nhân học và Tôn giáo, Trường ĐHKHXH&NV Hà Nội (ĐHQGHN)"
+  en: "Third-year Religious Studies Student — Faculty of Anthropology & Religion, VNU-USSH Hanoi"
 
 bio:
   vi: >
-    Tôi là sinh viên năm 3 ngành Tôn giáo học tại Đại học Khoa học Xã hội 
-    và Nhân văn TP.HCM. Đam mê nghiên cứu tôn giáo so sánh, đặc biệt là 
-    mối quan hệ giữa Phật giáo Theravāda và tín ngưỡng dân gian Nam Bộ. 
-    Đã tham gia nhiều dự án điền dã tại các cộng đồng Khmer ở Đồng bằng 
-    Sông Cửu Long.
+    Sinh viên năm 3 chuyên ngành Tôn giáo học, Khoa Nhân học và Tôn giáo thuộc 
+    Trường Đại học Khoa học Xã hội và Nhân văn Hà Nội, trực thuộc Đại học Quốc gia 
+    Hà Nội (VNU-USSH). Đam mê nghiên cứu tôn giáo so sánh, nhân học văn hóa và 
+    tác động xã hội. Định hướng kết hợp phương pháp nghiên cứu điền dã truyền thống 
+    với công nghệ số, AI và phân tích dữ liệu phục vụ học thuật và công việc thực tiễn.
   en: >
-    I am a third-year Religious Studies student at the University of Social 
-    Sciences and Humanities (HCMC). Passionate about comparative religion, 
-    with a focus on the interplay between Theravāda Buddhism and folk beliefs 
-    in Southern Vietnam. Experienced in ethnographic fieldwork among Khmer 
-    communities in the Mekong Delta.
+    Third-year undergraduate majoring in Religious Studies at the Faculty of 
+    Anthropology and Religion, University of Social Sciences and Humanities, 
+    Vietnam National University, Hanoi (VNU-USSH). Passionate about comparative 
+    religion, cultural anthropology, and societal dynamics. Dedicated to integrating 
+    ethnographic fieldwork with modern AI, digital tools, and data analytics for academic 
+    and practical excellence.
 
 avatar: "/documents/avatar.jpg"
 
-email: "thien.nguyen@example.edu.vn"
+email: "kimoanh2726@gmail.com"
 phone: "0901-xxx-xxx"  # ⚠️ Private — không bao giờ lên web
 
 location:
-  vi: "TP. Hồ Chí Minh, Việt Nam"
-  en: "Ho Chi Minh City, Vietnam"
+  vi: "Hà Nội, Việt Nam"
+  en: "Hanoi, Vietnam"
 
 social:
-  github: "https://github.com/minhthien-example"
-  linkedin: "https://linkedin.com/in/minhthien-example"
-  orcid: "https://orcid.org/0000-0000-0000-0001"
-  scholar: "https://scholar.google.com/citations?user=example"
+  github: "https://github.com/kimoanh2726-cloud"
+  linkedin: "https://linkedin.com"
+  scholar: "https://scholar.google.com"

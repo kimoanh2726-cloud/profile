@@ -20,14 +20,13 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://thien-nguyen.dev"),
-  title: "Nguyễn Minh Thiện — Religious Studies Portfolio",
+  title: "Trần Kim Oanh — Religious Studies Portfolio",
   description:
-    "Hồ sơ học thuật & Portfolio của Nguyễn Minh Thiện — Nghiên cứu sinh Tôn giáo học, chuyên sâu Phật giáo Theravāda và tín ngưỡng dân gian Nam Bộ.",
+    "Hồ sơ học thuật & Portfolio của Trần Kim Oanh — Sinh viên năm 3 chuyên ngành Tôn giáo học, Khoa Nhân học và Tôn giáo, Trường ĐHKHXH&NV Hà Nội (ĐHQGHN).",
   openGraph: {
-    title: "Nguyễn Minh Thiện — Religious Studies Portfolio",
+    title: "Trần Kim Oanh — Religious Studies Portfolio",
     description:
-      "Nghiên cứu sinh Tôn giáo học — Chuyên sâu Phật giáo Theravāda và tín ngưỡng dân gian Nam Bộ.",
+      "Sinh viên năm 3 chuyên ngành Tôn giáo học, Khoa Nhân học và Tôn giáo, Trường ĐHKHXH&NV Hà Nội (ĐHQGHN).",
     images: ["/og-image.jpg"],
     type: "website",
   },
