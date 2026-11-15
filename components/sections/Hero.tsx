@@ -14,11 +14,15 @@ import {
   Award,
   Zap,
   ArrowRight,
-  ExternalLink,
 } from "lucide-react";
 import clsx from "clsx";
 
-export function Hero({ profile }: { profile: Profile }) {
+interface HeroProps {
+  profile: Profile;
+  onSelectTab?: (tab: string) => void;
+}
+
+export function Hero({ profile, onSelectTab }: HeroProps) {
   const { theme, lang, t } = useTheme();
   const shouldReduceMotion = useReducedMotion();
   const [avatarError, setAvatarError] = useState(false);
@@ -75,7 +79,7 @@ export function Hero({ profile }: { profile: Profile }) {
   return (
     <section
       id="hero"
-      className="relative min-h-[88vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 3xl:px-12 overflow-hidden border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60"
+      className="relative flex items-center justify-center pt-28 pb-14 sm:pb-16 px-4 sm:px-6 lg:px-8 3xl:px-12 overflow-hidden border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60"
     >
       {/* Background ambient lighting for Theme B */}
       {!themeA && (
@@ -123,7 +127,7 @@ export function Hero({ profile }: { profile: Profile }) {
                   : "text-stone-400 font-mono"
               )}
             >
-              {lang === "vi" ? "Giới thiệu" : "About Me"}
+              {lang === "vi" ? "Tổng quan" : "Overview"}
             </span>
           </motion.div>
 
@@ -226,7 +230,7 @@ export function Hero({ profile }: { profile: Profile }) {
             </p>
           </motion.div>
 
-          {/* ── 4 Quick-Nav Cards (Phù hợp hoàn hảo với hệ thống card của web) ── */}
+          {/* ── 4 Quick-Nav Cards (Bấm vào nhảy sang Tab tương ứng ngay lập tức) ── */}
           <motion.div
             variants={shouldReduceMotion ? undefined : itemVariants}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full mb-10"
@@ -234,8 +238,14 @@ export function Hero({ profile }: { profile: Profile }) {
             {/* Card 1: Học vấn */}
             <a
               href="#timeline"
+              onClick={(e) => {
+                if (onSelectTab) {
+                  e.preventDefault();
+                  onSelectTab("timeline");
+                }
+              }}
               className={clsx(
-                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px]",
+                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px] cursor-pointer",
                 themeA
                   ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] hover:border-[#B45309]/50 hover:shadow-lg hover:shadow-[#B45309]/8"
                   : "bg-white/[0.03] backdrop-blur-md border-white/10 hover:border-[#00D4FF]/40 hover:shadow-[0_8px_30px_rgba(0,212,255,0.12)]"
@@ -286,8 +296,14 @@ export function Hero({ profile }: { profile: Profile }) {
             {/* Card 2: Dự án Nghiên cứu */}
             <a
               href="#research"
+              onClick={(e) => {
+                if (onSelectTab) {
+                  e.preventDefault();
+                  onSelectTab("research");
+                }
+              }}
               className={clsx(
-                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px]",
+                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px] cursor-pointer",
                 themeA
                   ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] hover:border-[#B45309]/50 hover:shadow-lg hover:shadow-[#B45309]/8"
                   : "bg-white/[0.03] backdrop-blur-md border-white/10 hover:border-[#00D4FF]/40 hover:shadow-[0_8px_30px_rgba(0,212,255,0.12)]"
@@ -338,8 +354,14 @@ export function Hero({ profile }: { profile: Profile }) {
             {/* Card 3: Kỹ năng & Năng lực */}
             <a
               href="#skills"
+              onClick={(e) => {
+                if (onSelectTab) {
+                  e.preventDefault();
+                  onSelectTab("skills");
+                }
+              }}
               className={clsx(
-                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px]",
+                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px] cursor-pointer",
                 themeA
                   ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] hover:border-[#B45309]/50 hover:shadow-lg hover:shadow-[#B45309]/8"
                   : "bg-white/[0.03] backdrop-blur-md border-white/10 hover:border-[#00D4FF]/40 hover:shadow-[0_8px_30px_rgba(0,212,255,0.12)]"
@@ -390,8 +412,14 @@ export function Hero({ profile }: { profile: Profile }) {
             {/* Card 4: Chứng chỉ Quốc tế */}
             <a
               href="#certificates"
+              onClick={(e) => {
+                if (onSelectTab) {
+                  e.preventDefault();
+                  onSelectTab("certificates");
+                }
+              }}
               className={clsx(
-                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px]",
+                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px] cursor-pointer",
                 themeA
                   ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] hover:border-[#B45309]/50 hover:shadow-lg hover:shadow-[#B45309]/8"
                   : "bg-white/[0.03] backdrop-blur-md border-white/10 hover:border-[#00D4FF]/40 hover:shadow-[0_8px_30px_rgba(0,212,255,0.12)]"
@@ -448,10 +476,10 @@ export function Hero({ profile }: { profile: Profile }) {
             className="flex flex-wrap items-center gap-4 w-full"
           >
             {/* Primary Action Button */}
-            <a
-              href="#contact"
+            <button
+              onClick={() => onSelectTab?.("contact")}
               className={clsx(
-                "inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 shadow-sm",
+                "inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 shadow-sm cursor-pointer",
                 themeA
                   ? "bg-[#B45309] hover:bg-[#92400e] text-white hover:shadow-md"
                   : "bg-[#00D4FF] hover:bg-[#38e1ff] text-black font-semibold shadow-[0_0_20px_rgba(0,212,255,0.35)]"
@@ -460,13 +488,13 @@ export function Hero({ profile }: { profile: Profile }) {
               <Mail className="w-4 h-4" />
               <span>{lang === "vi" ? "Liên hệ ngay" : "Contact Me"}</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
 
             {/* Secondary Action Button */}
-            <a
-              href="#certificates"
+            <button
+              onClick={() => onSelectTab?.("certificates")}
               className={clsx(
-                "inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 border",
+                "inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 border cursor-pointer",
                 themeA
                   ? "border-[#E5DECE] dark:border-[#3A3228] bg-white dark:bg-[#1E1A14] text-[#1A1108] dark:text-[#EDE8E1] hover:border-[#B45309] hover:text-[#B45309] hover:bg-[#FAF7F2] dark:hover:bg-[#28221B]"
                   : "border-white/15 bg-white/5 text-stone-200 hover:border-[#00D4FF]/40 hover:text-[#00D4FF] hover:bg-white/10"
@@ -475,7 +503,7 @@ export function Hero({ profile }: { profile: Profile }) {
               <Award className="w-4 h-4" />
               <span>{lang === "vi" ? "Xem kho chứng chỉ" : "View Certificates"}</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
 
             {/* Social Links */}
             <div className="flex items-center gap-2.5 sm:ml-auto">

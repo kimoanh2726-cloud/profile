@@ -10,74 +10,41 @@ import clsx from "clsx";
 
 interface NavbarProps {
   name: { vi: string; en: string };
+  activeTab?: string;
+  onSelectTab?: (tab: string) => void;
 }
 
-export function Navbar({ name }: NavbarProps) {
+export function Navbar({ name, activeTab = "overview", onSelectTab }: NavbarProps) {
   const { theme, lang, t } = useTheme();
   const themeA = theme === "a";
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [settingsPanelOpen, setSettingsPanelOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("about");
   const gearButtonRef = useRef<HTMLButtonElement>(null);
 
   const navLinks = [
-    { href: "#about", id: "about", label: { vi: "Về tôi", en: "About" } },
-    { href: "#research", id: "research", label: { vi: "Nghiên cứu", en: "Research" } },
-    { href: "#timeline", id: "timeline", label: { vi: "Quá trình", en: "Timeline" } },
-    { href: "#certificates", id: "certificates", label: { vi: "Chứng chỉ", en: "Certificates" } },
-    { href: "#skills", id: "skills", label: { vi: "Kỹ năng", en: "Skills" } },
-    { href: "#contact", id: "contact", label: { vi: "Liên hệ", en: "Contact" } },
+    { id: "overview", label: { vi: "Tổng quan", en: "Overview" } },
+    { id: "timeline", label: { vi: "Quá trình", en: "Timeline" } },
+    { id: "research", label: { vi: "Nghiên cứu", en: "Research" } },
+    { id: "certificates", label: { vi: "Chứng chỉ", en: "Certificates" } },
+    { id: "skills", label: { vi: "Kỹ năng", en: "Skills" } },
+    { id: "contact", label: { vi: "Liên hệ", en: "Contact" } },
   ];
 
-  // ── Scrollspy: tự động nhận biết section đang xem trên màn hình ──
   useEffect(() => {
-    const sectionIds = ["about", "research", "timeline", "certificates", "skills", "contact"];
-
     const handleScroll = () => {
-      // 1. Kiểm tra trạng thái cuộn để đổi nền header
       setIsScrolled(window.scrollY > 20);
-
-      // 2. Nếu đã cuộn sát chân trang -> kích hoạt mục cuối cùng (Liên hệ)
-      const scrollHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const clientHeight = window.innerHeight;
-
-      if (scrollTop + clientHeight >= scrollHeight - 70) {
-        setActiveSection("contact");
-        return;
-      }
-
-      // 3. Quét vị trí các section từ dưới lên trên
-      const offsetThreshold = 180;
-      let current = "";
-
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const id = sectionIds[i];
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= offsetThreshold) {
-            current = id;
-            break;
-          }
-        }
-      }
-
-      // Nếu ở đầu trang (chưa cuộn tới About)
-      if (!current && scrollTop < 400) {
-        current = "about";
-      }
-
-      if (current) {
-        setActiveSection(current);
-      }
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleTabClick = (tabId: string) => {
+    if (onSelectTab) {
+      onSelectTab(tabId);
+    }
+    setMobileMenuOpen(false);
+  };
 
   const settingsLabel = lang === "vi" ? "Cài đặt" : "Settings";
 
@@ -93,29 +60,29 @@ export function Navbar({ name }: NavbarProps) {
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 3xl:px-12 h-14 sm:h-16 md:h-20 3xl:h-24 flex items-center justify-between gap-4">
-          {/* Brand / Logo */}
-          <a
-            href="#hero"
-            className={`font-bold tracking-tight text-sm sm:text-base md:text-lg 3xl:text-2xl transition-colors hover:opacity-80 ${
+          {/* Brand / Logo — Bấm vào quay về trang chủ (Overview) */}
+          <button
+            onClick={() => handleTabClick("overview")}
+            className={clsx(
+              "font-bold tracking-tight text-sm sm:text-base md:text-lg 3xl:text-2xl transition-colors hover:opacity-80 text-left cursor-pointer",
               themeA
                 ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]"
                 : "font-be-vietnam text-white"
-            }`}
+            )}
           >
             <span>{t(name)}</span>
-          </a>
+          </button>
 
-          {/* Desktop & TV Nav Links với hiệu ứng In Đậm & Gạch Chân */}
+          {/* Desktop & TV Tab Links với In Đậm & Gạch Chân trượt */}
           <nav className="hidden lg:flex items-center gap-6 3xl:gap-10" aria-label="Main Navigation">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
+              const isActive = activeTab === link.id;
               return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setActiveSection(link.id)}
+                <button
+                  key={link.id}
+                  onClick={() => handleTabClick(link.id)}
                   className={clsx(
-                    "relative py-1.5 text-xs 3xl:text-base uppercase tracking-wider transition-all duration-200 select-none",
+                    "relative py-1.5 text-xs 3xl:text-base uppercase tracking-wider transition-all duration-200 select-none cursor-pointer",
                     isActive
                       ? themeA
                         ? "font-bold text-[#B45309] dark:text-[#D97706]"
@@ -127,7 +94,7 @@ export function Navbar({ name }: NavbarProps) {
                 >
                   <span>{t(link.label)}</span>
 
-                  {/* Thanh gạch chân di chuyển mượt mà (Animated Active Underline) */}
+                  {/* Thanh gạch chân mượt mà (Animated Active Underline) */}
                   {isActive && (
                     <motion.div
                       layoutId="activeNavUnderline"
@@ -140,7 +107,7 @@ export function Navbar({ name }: NavbarProps) {
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
-                </a>
+                </button>
               );
             })}
           </nav>
@@ -159,7 +126,7 @@ export function Navbar({ name }: NavbarProps) {
               whileHover={{ rotate: 45 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className={clsx(
-                "hidden md:flex p-2 3xl:p-3 rounded-lg transition-colors",
+                "hidden md:flex p-2 3xl:p-3 rounded-lg transition-colors cursor-pointer",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]",
                 themeA
                   ? "text-[#66584B] hover:text-[#B45309] hover:bg-amber-50 dark:text-[#9E9382] dark:hover:bg-[#2A2218]"
@@ -192,17 +159,13 @@ export function Navbar({ name }: NavbarProps) {
             )}
           >
             {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
+              const isActive = activeTab === link.id;
               return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => {
-                    setActiveSection(link.id);
-                    setMobileMenuOpen(false);
-                  }}
+                <button
+                  key={link.id}
+                  onClick={() => handleTabClick(link.id)}
                   className={clsx(
-                    "flex items-center justify-between py-2 px-3 rounded-lg text-sm transition-all",
+                    "flex items-center justify-between py-2.5 px-3 rounded-lg text-sm transition-all w-full text-left cursor-pointer",
                     isActive
                       ? themeA
                         ? "font-bold text-[#B45309] dark:text-[#D97706] bg-amber-500/10 border-l-4 border-[#B45309] dark:border-[#D97706]"
@@ -221,7 +184,7 @@ export function Navbar({ name }: NavbarProps) {
                       )}
                     />
                   )}
-                </a>
+                </button>
               );
             })}
 
@@ -232,7 +195,7 @@ export function Navbar({ name }: NavbarProps) {
                 setSettingsPanelOpen(true);
               }}
               className={clsx(
-                "flex items-center gap-2 py-2 px-3 text-sm font-medium w-full rounded-lg transition-colors",
+                "flex items-center gap-2 py-2 px-3 text-sm font-medium w-full rounded-lg transition-colors cursor-pointer",
                 themeA
                   ? "text-[#66584B] dark:text-[#9E9382] hover:text-[#B45309] hover:bg-amber-50/50"
                   : "text-stone-300 hover:text-[#00D4FF] hover:bg-white/5"
@@ -245,7 +208,7 @@ export function Navbar({ name }: NavbarProps) {
         )}
       </header>
 
-      {/* Settings Panel (portal-like, rendered after header) */}
+      {/* Settings Panel */}
       <SettingsPanel
         isOpen={settingsPanelOpen}
         onClose={() => setSettingsPanelOpen(false)}
