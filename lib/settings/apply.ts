@@ -33,6 +33,7 @@ export const ANTI_FLASH_SCRIPT = /* javascript */ `
     var apply = function(attr, val, def) {
       if (val !== undefined && val !== null && val !== def) r.setAttribute(attr, String(val));
     };
+    apply('data-font',                s.fontFamily,         'garamond');
     apply('data-font-size',           s.fontSize,           'md');
     apply('data-content-width',       s.contentWidth,       'normal');
     apply('data-card-radius',         s.cardRadius,         'md');

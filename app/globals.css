@@ -243,14 +243,52 @@
   --color-accent-hover: #92400E;
   --color-border: #E6DDD0;
   --color-border-subtle: #F0E8DC;
+  /* Default Anti-AI Font Pairing: Cormorant Garamond + Lora */
+  --font-heading: var(--font-cormorant);
+  --font-body: var(--font-lora);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BỘ PHÔNG CHỮ TIẾNG VIỆT CHUYÊN DỤNG (Anti-AI Typography)
+   ═══════════════════════════════════════════════════════════ */
+
+/* 1. Garamond — Bản thảo & Hàn lâm Cổ điển (Mặc định) */
+:root,
+[data-font="garamond"] {
+  --font-heading: var(--font-cormorant);
+  --font-body: var(--font-lora);
+}
+
+/* 2. Newsreader — Tạp chí & Báo chí Nghiên cứu Nhân văn */
+[data-font="newsreader"] {
+  --font-heading: var(--font-newsreader);
+  --font-body: var(--font-be-vietnam);
+}
+
+/* 3. Fraunces — Nghệ thuật Điền dã & Thủ công Đương đại */
+[data-font="fraunces"] {
+  --font-heading: var(--font-fraunces);
+  --font-body: var(--font-be-vietnam);
+}
+
+/* 4. Playfair — Sang trọng Hiện đại */
+[data-font="playfair"] {
   --font-heading: var(--font-playfair);
   --font-body: var(--font-be-vietnam);
 }
 
+/* ─── Typography overrides ─── */
+h1, h2, h3, h4, .font-heading, .font-playfair {
+  font-family: var(--font-heading), Georgia, serif;
+}
+
+body, p, span, li, .font-body {
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
 /* ─── Theme A: Academic Editorial (Biên tập học thuật) ─── */
 [data-theme="a"] {
-  --font-heading: var(--font-playfair);
-  --font-body: var(--font-be-vietnam);
+  /* Giữ font heading theo bộ font đang chọn */
 }
 
 [data-theme="a"][data-mode="light"],

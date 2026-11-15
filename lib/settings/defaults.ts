@@ -20,6 +20,7 @@ export const SettingsSchema = z.object({
 
   // — Appearance (non-bridged) —
   fontSize: z.enum(["sm", "md", "lg"]).default("md"),
+  fontFamily: z.enum(["garamond", "newsreader", "fraunces", "playfair"]).default("garamond"),
   contentWidth: z.enum(["narrow", "normal", "wide"]).default("normal"),
   cardRadius: z.enum(["none", "sm", "md", "lg"]).default("md"),
   accentColor: z.string().nullable().default(null),

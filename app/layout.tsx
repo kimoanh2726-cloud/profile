@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Be_Vietnam_Pro } from "next/font/google";
+import {
+  Playfair_Display,
+  Be_Vietnam_Pro,
+  Cormorant_Garamond,
+  Newsreader,
+  Fraunces,
+  Lora,
+} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { SettingsProvider } from "@/components/settings/SettingsProvider";
@@ -10,6 +17,34 @@ const playfair = Playfair_Display({
   subsets: ["vietnamese", "latin"],
   variable: "--font-playfair",
   display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["vietnamese", "latin"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["vietnamese", "latin"],
+  variable: "--font-newsreader",
+  display: "swap",
+  adjustFontFallback: false,
+});
+
+const fraunces = Fraunces({
+  subsets: ["vietnamese", "latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+  adjustFontFallback: false,
+});
+
+const lora = Lora({
+  subsets: ["vietnamese", "latin"],
+  variable: "--font-lora",
+  display: "swap",
+  adjustFontFallback: false,
 });
 
 const beVietnamPro = Be_Vietnam_Pro({
@@ -42,7 +77,7 @@ export default function RootLayout({
       lang="vi"
       data-theme="a"
       data-mode="light"
-      className={`${playfair.variable} ${beVietnamPro.variable}`}
+      className={`${playfair.variable} ${cormorant.variable} ${newsreader.variable} ${fraunces.variable} ${lora.variable} ${beVietnamPro.variable}`}
       suppressHydrationWarning
     >
       <head>

@@ -93,6 +93,25 @@ export const SETTINGS_REGISTRY: SettingDef[] = [
     ],
   },
   {
+    id: "fontFamily",
+    group: "appearance",
+    type: "select",
+    labelVi: "Bộ phông chữ",
+    labelEn: "Typography Style",
+    descriptionVi: "Chọn kiểu chữ thể hiện tinh thần học thuật & nghiên cứu nhân văn",
+    descriptionEn: "Select typography style matching academic & humanities spirit",
+    default: "garamond",
+    options: [
+      { value: "garamond", labelVi: "1. Garamond — Bản thảo & Hàn lâm Cổ điển", labelEn: "1. Garamond — Academic Classic" },
+      { value: "newsreader", labelVi: "2. Newsreader — Tạp chí & Báo chí Nhân văn", labelEn: "2. Newsreader — Editorial & Journal" },
+      { value: "fraunces", labelVi: "3. Fraunces — Thủ công Đương đại & Điền dã", labelEn: "3. Fraunces — Artisanal & Warm" },
+      { value: "playfair", labelVi: "4. Playfair — Sang trọng Hiện đại", labelEn: "4. Playfair — Modern Prestige" },
+    ],
+    applyToDOM: (val, root) => {
+      root.setAttribute("data-font", String(val));
+    },
+  },
+  {
     id: "fontSize",
     group: "appearance",
     type: "select",
