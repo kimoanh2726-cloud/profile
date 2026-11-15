@@ -68,6 +68,8 @@ export function TabbedPortfolio({
         setActiveTab("overview");
       } else if (raw === "education" || raw === "experience") {
         setActiveTab("timeline");
+      } else if (raw === "projects" || raw === "project") {
+        setActiveTab("research");
       } else if (VALID_TABS.includes(raw as TabId)) {
         setActiveTab(raw as TabId);
       }

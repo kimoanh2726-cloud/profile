@@ -187,10 +187,10 @@ export function OverviewTab({
                         themeA ? "text-[#1A1108] dark:text-[#EDE8E1]" : "text-white"
                       )}
                     >
-                      {lang === "vi" ? "Nghiên cứu & Dự án" : "Research & Publications"}
+                      {lang === "vi" ? "Dự án & Đề tài" : "Projects & Research"}
                     </h3>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                      {research.length} {lang === "vi" ? "công trình tiêu biểu" : "featured works"}
+                      {research.length} {lang === "vi" ? "dự án tiêu biểu" : "featured projects"}
                     </p>
                   </div>
                 </div>
@@ -200,8 +200,8 @@ export function OverviewTab({
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                     <span>
                       {lang === "vi"
-                        ? "Bài báo khoa học: Giao thoa giữa Phật giáo Theravāda và tín ngưỡng dân gian Khmer"
-                        : "Journal Article: Syncretism between Theravāda Buddhism & Khmer folk rituals"}
+                        ? "Dự án NCKH: Giao thoa giữa Phật giáo Theravāda và tín ngưỡng dân gian Khmer"
+                        : "Research Project: Syncretism between Theravāda Buddhism & Khmer folk rituals"}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
@@ -232,7 +232,7 @@ export function OverviewTab({
                     : "border-white/5 text-[#00D4FF] hover:text-white"
                 )}
               >
-                <span>{lang === "vi" ? "Xem toàn bộ bài viết" : "Explore Research"}</span>
+                <span>{lang === "vi" ? "Xem chi tiết các dự án" : "Explore All Projects"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

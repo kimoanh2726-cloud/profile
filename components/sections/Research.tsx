@@ -49,10 +49,10 @@ export function Research({ items }: { items: ResearchItem[] }) {
     <SectionWrapper
       id="research"
       number="02"
-      title={{ vi: "Nghiên cứu & Xuất bản", en: "Research & Publications" }}
+      title={{ vi: "Dự án", en: "Projects" }}
       subtitle={{
-        vi: "Các bài báo, báo cáo hội thảo và chuyên luận học thuật đã công bố",
-        en: "Published papers, conference presentations, and academic essays",
+        vi: "Các đề tài nghiên cứu, dự án thực địa và công trình khoa học đã thực hiện",
+        en: "Research projects, fieldwork initiatives, and academic publications",
       }}
     >
       <div className="space-y-6">

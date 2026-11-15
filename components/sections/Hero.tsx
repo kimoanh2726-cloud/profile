@@ -338,7 +338,7 @@ export function Hero({ profile, onSelectTab }: HeroProps) {
                       : "text-white group-hover:text-[#00D4FF]"
                   )}
                 >
-                  {lang === "vi" ? "Dự án Nghiên cứu" : "Research Projects"}
+                  {lang === "vi" ? "Dự án & Đề tài" : "Projects & Research"}
                 </h3>
                 <p
                   className={clsx(
