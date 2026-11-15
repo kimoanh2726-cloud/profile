@@ -114,3 +114,614 @@
   credentialId: "MOS-XXXX"
   tags: [cong-nghe]
   visibility: private
+
+
+# ── CHỨNG CHỈ HP LIFE (BỔ SUNG) ────────────────────────────────────────
+
+- id: cert-hplife-3d-printing
+  title:
+    vi: "Công nghệ in 3D ứng dụng"
+    en: "3D Printing"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "820b72a5-85fc-4d02-82cd-0a00de8239c8"
+  image: "/certificates/hplife/820b72a5-85fc-4d02-82cd-0a00de8239c8.jpg"
+  pdfUrl: "/certificates/hplife/820b72a5-85fc-4d02-82cd-0a00de8239c8.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 820b72a5..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 820b72a5..."
+  tags: [cong-nghe, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-ai-for-beginners
+  title:
+    vi: "Trí tuệ nhân tạo (AI) cho người mới bắt đầu"
+    en: "AI for Beginners"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "8c5221c4-7d7a-494c-a49d-ba34442290d1"
+  image: "/certificates/hplife/8c5221c4-7d7a-494c-a49d-ba34442290d1.jpg"
+  pdfUrl: "/certificates/hplife/8c5221c4-7d7a-494c-a49d-ba34442290d1.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 8c5221c4..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 8c5221c4..."
+  tags: [cong-nghe, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-ai-for-business-professionals
+  title:
+    vi: "Ứng dụng AI cho chuyên viên kinh doanh"
+    en: "AI for Business Professionals"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "bafeec7c-e943-4795-a173-a3379e8dd8e2"
+  image: "/certificates/hplife/bafeec7c-e943-4795-a173-a3379e8dd8e2.jpg"
+  pdfUrl: "/certificates/hplife/bafeec7c-e943-4795-a173-a3379e8dd8e2.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: bafeec7c..."
+    en: "Certificate of completion from HP Foundation online education. Serial: bafeec7c..."
+  tags: [cong-nghe, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-agile-project-management
+  title:
+    vi: "Quản trị dự án linh hoạt (Agile)"
+    en: "Agile Project Management"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "be96f390-00de-4904-ac93-16157edf2719"
+  image: "/certificates/hplife/be96f390-00de-4904-ac93-16157edf2719.jpg"
+  pdfUrl: "/certificates/hplife/be96f390-00de-4904-ac93-16157edf2719.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: be96f390..."
+    en: "Certificate of completion from HP Foundation online education. Serial: be96f390..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-basics-of-finance
+  title:
+    vi: "Tài chính doanh nghiệp căn bản"
+    en: "Basics of Finance"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "100fe96b-c0f1-4ade-91dc-3f0cdb742ae2"
+  image: "/certificates/hplife/100fe96b-c0f1-4ade-91dc-3f0cdb742ae2.jpg"
+  pdfUrl: "/certificates/hplife/100fe96b-c0f1-4ade-91dc-3f0cdb742ae2.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 100fe96b..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 100fe96b..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-business-communications
+  title:
+    vi: "Giao tiếp trong kinh doanh"
+    en: "Business Communications"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "d7094d55-ba3c-4336-9499-9a696e37a0b2"
+  image: "/certificates/hplife/d7094d55-ba3c-4336-9499-9a696e37a0b2.jpg"
+  pdfUrl: "/certificates/hplife/d7094d55-ba3c-4336-9499-9a696e37a0b2.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: d7094d55..."
+    en: "Certificate of completion from HP Foundation online education. Serial: d7094d55..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-business-email
+  title:
+    vi: "Kỹ năng viết Email thương mại & công vụ"
+    en: "Business Email"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "60588625-f2ca-4239-af2e-1c24e643c782"
+  image: "/certificates/hplife/60588625-f2ca-4239-af2e-1c24e643c782.jpg"
+  pdfUrl: "/certificates/hplife/60588625-f2ca-4239-af2e-1c24e643c782.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 60588625..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 60588625..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-cash-flow
+  title:
+    vi: "Quản trị dòng tiền"
+    en: "Cash Flow"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "9f1f08ec-dad4-435b-b177-0f0946c2ca44"
+  image: "/certificates/hplife/9f1f08ec-dad4-435b-b177-0f0946c2ca44.jpg"
+  pdfUrl: "/certificates/hplife/9f1f08ec-dad4-435b-b177-0f0946c2ca44.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 9f1f08ec..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 9f1f08ec..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-circular-economy
+  title:
+    vi: "Mô hình kinh tế tuần hoàn"
+    en: "Circular Economy"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "161a227a-d25b-40b2-b86e-d9c089544729"
+  image: "/certificates/hplife/161a227a-d25b-40b2-b86e-d9c089544729.jpg"
+  pdfUrl: "/certificates/hplife/161a227a-d25b-40b2-b86e-d9c089544729.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 161a227a..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 161a227a..."
+  tags: [hoc-thuat, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-critical-thinking-in-the-ai-era
+  title:
+    vi: "Tư duy phản biện trong kỷ nguyên AI"
+    en: "Critical Thinking in the AI Era"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "2a3f10b1-0211-4611-a7c7-65aa3d3aea87"
+  image: "/certificates/hplife/2a3f10b1-0211-4611-a7c7-65aa3d3aea87.jpg"
+  pdfUrl: "/certificates/hplife/2a3f10b1-0211-4611-a7c7-65aa3d3aea87.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 2a3f10b1..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 2a3f10b1..."
+  tags: [hoc-thuat, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-customer-experience-cx-for-business-success
+  title:
+    vi: "Trải nghiệm khách hàng (CX) tạo thành công kinh doanh"
+    en: "Customer Experience (CX) for Business Success"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "04ce7a42-6e46-4920-a215-e1e0129884b1"
+  image: "/certificates/hplife/04ce7a42-6e46-4920-a215-e1e0129884b1.jpg"
+  pdfUrl: "/certificates/hplife/04ce7a42-6e46-4920-a215-e1e0129884b1.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 04ce7a42..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 04ce7a42..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-customer-relationship-management
+  title:
+    vi: "Quản trị quan hệ khách hàng (CRM)"
+    en: "Customer Relationship Management"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "05334d3f-de66-45f2-a4a8-d31168373a4a"
+  image: "/certificates/hplife/05334d3f-de66-45f2-a4a8-d31168373a4a.jpg"
+  pdfUrl: "/certificates/hplife/05334d3f-de66-45f2-a4a8-d31168373a4a.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 05334d3f..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 05334d3f..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-data-science-analytics
+  title:
+    vi: "Khoa học dữ liệu & Phân tích kinh doanh"
+    en: "Data Science & Analytics"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "13c90bf0-f6da-41c5-aaff-e5f40cce656b"
+  image: "/certificates/hplife/13c90bf0-f6da-41c5-aaff-e5f40cce656b.jpg"
+  pdfUrl: "/certificates/hplife/13c90bf0-f6da-41c5-aaff-e5f40cce656b.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 13c90bf0..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 13c90bf0..."
+  tags: [cong-nghe, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-design-thinking
+  title:
+    vi: "Tư duy thiết kế (Design Thinking)"
+    en: "Design Thinking"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "653834d8-b7fc-455f-bd0d-ffbdd7b5293d"
+  image: "/certificates/hplife/653834d8-b7fc-455f-bd0d-ffbdd7b5293d.jpg"
+  pdfUrl: "/certificates/hplife/653834d8-b7fc-455f-bd0d-ffbdd7b5293d.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 653834d8..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 653834d8..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-effective-business-websites
+  title:
+    vi: "Xây dựng website doanh nghiệp hiệu quả"
+    en: "Effective Business Websites"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "bdf1cb0e-6699-4523-99cb-9109b7d4306d"
+  image: "/certificates/hplife/bdf1cb0e-6699-4523-99cb-9109b7d4306d.jpg"
+  pdfUrl: "/certificates/hplife/bdf1cb0e-6699-4523-99cb-9109b7d4306d.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: bdf1cb0e..."
+    en: "Certificate of completion from HP Foundation online education. Serial: bdf1cb0e..."
+  tags: [cong-nghe, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-effective-leadership
+  title:
+    vi: "Kỹ năng lãnh đạo hiệu quả"
+    en: "Effective Leadership"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "904bb4e4-2be0-489a-bca1-196805dc1a0a"
+  image: "/certificates/hplife/904bb4e4-2be0-489a-bca1-196805dc1a0a.jpg"
+  pdfUrl: "/certificates/hplife/904bb4e4-2be0-489a-bca1-196805dc1a0a.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 904bb4e4..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 904bb4e4..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-effective-presentations
+  title:
+    vi: "Kỹ năng thuyết trình chuyên nghiệp"
+    en: "Effective Presentations"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "fa463b22-f2de-4572-826f-ac9afe5096f6"
+  image: "/certificates/hplife/fa463b22-f2de-4572-826f-ac9afe5096f6.jpg"
+  pdfUrl: "/certificates/hplife/fa463b22-f2de-4572-826f-ac9afe5096f6.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: fa463b22..."
+    en: "Certificate of completion from HP Foundation online education. Serial: fa463b22..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-growth-engine-for-your-business
+  title:
+    vi: "Động cơ tăng trưởng cho doanh nghiệp"
+    en: "Growth Engine for Your Business"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-15"
+  no_expiry: true
+  credentialId: "3b9e8c95-8cac-4bf0-b17e-07061ed60406"
+  image: "/certificates/hplife/3b9e8c95-8cac-4bf0-b17e-07061ed60406.jpg"
+  pdfUrl: "/certificates/hplife/3b9e8c95-8cac-4bf0-b17e-07061ed60406.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 3b9e8c95..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 3b9e8c95..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-it-for-business-success
+  title:
+    vi: "Ứng dụng CNTT cho doanh nghiệp"
+    en: "IT for Business Success"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "51b1bf00-9d87-4f11-8854-6814ac66c982"
+  image: "/certificates/hplife/51b1bf00-9d87-4f11-8854-6814ac66c982.jpg"
+  pdfUrl: "/certificates/hplife/51b1bf00-9d87-4f11-8854-6814ac66c982.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 51b1bf00..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 51b1bf00..."
+  tags: [cong-nghe, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-introduction-to-cybersecurity-awareness
+  title:
+    vi: "Nhận thức an toàn thông tin & an ninh mạng"
+    en: "Introduction to Cybersecurity Awareness"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "2ca5750e-e9b7-433f-b54a-b2f3d8ab122c"
+  image: "/certificates/hplife/2ca5750e-e9b7-433f-b54a-b2f3d8ab122c.jpg"
+  pdfUrl: "/certificates/hplife/2ca5750e-e9b7-433f-b54a-b2f3d8ab122c.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 2ca5750e..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 2ca5750e..."
+  tags: [cong-nghe, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-introduction-to-digital-business-skills
+  title:
+    vi: "Nhập môn kỹ năng kinh doanh số"
+    en: "Introduction to Digital Business Skills"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "ef5af367-55fc-4fd9-bd0e-a6d9ddc79ddb"
+  image: "/certificates/hplife/ef5af367-55fc-4fd9-bd0e-a6d9ddc79ddb.jpg"
+  pdfUrl: "/certificates/hplife/ef5af367-55fc-4fd9-bd0e-a6d9ddc79ddb.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: ef5af367..."
+    en: "Certificate of completion from HP Foundation online education. Serial: ef5af367..."
+  tags: [cong-nghe, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-professional-networking-for-career-growth
+  title:
+    vi: "Xây dựng mạng lưới quan hệ phát triển sự nghiệp"
+    en: "Professional Networking for Career Growth"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "aec43a20-1675-488e-b43c-0a45e6f599f4"
+  image: "/certificates/hplife/aec43a20-1675-488e-b43c-0a45e6f599f4.jpg"
+  pdfUrl: "/certificates/hplife/aec43a20-1675-488e-b43c-0a45e6f599f4.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: aec43a20..."
+    en: "Certificate of completion from HP Foundation online education. Serial: aec43a20..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-profit-and-loss
+  title:
+    vi: "Phân tích báo cáo lãi lỗ (P&L)"
+    en: "Profit and Loss"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "7e58724a-9f74-4725-81d6-d1a592e94953"
+  image: "/certificates/hplife/7e58724a-9f74-4725-81d6-d1a592e94953.jpg"
+  pdfUrl: "/certificates/hplife/7e58724a-9f74-4725-81d6-d1a592e94953.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 7e58724a..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 7e58724a..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-resume-writing-and-job-interviewing
+  title:
+    vi: "Kỹ năng viết CV và phỏng vấn tuyển dụng"
+    en: "Resume Writing and Job Interviewing"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-10"
+  no_expiry: true
+  credentialId: "4c258829-de60-451b-8d66-85bec1da7b9e"
+  image: "/certificates/hplife/4c258829-de60-451b-8d66-85bec1da7b9e.jpg"
+  pdfUrl: "/certificates/hplife/4c258829-de60-451b-8d66-85bec1da7b9e.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 4c258829..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 4c258829..."
+  tags: [viec-lam, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-selling-online
+  title:
+    vi: "Kỹ năng bán hàng trực tuyến (E-Commerce)"
+    en: "Selling Online"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "f43ba1af-490f-4420-bc09-cd7eb35fb074"
+  image: "/certificates/hplife/f43ba1af-490f-4420-bc09-cd7eb35fb074.jpg"
+  pdfUrl: "/certificates/hplife/f43ba1af-490f-4420-bc09-cd7eb35fb074.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: f43ba1af..."
+    en: "Certificate of completion from HP Foundation online education. Serial: f43ba1af..."
+  tags: [cong-nghe, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-social-entrepreneurship
+  title:
+    vi: "Khởi nghiệp xã hội (Social Entrepreneurship)"
+    en: "Social Entrepreneurship"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "84808dcd-e2ed-4b88-94d7-38fd85b899c1"
+  image: "/certificates/hplife/84808dcd-e2ed-4b88-94d7-38fd85b899c1.jpg"
+  pdfUrl: "/certificates/hplife/84808dcd-e2ed-4b88-94d7-38fd85b899c1.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 84808dcd..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 84808dcd..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-social-media-marketing
+  title:
+    vi: "Tiếp thị trên mạng xã hội (Social Media Marketing)"
+    en: "Social Media Marketing"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "dfd1dbd4-2a6b-420b-b9b7-c8ad55f48342"
+  image: "/certificates/hplife/dfd1dbd4-2a6b-420b-b9b7-c8ad55f48342.jpg"
+  pdfUrl: "/certificates/hplife/dfd1dbd4-2a6b-420b-b9b7-c8ad55f48342.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: dfd1dbd4..."
+    en: "Certificate of completion from HP Foundation online education. Serial: dfd1dbd4..."
+  tags: [cong-nghe, ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-starting-a-small-business
+  title:
+    vi: "Khởi sự doanh nghiệp nhỏ"
+    en: "Starting a Small Business"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "1e573261-404c-4f04-a9ff-7663278942ba"
+  image: "/certificates/hplife/1e573261-404c-4f04-a9ff-7663278942ba.jpg"
+  pdfUrl: "/certificates/hplife/1e573261-404c-4f04-a9ff-7663278942ba.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 1e573261..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 1e573261..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-success-mindset
+  title:
+    vi: "Tư duy thành công & phát triển bản thân"
+    en: "Success Mindset"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "df480c3d-f73e-48f2-8767-b8ec2df1f63f"
+  image: "/certificates/hplife/df480c3d-f73e-48f2-8767-b8ec2df1f63f.jpg"
+  pdfUrl: "/certificates/hplife/df480c3d-f73e-48f2-8767-b8ec2df1f63f.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: df480c3d..."
+    en: "Certificate of completion from HP Foundation online education. Serial: df480c3d..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-the-art-of-sales-fundamentals-of-selling
+  title:
+    vi: "Nghệ thuật bán hàng: Các nguyên lý nền tảng"
+    en: "The Art of Sales: Fundamentals of Selling"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "6179eec6-5de1-4fc9-9545-fd9f0f1067de"
+  image: "/certificates/hplife/6179eec6-5de1-4fc9-9545-fd9f0f1067de.jpg"
+  pdfUrl: "/certificates/hplife/6179eec6-5de1-4fc9-9545-fd9f0f1067de.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 6179eec6..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 6179eec6..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-unique-value-proposition
+  title:
+    vi: "Xây dựng tuyên ngôn giá trị độc nhất (UVP)"
+    en: "Unique Value Proposition"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "fc50b34f-b95f-4e9e-86d3-283210de29bc"
+  image: "/certificates/hplife/fc50b34f-b95f-4e9e-86d3-283210de29bc.jpg"
+  pdfUrl: "/certificates/hplife/fc50b34f-b95f-4e9e-86d3-283210de29bc.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: fc50b34f..."
+    en: "Certificate of completion from HP Foundation online education. Serial: fc50b34f..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false
+
+- id: cert-hplife-your-target-audience
+  title:
+    vi: "Xác định chân dung khách hàng mục tiêu"
+    en: "Your Target Audience"
+  issuer:
+    vi: "HP Foundation (HP LIFE)"
+    en: "HP Foundation (HP LIFE)"
+  date: "2026-06-12"
+  no_expiry: true
+  credentialId: "874ee85d-7352-4a58-889b-b108ddc45038"
+  image: "/certificates/hplife/874ee85d-7352-4a58-889b-b108ddc45038.jpg"
+  pdfUrl: "/certificates/hplife/874ee85d-7352-4a58-889b-b108ddc45038.pdf"
+  description:
+    vi: "Chứng nhận hoàn thành khóa đào tạo trực tuyến của HP Foundation. Mã xác thực: 874ee85d..."
+    en: "Certificate of completion from HP Foundation online education. Serial: 874ee85d..."
+  tags: [ky-nang]
+  visibility: public
+  featured: false

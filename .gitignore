@@ -24,6 +24,9 @@ Thumbs.db
 # PDF output
 output/
 
+# Scratch files
+scratch/
+
 # Private documents — KHÔNG push lên git public
 # Nếu repo private, bỏ comment dòng dưới
 # documents/
