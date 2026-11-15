@@ -39,7 +39,7 @@ export function Hero({ profile }: { profile: Profile }) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
         delayChildren: 0.05,
       },
     },
@@ -75,9 +75,9 @@ export function Hero({ profile }: { profile: Profile }) {
   return (
     <section
       id="hero"
-      className="relative min-h-[90vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 3xl:px-12 overflow-hidden"
+      className="relative min-h-[88vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 3xl:px-12 overflow-hidden border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60"
     >
-      {/* Background ambient effect for Theme B */}
+      {/* Background ambient lighting for Theme B */}
       {!themeA && (
         <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#00D4FF]/5 rounded-full blur-[140px] animate-pulse duration-[6000ms]" />
@@ -95,49 +95,61 @@ export function Hero({ profile }: { profile: Profile }) {
           {/* ── Section Tag: 01 / GIỚI THIỆU ── */}
           <motion.div
             variants={shouldReduceMotion ? undefined : itemVariants}
-            className="flex items-center gap-2 mb-4"
+            className="flex items-center gap-3 mb-4"
           >
             <span
               className={clsx(
-                "w-2.5 h-2.5 rounded-sm",
-                themeA ? "bg-[#FF4D6D]" : "bg-[#00D4FF] shadow-[0_0_8px_#00D4FF]"
+                "text-xs sm:text-sm tracking-widest font-mono font-semibold",
+                themeA
+                  ? "text-[#B45309] dark:text-[#D97706]"
+                  : "text-[#00D4FF]"
+              )}
+            >
+              01
+            </span>
+            <div
+              className={clsx(
+                "h-[1px] w-10 sm:w-14",
+                themeA
+                  ? "bg-[#E5DECE] dark:bg-[#3A3228]"
+                  : "bg-white/10"
               )}
             />
             <span
               className={clsx(
-                "text-xs sm:text-sm font-bold tracking-widest uppercase",
+                "text-xs sm:text-sm tracking-widest uppercase font-medium",
                 themeA
-                  ? "text-[#1A1108] dark:text-[#EDE8E1]"
-                  : "text-[#00D4FF] font-mono"
+                  ? "text-[#8C7E72] dark:text-[#8E8375]"
+                  : "text-stone-400 font-mono"
               )}
             >
-              {lang === "vi" ? "01 / GIỚI THIỆU" : "01 / ABOUT"}
+              {lang === "vi" ? "Giới thiệu" : "About Me"}
             </span>
           </motion.div>
 
           {/* ── Name & Avatar Header ── */}
           <motion.div
             variants={shouldReduceMotion ? undefined : itemVariants}
-            className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-6 w-full mb-4"
+            className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-6 w-full mb-5"
           >
             <h1
               className={clsx(
-                "text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl font-black tracking-tight leading-none",
+                "text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl font-bold tracking-tight leading-[1.08]",
                 themeA
-                  ? "font-be-vietnam text-[#1A1108] dark:text-[#EDE8E1]"
-                  : "font-be-vietnam text-white tracking-wide"
+                  ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]"
+                  : "font-be-vietnam text-white"
               )}
             >
               {t(profile.name)}
             </h1>
 
-            {/* Avatar / Initials Badge */}
+            {/* Avatar / Initials Frame */}
             <div
               className={clsx(
-                "relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl p-1 flex items-center justify-center transition-all",
+                "relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl p-1.5 flex items-center justify-center transition-all duration-300",
                 themeA
-                  ? "bg-white dark:bg-[#25201B] border-2 border-black dark:border-[#3A3228] shadow-[3px_3px_0px_#1A1108]"
-                  : "bg-[#141414] border-2 border-[#00D4FF] shadow-[0_0_20px_rgba(0,212,255,0.3)]"
+                  ? "bg-white dark:bg-[#1E1A14] border border-[#E5DECE] dark:border-[#3A3228] shadow-sm hover:shadow-md hover:border-[#B45309]/30"
+                  : "bg-[#141414] border border-white/10 shadow-[0_0_24px_rgba(0,212,255,0.15)] hover:border-[#00D4FF]/40"
               )}
             >
               {profile.avatar && !avatarError ? (
@@ -156,14 +168,14 @@ export function Hero({ profile }: { profile: Profile }) {
                   className={clsx(
                     "w-full h-full rounded-xl flex flex-col items-center justify-center font-bold select-none",
                     themeA
-                      ? "bg-[#FAF7F2] dark:bg-[#2D2821] text-[#1A1108] dark:text-[#EDE8E1]"
+                      ? "bg-[#FAF7F2] dark:bg-[#28221B] text-[#B45309] dark:text-[#D97706] font-playfair"
                       : "bg-[#0A0A0A] text-[#00D4FF] font-mono"
                   )}
                 >
-                  <span className="text-xl sm:text-2xl font-black tracking-wider">
+                  <span className="text-xl sm:text-2xl md:text-3xl tracking-wider">
                     {initials}
                   </span>
-                  <span className="text-[8px] sm:text-[9px] uppercase font-mono tracking-wider opacity-60">
+                  <span className="text-[9px] uppercase font-mono tracking-widest opacity-60">
                     Profile
                   </span>
                 </div>
@@ -171,16 +183,16 @@ export function Hero({ profile }: { profile: Profile }) {
             </div>
           </motion.div>
 
-          {/* ── Orientation & Subtitles ── */}
+          {/* ── Subtitle / Orientation & Institution ── */}
           <motion.div
             variants={shouldReduceMotion ? undefined : itemVariants}
-            className="space-y-1.5 mb-8 max-w-3xl"
+            className="space-y-2 mb-10 max-w-3xl"
           >
             <p
               className={clsx(
-                "text-base sm:text-lg md:text-xl font-bold",
+                "text-base sm:text-lg md:text-xl font-semibold",
                 themeA
-                  ? "text-[#1A1108] dark:text-[#EDE8E1]"
+                  ? "text-[#B45309] dark:text-[#D97706]"
                   : "text-[#00D4FF]"
               )}
             >
@@ -192,20 +204,20 @@ export function Hero({ profile }: { profile: Profile }) {
               className={clsx(
                 "text-sm sm:text-base md:text-lg leading-relaxed",
                 themeA
-                  ? "text-neutral-700 dark:text-neutral-300 font-medium"
+                  ? "text-[#66584B] dark:text-[#9E9382]"
                   : "text-stone-300"
               )}
             >
               {lang === "vi"
-                ? "Sinh viên năm 3 chuyên ngành Tôn giáo học, Khoa Nhân học và Tôn giáo tại Trường Đại học Khoa học Xã hội và Nhân văn Hà Nội (VNU-USSH, Đại học Quốc gia Hà Nội)."
+                ? "Sinh viên năm 3 chuyên ngành Tôn giáo học, Khoa Nhân học và Tôn giáo — Trường Đại học Khoa học Xã hội và Nhân văn Hà Nội (VNU-USSH, Đại học Quốc gia Hà Nội)."
                 : "Third-year student majoring in Religious Studies at the Faculty of Anthropology and Religion, University of Social Sciences and Humanities, Hanoi (VNU-USSH)."}
             </p>
             <p
               className={clsx(
                 "text-xs sm:text-sm font-medium",
                 themeA
-                  ? "text-[#B45309] dark:text-[#D97706]"
-                  : "text-stone-400"
+                  ? "text-[#8C7E72] dark:text-[#8E8375] italic"
+                  : "text-stone-400 font-mono"
               )}
             >
               {lang === "vi"
@@ -214,145 +226,259 @@ export function Hero({ profile }: { profile: Profile }) {
             </p>
           </motion.div>
 
-          {/* ── 4 Quick-Nav Cards (Neo-brutalist / Cyberpunk) ── */}
+          {/* ── 4 Quick-Nav Cards (Phù hợp hoàn hảo với hệ thống card của web) ── */}
           <motion.div
             variants={shouldReduceMotion ? undefined : itemVariants}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full mb-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full mb-10"
           >
             {/* Card 1: Học vấn */}
             <a
               href="#timeline"
               className={clsx(
-                "group p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200 flex flex-col justify-between min-h-[110px]",
+                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px]",
                 themeA
-                  ? "bg-[#DDF0FF] border-[#1A1108] text-[#1A1108] shadow-[4px_4px_0px_#1A1108] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#1A1108]"
-                  : "bg-sky-500/10 border-sky-400/30 text-sky-200 hover:border-sky-400 hover:shadow-[0_0_20px_rgba(56,189,248,0.2)]"
+                  ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] hover:border-[#B45309]/50 hover:shadow-lg hover:shadow-[#B45309]/8"
+                  : "bg-white/[0.03] backdrop-blur-md border-white/10 hover:border-[#00D4FF]/40 hover:shadow-[0_8px_30px_rgba(0,212,255,0.12)]"
               )}
             >
-              <div className="flex items-center justify-between text-xs font-bold mb-3">
-                <GraduationCap className="w-5 h-5" />
-                <span className="font-mono">02 →</span>
+              <div className="flex items-center justify-between mb-4">
+                <div
+                  className={clsx(
+                    "w-9 h-9 rounded-xl flex items-center justify-center transition-colors",
+                    themeA
+                      ? "bg-amber-500/10 text-[#B45309] dark:text-[#D97706] group-hover:bg-[#B45309] group-hover:text-white"
+                      : "bg-[#00D4FF]/10 text-[#00D4FF] border border-[#00D4FF]/20 group-hover:bg-[#00D4FF] group-hover:text-black"
+                  )}
+                >
+                  <GraduationCap className="w-4 h-4" />
+                </div>
+                <span
+                  className={clsx(
+                    "text-xs font-mono font-medium transition-transform duration-200 group-hover:translate-x-0.5",
+                    themeA ? "text-[#8C7E72] dark:text-[#8E8375]" : "text-stone-400"
+                  )}
+                >
+                  02 →
+                </span>
               </div>
               <div>
-                <h3 className="font-bold text-sm sm:text-base leading-tight mb-0.5">
+                <h3
+                  className={clsx(
+                    "font-bold text-sm sm:text-base leading-snug transition-colors",
+                    themeA
+                      ? "text-[#1A1108] dark:text-[#EDE8E1] group-hover:text-[#B45309] dark:group-hover:text-[#D97706]"
+                      : "text-white group-hover:text-[#00D4FF]"
+                  )}
+                >
                   {lang === "vi" ? "Hồ sơ Học vấn" : "Academic Profile"}
                 </h3>
-                <p className="text-xs opacity-80 truncate">
+                <p
+                  className={clsx(
+                    "text-xs mt-1 truncate",
+                    themeA ? "text-[#8C7E72] dark:text-[#8E8375]" : "text-stone-400"
+                  )}
+                >
                   {lang === "vi" ? "ĐH KHXH&NV Hà Nội" : "VNU-USSH Hanoi"}
                 </p>
               </div>
             </a>
 
-            {/* Card 2: Dự án / Nghiên cứu */}
+            {/* Card 2: Dự án Nghiên cứu */}
             <a
               href="#research"
               className={clsx(
-                "group p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200 flex flex-col justify-between min-h-[110px]",
+                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px]",
                 themeA
-                  ? "bg-[#FFF3B8] border-[#1A1108] text-[#1A1108] shadow-[4px_4px_0px_#1A1108] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#1A1108]"
-                  : "bg-amber-500/10 border-amber-400/30 text-amber-200 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)]"
+                  ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] hover:border-[#B45309]/50 hover:shadow-lg hover:shadow-[#B45309]/8"
+                  : "bg-white/[0.03] backdrop-blur-md border-white/10 hover:border-[#00D4FF]/40 hover:shadow-[0_8px_30px_rgba(0,212,255,0.12)]"
               )}
             >
-              <div className="flex items-center justify-between text-xs font-bold mb-3">
-                <BookOpen className="w-5 h-5" />
-                <span className="font-mono">03 →</span>
+              <div className="flex items-center justify-between mb-4">
+                <div
+                  className={clsx(
+                    "w-9 h-9 rounded-xl flex items-center justify-center transition-colors",
+                    themeA
+                      ? "bg-amber-500/10 text-[#B45309] dark:text-[#D97706] group-hover:bg-[#B45309] group-hover:text-white"
+                      : "bg-[#00D4FF]/10 text-[#00D4FF] border border-[#00D4FF]/20 group-hover:bg-[#00D4FF] group-hover:text-black"
+                  )}
+                >
+                  <BookOpen className="w-4 h-4" />
+                </div>
+                <span
+                  className={clsx(
+                    "text-xs font-mono font-medium transition-transform duration-200 group-hover:translate-x-0.5",
+                    themeA ? "text-[#8C7E72] dark:text-[#8E8375]" : "text-stone-400"
+                  )}
+                >
+                  03 →
+                </span>
               </div>
               <div>
-                <h3 className="font-bold text-sm sm:text-base leading-tight mb-0.5">
+                <h3
+                  className={clsx(
+                    "font-bold text-sm sm:text-base leading-snug transition-colors",
+                    themeA
+                      ? "text-[#1A1108] dark:text-[#EDE8E1] group-hover:text-[#B45309] dark:group-hover:text-[#D97706]"
+                      : "text-white group-hover:text-[#00D4FF]"
+                  )}
+                >
                   {lang === "vi" ? "Dự án Nghiên cứu" : "Research Projects"}
                 </h3>
-                <p className="text-xs opacity-80 truncate">
-                  {lang === "vi" ? "Tôn giáo & Nhân học" : "Religion & Culture"}
+                <p
+                  className={clsx(
+                    "text-xs mt-1 truncate",
+                    themeA ? "text-[#8C7E72] dark:text-[#8E8375]" : "text-stone-400"
+                  )}
+                >
+                  {lang === "vi" ? "Tôn giáo & Nhân học" : "Religion & Anthropology"}
                 </p>
               </div>
             </a>
 
-            {/* Card 3: Kỹ năng */}
+            {/* Card 3: Kỹ năng & Năng lực */}
             <a
               href="#skills"
               className={clsx(
-                "group p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200 flex flex-col justify-between min-h-[110px]",
+                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px]",
                 themeA
-                  ? "bg-[#EDE5FF] border-[#1A1108] text-[#1A1108] shadow-[4px_4px_0px_#1A1108] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#1A1108]"
-                  : "bg-purple-500/10 border-purple-400/30 text-purple-200 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(192,132,252,0.2)]"
+                  ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] hover:border-[#B45309]/50 hover:shadow-lg hover:shadow-[#B45309]/8"
+                  : "bg-white/[0.03] backdrop-blur-md border-white/10 hover:border-[#00D4FF]/40 hover:shadow-[0_8px_30px_rgba(0,212,255,0.12)]"
               )}
             >
-              <div className="flex items-center justify-between text-xs font-bold mb-3">
-                <Zap className="w-5 h-5" />
-                <span className="font-mono">04 →</span>
+              <div className="flex items-center justify-between mb-4">
+                <div
+                  className={clsx(
+                    "w-9 h-9 rounded-xl flex items-center justify-center transition-colors",
+                    themeA
+                      ? "bg-amber-500/10 text-[#B45309] dark:text-[#D97706] group-hover:bg-[#B45309] group-hover:text-white"
+                      : "bg-[#00D4FF]/10 text-[#00D4FF] border border-[#00D4FF]/20 group-hover:bg-[#00D4FF] group-hover:text-black"
+                  )}
+                >
+                  <Zap className="w-4 h-4" />
+                </div>
+                <span
+                  className={clsx(
+                    "text-xs font-mono font-medium transition-transform duration-200 group-hover:translate-x-0.5",
+                    themeA ? "text-[#8C7E72] dark:text-[#8E8375]" : "text-stone-400"
+                  )}
+                >
+                  04 →
+                </span>
               </div>
               <div>
-                <h3 className="font-bold text-sm sm:text-base leading-tight mb-0.5">
-                  {lang === "vi" ? "Kỹ năng & Năng lực" : "Skills & Tools"}
+                <h3
+                  className={clsx(
+                    "font-bold text-sm sm:text-base leading-snug transition-colors",
+                    themeA
+                      ? "text-[#1A1108] dark:text-[#EDE8E1] group-hover:text-[#B45309] dark:group-hover:text-[#D97706]"
+                      : "text-white group-hover:text-[#00D4FF]"
+                  )}
+                >
+                  {lang === "vi" ? "Kỹ năng & Năng lực" : "Skills & Competencies"}
                 </h3>
-                <p className="text-xs opacity-80 truncate">
-                  {lang === "vi" ? "Điền dã, AI & Phân tích" : "Fieldwork, AI & Tools"}
+                <p
+                  className={clsx(
+                    "text-xs mt-1 truncate",
+                    themeA ? "text-[#8C7E72] dark:text-[#8E8375]" : "text-stone-400"
+                  )}
+                >
+                  {lang === "vi" ? "Điền dã, AI & Phân tích" : "Fieldwork, AI & Analytics"}
                 </p>
               </div>
             </a>
 
-            {/* Card 4: Chứng chỉ */}
+            {/* Card 4: Chứng chỉ Quốc tế */}
             <a
               href="#certificates"
               className={clsx(
-                "group p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200 flex flex-col justify-between min-h-[110px]",
+                "group relative p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between min-h-[120px]",
                 themeA
-                  ? "bg-[#D9F7E8] border-[#1A1108] text-[#1A1108] shadow-[4px_4px_0px_#1A1108] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#1A1108]"
-                  : "bg-emerald-500/10 border-emerald-400/30 text-emerald-200 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(52,211,153,0.2)]"
+                  ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] hover:border-[#B45309]/50 hover:shadow-lg hover:shadow-[#B45309]/8"
+                  : "bg-white/[0.03] backdrop-blur-md border-white/10 hover:border-[#00D4FF]/40 hover:shadow-[0_8px_30px_rgba(0,212,255,0.12)]"
               )}
             >
-              <div className="flex items-center justify-between text-xs font-bold mb-3">
-                <Award className="w-5 h-5" />
-                <span className="font-mono text-[10px] tracking-wider uppercase">
+              <div className="flex items-center justify-between mb-4">
+                <div
+                  className={clsx(
+                    "w-9 h-9 rounded-xl flex items-center justify-center transition-colors",
+                    themeA
+                      ? "bg-amber-500/10 text-[#B45309] dark:text-[#D97706] group-hover:bg-[#B45309] group-hover:text-white"
+                      : "bg-[#00D4FF]/10 text-[#00D4FF] border border-[#00D4FF]/20 group-hover:bg-[#00D4FF] group-hover:text-black"
+                  )}
+                >
+                  <Award className="w-4 h-4" />
+                </div>
+                <span
+                  className={clsx(
+                    "text-[10px] font-mono font-bold tracking-wider uppercase px-2 py-0.5 rounded-full transition-transform duration-200 group-hover:translate-x-0.5",
+                    themeA
+                      ? "bg-amber-500/10 text-[#B45309] dark:text-[#D97706]"
+                      : "bg-[#00D4FF]/10 text-[#00D4FF] border border-[#00D4FF]/20"
+                  )}
+                >
                   {lang === "vi" ? "CHỨNG CHỈ →" : "CERTS →"}
                 </span>
               </div>
               <div>
-                <h3 className="font-bold text-sm sm:text-base leading-tight mb-0.5">
+                <h3
+                  className={clsx(
+                    "font-bold text-sm sm:text-base leading-snug transition-colors",
+                    themeA
+                      ? "text-[#1A1108] dark:text-[#EDE8E1] group-hover:text-[#B45309] dark:group-hover:text-[#D97706]"
+                      : "text-white group-hover:text-[#00D4FF]"
+                  )}
+                >
                   {lang === "vi" ? "Chứng chỉ Quốc tế" : "Accredited Certs"}
                 </h3>
-                <p className="text-xs opacity-80 truncate">
+                <p
+                  className={clsx(
+                    "text-xs mt-1 truncate",
+                    themeA ? "text-[#8C7E72] dark:text-[#8E8375]" : "text-stone-400"
+                  )}
+                >
                   {lang === "vi" ? "38 chứng chỉ xác thực" : "38 verified credentials"}
                 </p>
               </div>
             </a>
           </motion.div>
 
-          {/* ── Action Buttons & Socials ── */}
+          {/* ── Action Buttons & Social Links ── */}
           <motion.div
             variants={shouldReduceMotion ? undefined : itemVariants}
             className="flex flex-wrap items-center gap-4 w-full"
           >
-            {/* Primary Action Button (Yellow Neo) */}
+            {/* Primary Action Button */}
             <a
               href="#contact"
               className={clsx(
-                "inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm transition-all duration-200",
+                "inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 shadow-sm",
                 themeA
-                  ? "bg-[#FFE680] text-black border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000]"
-                  : "bg-[#00D4FF] hover:bg-[#38E1FF] text-black font-mono shadow-[0_0_20px_rgba(0,212,255,0.4)]"
+                  ? "bg-[#B45309] hover:bg-[#92400e] text-white hover:shadow-md"
+                  : "bg-[#00D4FF] hover:bg-[#38e1ff] text-black font-semibold shadow-[0_0_20px_rgba(0,212,255,0.35)]"
               )}
             >
+              <Mail className="w-4 h-4" />
               <span>{lang === "vi" ? "Liên hệ ngay" : "Contact Me"}</span>
               <ArrowRight className="w-4 h-4" />
             </a>
 
-            {/* Secondary Action Button (Pink Neo) */}
+            {/* Secondary Action Button */}
             <a
               href="#certificates"
               className={clsx(
-                "inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm transition-all duration-200",
+                "inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 border",
                 themeA
-                  ? "bg-[#FF80B5] text-black border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000]"
-                  : "bg-pink-500/20 text-pink-300 border border-pink-500/40 hover:bg-pink-500/30 shadow-[0_0_15px_rgba(244,63,94,0.3)] font-mono"
+                  ? "border-[#E5DECE] dark:border-[#3A3228] bg-white dark:bg-[#1E1A14] text-[#1A1108] dark:text-[#EDE8E1] hover:border-[#B45309] hover:text-[#B45309] hover:bg-[#FAF7F2] dark:hover:bg-[#28221B]"
+                  : "border-white/15 bg-white/5 text-stone-200 hover:border-[#00D4FF]/40 hover:text-[#00D4FF] hover:bg-white/10"
               )}
             >
+              <Award className="w-4 h-4" />
               <span>{lang === "vi" ? "Xem kho chứng chỉ" : "View Certificates"}</span>
               <ArrowRight className="w-4 h-4" />
             </a>
 
             {/* Social Links */}
-            <div className="flex items-center gap-2 sm:ml-auto">
+            <div className="flex items-center gap-2.5 sm:ml-auto">
               {socialLinks.map((item) => (
                 <a
                   key={item.name}
@@ -360,10 +486,10 @@ export function Hero({ profile }: { profile: Profile }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={clsx(
-                    "p-2.5 rounded-full text-xs transition-all",
+                    "p-2.5 rounded-xl text-xs transition-all duration-200 border",
                     themeA
-                      ? "bg-white dark:bg-[#25201B] border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 hover:border-black shadow-sm"
-                      : "bg-white/5 border border-white/10 text-stone-200 hover:border-[#00D4FF]/60 hover:text-[#00D4FF]"
+                      ? "border-[#E5DECE] dark:border-[#3A3228] bg-white dark:bg-[#1E1A14] text-[#66584B] dark:text-[#9E9382] hover:border-[#B45309] hover:text-[#B45309] hover:shadow-sm"
+                      : "border-white/10 bg-white/5 text-stone-300 hover:border-[#00D4FF]/60 hover:text-[#00D4FF]"
                   )}
                   aria-label={item.name}
                 >
