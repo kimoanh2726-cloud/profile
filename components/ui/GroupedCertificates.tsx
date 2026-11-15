@@ -9,7 +9,6 @@ import {
   ChevronUp,
   Plus,
   Minus,
-  FileText,
   Award,
   BookOpen,
   Sparkles,
@@ -212,15 +211,6 @@ export function GroupedCertificates({
                 >
                   <div className="divide-y divide-[#E5DECE]/60 dark:divide-[#3A3228]/60">
                     {group.certs.map((cert) => {
-                      const verifyUrl =
-                        cert.verify_url ||
-                        (cert.credentialId &&
-                        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
-                          cert.credentialId
-                        )
-                          ? `https://www.life-global.org/certificate/${cert.credentialId}`
-                          : undefined);
-
                       // Format date: MM/YYYY
                       const parts = cert.date.split("-");
                       const dateDisplay =
@@ -337,68 +327,26 @@ export function GroupedCertificates({
                             </div>
                           </div>
 
-                          {/* Khối bên phải: Hành động Xác thực HP LIFE & Tải PDF */}
+                          {/* Khối bên phải: Nút Chi tiết mở modal (thay thế gọn gàng, xem ảnh + xác thực + tải PDF trong modal) */}
                           <div className="flex items-center gap-2 sm:gap-3 shrink-0 self-end sm:self-center">
-                            {/* Nút Xem ảnh phóng to */}
-                            {cert.image && (
-                              <button
-                                type="button"
-                                onClick={() => onViewImage(cert)}
-                                className={clsx(
-                                  "px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer",
-                                  themeA
-                                    ? "border-[#E5DECE] dark:border-[#3A3228] text-[#66584B] dark:text-[#9E9382] hover:border-[#B45309] hover:text-[#B45309]"
-                                    : "border-white/10 text-stone-300 hover:border-[#00D4FF]/40 hover:text-[#00D4FF]"
-                                )}
-                              >
-                                {lang === "vi" ? "Xem ảnh" : "Preview"}
-                              </button>
-                            )}
-
-                            {/* Nút Tải PDF nếu có file trong thư mục */}
-                            {cert.pdfUrl && (
-                              <a
-                                href={cert.pdfUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={clsx(
-                                  "p-1.5 rounded-lg border transition-all",
-                                  themeA
-                                    ? "border-[#E5DECE] dark:border-[#3A3228] text-[#8C7E72] hover:text-[#B45309] hover:border-[#B45309]"
-                                    : "border-white/10 text-stone-400 hover:text-[#00D4FF]"
-                                )}
-                                title={
-                                  lang === "vi"
-                                    ? "Mở bản PDF gốc"
-                                    : "Open PDF file"
-                                }
-                              >
-                                <FileText className="w-3.5 h-3.5" />
-                              </a>
-                            )}
-
-                            {/* NÚT XÁC THỰC TRỰC TIẾP TRÊN HP LIFE (Theo đúng yêu cầu của user) */}
-                            {verifyUrl ? (
-                              <a
-                                href={verifyUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={clsx(
-                                  "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all duration-200",
-                                  themeA
-                                    ? "border-[#B45309] text-[#B45309] hover:bg-[#B45309] hover:text-white dark:border-[#D97706] dark:text-[#D97706] dark:hover:bg-[#D97706] dark:hover:text-black"
-                                    : "border-[#00D4FF] text-[#00D4FF] hover:bg-[#00D4FF] hover:text-black shadow-[0_0_12px_rgba(0,212,255,0.2)]"
-                                )}
-                                title="Xác thực trực tiếp trên trang chủ HP LIFE (life-global.org)"
-                              >
-                                <span>{lang === "vi" ? "Xác thực" : "Verify"}</span>
-                                <ExternalLink className="w-3.5 h-3.5" />
-                              </a>
-                            ) : (
-                              <span className="text-xs text-neutral-400 font-mono italic">
-                                Verified
-                              </span>
-                            )}
+                            <button
+                              type="button"
+                              onClick={() => onViewImage(cert)}
+                              className={clsx(
+                                "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold border transition-all duration-200 cursor-pointer shadow-sm",
+                                themeA
+                                  ? "border-[#B45309] text-[#B45309] hover:bg-[#B45309] hover:text-white dark:border-[#D97706] dark:text-[#D97706] dark:hover:bg-[#D97706] dark:hover:text-black"
+                                  : "border-[#00D4FF] text-[#00D4FF] hover:bg-[#00D4FF] hover:text-black shadow-[0_0_12px_rgba(0,212,255,0.2)]"
+                              )}
+                              title={
+                                lang === "vi"
+                                  ? "Xem chi tiết chứng chỉ, xác thực và tải PDF"
+                                  : "View certificate details, verification, and PDF"
+                              }
+                            >
+                              <span>{lang === "vi" ? "Chi tiết" : "Details"}</span>
+                              <ExternalLink className="w-3.5 h-3.5" />
+                            </button>
                           </div>
                         </div>
                       );
