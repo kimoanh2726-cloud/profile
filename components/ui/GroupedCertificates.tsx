@@ -16,7 +16,7 @@ import {
 import clsx from "clsx";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import type { CertificateItem } from "@/lib/schema";
-import { getCertVerifyUrl } from "@/lib/cert-utils";
+import { getCertVerifyUrl, getAssetUrl } from "@/lib/cert-utils";
 
 interface GroupedCertificatesProps {
   certificates: CertificateItem[];
@@ -246,7 +246,7 @@ export function GroupedCertificates({
                                 }
                               >
                                 <Image
-                                  src={cert.image}
+                                  src={getAssetUrl(cert.image) || cert.image}
                                   alt={t(cert.title)}
                                   fill
                                   sizes="96px"

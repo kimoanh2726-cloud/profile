@@ -61,7 +61,7 @@ export function FeaturedCertCard({
           className="relative cursor-pointer overflow-hidden aspect-[16/9] bg-stone-100 dark:bg-stone-900"
         >
           <Image
-            src={cert.image!}
+            src={getAssetUrl(cert.image) || cert.image!}
             alt={`${t(cert.title)} — ${t(cert.issuer)}`}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"

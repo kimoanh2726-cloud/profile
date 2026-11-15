@@ -16,6 +16,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import clsx from "clsx";
+import { getAssetUrl } from "@/lib/cert-utils";
 
 interface HeroProps {
   profile: Profile;
@@ -159,7 +160,7 @@ export function Hero({ profile, onSelectTab }: HeroProps) {
               {profile.avatar && !avatarError ? (
                 <div className="relative w-full h-full rounded-xl overflow-hidden">
                   <Image
-                    src={profile.avatar}
+                    src={getAssetUrl(profile.avatar) || profile.avatar}
                     alt={t(profile.name)}
                     fill
                     className="object-cover"

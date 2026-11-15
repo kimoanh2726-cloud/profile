@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { useSettings } from "@/hooks/useSettings";
 import type { CertificateItem } from "@/lib/schema";
-import { checkCertificateExpiry, getCertVerifyUrl } from "@/lib/cert-utils";
+import { checkCertificateExpiry, getCertVerifyUrl, getAssetUrl } from "@/lib/cert-utils";
 import { StatusChip } from "./FeaturedCertCard";
 
 interface SupplementalCertCardProps {
@@ -57,7 +57,7 @@ export function SupplementalCertCard({
             className="shrink-0 w-14 h-10 rounded overflow-hidden cursor-pointer"
           >
             <Image
-              src={cert.image!}
+              src={getAssetUrl(cert.image) || cert.image!}
               alt={t(cert.title)}
               width={56}
               height={40}
@@ -119,7 +119,7 @@ export function SupplementalCertCard({
           aria-label={`${lang === "vi" ? "Xem ảnh" : "View image"}: ${t(cert.title)}`}
         >
           <Image
-            src={cert.image!}
+            src={getAssetUrl(cert.image) || cert.image!}
             alt={t(cert.title)}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"

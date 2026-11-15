@@ -249,7 +249,7 @@ export function CertLightbox({
                       className="w-full"
                     >
                       <Image
-                        src={cert.image!}
+                        src={getAssetUrl(cert.image) || cert.image!}
                         alt={`${t(cert.title)} — ${t(cert.issuer)}`}
                         width={900}
                         height={600}
