@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { SectionWrapper } from "../ui/SectionWrapper";
 import { FeaturedCertCard } from "../ui/FeaturedCertCard";
 import { SupplementalCertCard } from "../ui/SupplementalCertCard";
+import { GroupedCertificates } from "../ui/GroupedCertificates";
 import { CertLightbox } from "../ui/CertLightbox";
 import { TagFilter } from "../ui/TagFilter";
 import { useTheme } from "../theme/ThemeProvider";
@@ -181,85 +182,45 @@ export function Certificates({ certificates, tagDefinitions }: CertificatesProps
           </div>
         )}
 
-        {/* ════ KHU 2: CHỨNG CHỈ BỔ SUNG ════ */}
+        {/* ════ KHU 2: CHỨNG CHỈ BỔ TRỢ THEO NHÓM (04.2 NHÓM GOM) ════ */}
         {supplementalCerts.length > 0 && (
-          <div>
-            <SectionSubheading theme={theme} lang={lang}>
-              {lang === "vi" ? "Chứng chỉ bổ sung" : "Additional Certificates"}
-            </SectionSubheading>
-
-            {/* Tag filter */}
-            {relevantTags.length > 1 && (
-              <div className="mb-6">
-                <TagFilter
-                  tags={relevantTags}
-                  selectedTag={selectedTag}
-                  onSelectTag={setSelectedTag}
-                />
-              </div>
-            )}
-
-            {/* View: list or grid */}
-            {settings.certSupplementalView === "list" ? (
-              <div className="mb-4">
-                {displayedSupplemental.length > 0 ? (
-                  displayedSupplemental.map((cert) => (
-                    <SupplementalCertCard
-                      key={cert.id}
-                      cert={cert}
-                      warningDays={warningDays}
-                      viewMode="list"
-                      onViewImage={cert.image ? (c) => openLightbox(c, filteredSupplemental) : undefined}
-                    />
-                  ))
-                ) : <EmptyState lang={lang} theme={theme} />}
-              </div>
-            ) : (
-              <div className={clsx("grid gap-5 mb-4", gridCols)}>
-                {displayedSupplemental.length > 0 ? (
-                  displayedSupplemental.map((cert) => (
-                    <SupplementalCertCard
-                      key={cert.id}
-                      cert={cert}
-                      warningDays={warningDays}
-                      viewMode="grid"
-                      onViewImage={cert.image ? (c) => openLightbox(c, filteredSupplemental) : undefined}
-                    />
-                  ))
-                ) : <div className="col-span-full"><EmptyState lang={lang} theme={theme} /></div>}
-              </div>
-            )}
-
-            {/* Show more / collapse */}
-            {hasMore && (
-              <div className="flex justify-center mt-2">
-                <button
-                  ref={triggerRef}
-                  onClick={() => setShowAllSupplemental((v) => !v)}
+          <div className="mt-8">
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-1.5">
+                <span
                   className={clsx(
-                    "inline-flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-full border transition-colors",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]",
+                    "text-xs font-mono font-semibold uppercase tracking-wider",
                     themeA
-                      ? "border-[#E5DECE] dark:border-[#3A3228] text-[#66584B] dark:text-[#9E9382] hover:bg-[#FAF7F2] dark:hover:bg-[#2A2218]"
-                      : "border-white/10 text-stone-400 hover:bg-white/5"
+                      ? "text-[#B45309] dark:text-[#D97706]"
+                      : "text-[#00D4FF]"
                   )}
                 >
-                  {showAllSupplemental ? (
-                    <>
-                      <ChevronUp className="w-4 h-4" />
-                      {lang === "vi" ? "Thu gọn" : "Collapse"}
-                    </>
-                  ) : (
-                    <>
-                      <ChevronDown className="w-4 h-4" />
-                      {lang === "vi"
-                        ? `Xem thêm ${filteredSupplemental.length - SUPPLEMENTAL_INITIAL_COUNT} chứng chỉ`
-                        : `Show ${filteredSupplemental.length - SUPPLEMENTAL_INITIAL_COUNT} more`}
-                    </>
-                  )}
-                </button>
+                  04.2 NHÓM GOM
+                </span>
               </div>
-            )}
+              <SectionSubheading theme={theme} lang={lang}>
+                {lang === "vi"
+                  ? "Chứng chỉ bổ trợ theo nhóm"
+                  : "Grouped Supplemental Certificates"}
+              </SectionSubheading>
+              <p
+                className={clsx(
+                  "text-xs sm:text-sm mt-1 max-w-2xl",
+                  themeA
+                    ? "text-[#66584B] dark:text-[#9E9382]"
+                    : "text-stone-400"
+                )}
+              >
+                {lang === "vi"
+                  ? "Các khóa đào tạo kỹ năng số, quản trị và phương pháp nghiên cứu được gom gọn theo từng tổ chức cấp, kèm đường link xác thực trực tuyến"
+                  : "Modular training tracks in digital literacy and methodology grouped by accrediting institutions, with direct online verification links"}
+              </p>
+            </div>
+
+            <GroupedCertificates
+              certificates={supplementalCerts}
+              onViewImage={(c) => openLightbox(c, supplementalCerts)}
+            />
           </div>
         )}
 
