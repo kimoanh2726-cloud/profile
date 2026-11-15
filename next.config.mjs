@@ -8,6 +8,7 @@ const basePath = isGitHubPages ? "/profile" : "";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: isGitHubPages ? ".next-pages" : ".next",
   ...(isGitHubPages ? { output: "export" } : {}),
   basePath: basePath,
   trailingSlash: true,
