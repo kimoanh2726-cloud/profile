@@ -410,13 +410,13 @@ export function Hero({ profile, onSelectTab }: HeroProps) {
               </div>
             </a>
 
-            {/* Card 4: Chứng chỉ Quốc tế */}
+            {/* Card 4: Kỹ năng & Chứng chỉ */}
             <a
-              href="#certificates"
+              href="#skills"
               onClick={(e) => {
                 if (onSelectTab) {
                   e.preventDefault();
-                  onSelectTab("certificates");
+                  onSelectTab("skills");
                 }
               }}
               className={clsx(
@@ -493,7 +493,7 @@ export function Hero({ profile, onSelectTab }: HeroProps) {
 
             {/* Secondary Action Button */}
             <button
-              onClick={() => onSelectTab?.("certificates")}
+              onClick={() => onSelectTab?.("skills")}
               className={clsx(
                 "inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 border cursor-pointer",
                 themeA
@@ -502,7 +502,7 @@ export function Hero({ profile, onSelectTab }: HeroProps) {
               )}
             >
               <Award className="w-4 h-4" />
-              <span>{lang === "vi" ? "Xem kho chứng chỉ" : "View Certificates"}</span>
+              <span>{lang === "vi" ? "Kỹ năng & Chứng chỉ" : "Skills & Certificates"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 

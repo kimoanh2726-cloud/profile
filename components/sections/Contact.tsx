@@ -70,7 +70,7 @@ export function Contact({ profile }: { profile: Profile }) {
   return (
     <SectionWrapper
       id="contact"
-      number="06"
+      number="05"
       title={{ vi: "Liên hệ & Kết nối", en: "Contact & Connect" }}
       subtitle={{
         vi: "Sẵn sàng trao đổi về các dự án nghiên cứu, học bổng hoặc cộng tác học thuật",

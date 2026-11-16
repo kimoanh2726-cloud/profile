@@ -5,7 +5,6 @@ import { Navbar } from "./Navbar";
 import { OverviewTab } from "../sections/OverviewTab";
 import { Timeline } from "../sections/Timeline";
 import { Research } from "../sections/Research";
-import { Certificates } from "../sections/Certificates";
 import { Skills } from "../sections/Skills";
 import { Contact } from "../sections/Contact";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,7 +22,6 @@ export type TabId =
   | "overview"
   | "timeline"
   | "research"
-  | "certificates"
   | "skills"
   | "contact";
 
@@ -31,7 +29,6 @@ const VALID_TABS: TabId[] = [
   "overview",
   "timeline",
   "research",
-  "certificates",
   "skills",
   "contact",
 ];
@@ -70,6 +67,14 @@ export function TabbedPortfolio({
         setActiveTab("timeline");
       } else if (raw === "projects" || raw === "project") {
         setActiveTab("research");
+      } else if (
+        raw === "certificates" ||
+        raw === "certificate" ||
+        raw === "certs" ||
+        raw === "skills" ||
+        raw === "skill"
+      ) {
+        setActiveTab("skills");
       } else if (VALID_TABS.includes(raw as TabId)) {
         setActiveTab(raw as TabId);
       }
@@ -132,18 +137,13 @@ export function TabbedPortfolio({
               </div>
             )}
 
-            {activeTab === "certificates" && (
+            {activeTab === "skills" && (
               <div className="pt-20">
-                <Certificates
+                <Skills
+                  skills={skills}
                   certificates={certificates}
                   tagDefinitions={tagDefinitions}
                 />
-              </div>
-            )}
-
-            {activeTab === "skills" && (
-              <div className="pt-20">
-                <Skills skills={skills} />
               </div>
             )}
 

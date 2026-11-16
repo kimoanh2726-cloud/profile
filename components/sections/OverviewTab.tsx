@@ -265,10 +265,10 @@ export function OverviewTab({
                         themeA ? "text-[#1A1108] dark:text-[#EDE8E1]" : "text-white"
                       )}
                     >
-                      {lang === "vi" ? "Kho Chứng chỉ" : "Certificates & Training"}
+                      {lang === "vi" ? "Kỹ năng & Chứng chỉ" : "Skills & Certificates"}
                     </h3>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                      {publicCertCount} {lang === "vi" ? "chứng chỉ xác thực" : "verified credentials"}
+                      {publicCertCount} {lang === "vi" ? "chứng chỉ & kỹ năng xác thực" : "verified credentials & skills"}
                     </p>
                   </div>
                 </div>
@@ -302,15 +302,15 @@ export function OverviewTab({
               </div>
 
               <button
-                onClick={() => onSelectTab("certificates")}
+                onClick={() => onSelectTab("skills")}
                 className={clsx(
-                  "inline-flex items-center gap-1.5 text-xs font-semibold pt-3 border-t transition-colors",
+                  "inline-flex items-center gap-1.5 text-xs font-semibold pt-3 border-t transition-colors cursor-pointer",
                   themeA
                     ? "border-neutral-100 dark:border-neutral-800 text-[#B45309] dark:text-[#D97706] hover:text-[#92400e]"
                     : "border-white/5 text-[#00D4FF] hover:text-white"
                 )}
               >
-                <span>{lang === "vi" ? `Xem ${publicCertCount} chứng chỉ & Drive` : `View all ${publicCertCount} Certs`}</span>
+                <span>{lang === "vi" ? "Xem chi tiết Kỹ năng & Chứng chỉ" : "Explore Skills & Certifications"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
