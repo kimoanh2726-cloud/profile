@@ -29,8 +29,8 @@ export function Timeline({ education, experience }: TimelineProps) {
   return (
     <SectionWrapper
       id="timeline"
-      number="03"
-      title={{ vi: "Quá trình & Học vấn", en: "Education & Experience" }}
+      number="02"
+      title={{ vi: "Hồ sơ & Học vấn", en: "Profile & Education" }}
       subtitle={{
         vi: "Dấu mốc học tập, dự án điền dã và kinh nghiệm thực tiễn",
         en: "Academic milestones, ethnographic fieldwork, and professional experience",

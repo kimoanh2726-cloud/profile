@@ -24,9 +24,9 @@ export function Navbar({ name, activeTab = "overview", onSelectTab }: NavbarProp
 
   const navLinks = [
     { id: "overview", label: { vi: "Tổng quan", en: "Overview" } },
-    { id: "timeline", label: { vi: "Quá trình", en: "Timeline" } },
+    { id: "timeline", label: { vi: "Hồ sơ", en: "Profile" } },
     { id: "research", label: { vi: "Dự án", en: "Projects" } },
-    { id: "skills", label: { vi: "Kỹ năng & Chứng chỉ", en: "Skills & Certs" } },
+    { id: "skills", label: { vi: "Kỹ năng", en: "Skills" } },
     { id: "contact", label: { vi: "Liên hệ", en: "Contact" } },
   ];
 

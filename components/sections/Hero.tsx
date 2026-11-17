@@ -502,7 +502,7 @@ export function Hero({ profile, onSelectTab }: HeroProps) {
               )}
             >
               <Award className="w-4 h-4" />
-              <span>{lang === "vi" ? "Kỹ năng & Chứng chỉ" : "Skills & Certificates"}</span>
+              <span>{lang === "vi" ? "Xem Kỹ năng" : "View Skills"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 

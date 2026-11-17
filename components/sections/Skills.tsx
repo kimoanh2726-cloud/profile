@@ -99,8 +99,8 @@ export function Skills({
       id="skills"
       number="04"
       title={{
-        vi: "Kỹ năng & Chứng chỉ",
-        en: "Skills & Certifications",
+        vi: "Kỹ năng",
+        en: "Skills",
       }}
       subtitle={{
         vi: "Năng lực phương pháp nghiên cứu, ngoại ngữ cổ & hiện đại, công cụ số cùng các chứng chỉ xác thực quốc tế",

@@ -63,7 +63,16 @@ export function TabbedPortfolio({
       // Hỗ trợ alias
       if (raw === "about" || raw === "hero") {
         setActiveTab("overview");
-      } else if (raw === "education" || raw === "experience") {
+      } else if (
+        raw === "education" ||
+        raw === "experience" ||
+        raw === "timeline" ||
+        raw === "hoso" ||
+        raw === "ho-so" ||
+        raw === "profile" ||
+        raw === "quatrinh" ||
+        raw === "qua-trinh"
+      ) {
         setActiveTab("timeline");
       } else if (raw === "projects" || raw === "project") {
         setActiveTab("research");

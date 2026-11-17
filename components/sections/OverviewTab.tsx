@@ -154,7 +154,7 @@ export function OverviewTab({
                     : "border-white/5 text-[#00D4FF] hover:text-white"
                 )}
               >
-                <span>{lang === "vi" ? "Xem chi tiết quá trình" : "View Full Timeline"}</span>
+                <span>{lang === "vi" ? "Xem chi tiết hồ sơ" : "View Full Profile"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -265,7 +265,7 @@ export function OverviewTab({
                         themeA ? "text-[#1A1108] dark:text-[#EDE8E1]" : "text-white"
                       )}
                     >
-                      {lang === "vi" ? "Kỹ năng & Chứng chỉ" : "Skills & Certificates"}
+                      {lang === "vi" ? "Kỹ năng" : "Skills"}
                     </h3>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">
                       {publicCertCount} {lang === "vi" ? "chứng chỉ & kỹ năng xác thực" : "verified credentials & skills"}
@@ -310,7 +310,7 @@ export function OverviewTab({
                     : "border-white/5 text-[#00D4FF] hover:text-white"
                 )}
               >
-                <span>{lang === "vi" ? "Xem chi tiết Kỹ năng & Chứng chỉ" : "Explore Skills & Certifications"}</span>
+                <span>{lang === "vi" ? "Xem chi tiết Kỹ năng" : "Explore All Skills"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

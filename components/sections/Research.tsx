@@ -48,7 +48,7 @@ export function Research({ items }: { items: ResearchItem[] }) {
   return (
     <SectionWrapper
       id="research"
-      number="02"
+      number="03"
       title={{ vi: "Dự án", en: "Projects" }}
       subtitle={{
         vi: "Các đề tài nghiên cứu, dự án thực địa và công trình khoa học đã thực hiện",
