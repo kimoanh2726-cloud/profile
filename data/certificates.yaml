@@ -1,3 +1,26 @@
+- id: cert-google-gemini-educator
+  title:
+    vi: Gemini Certified Educator
+    en: Gemini Certified Educator
+  issuer:
+    vi: Google for Education
+    en: Google for Education
+  date: '2025-12-24'
+  expiryDate: '2028-12-24'
+  credentialId: 7eb91c3a-f640-4c49-8cca-d3c6761b64a1
+  credentialUrl: https://edu.google.accredible.com/7eb91c3a-f640-4c49-8cca-d3c6761b64a1#acc.r863MDLm
+  verify_url: https://edu.google.accredible.com/7eb91c3a-f640-4c49-8cca-d3c6761b64a1#acc.r863MDLm
+  description:
+    vi: Chứng nhận chuyên gia giáo dục ứng dụng Trí tuệ nhân tạo (AI) Gemini trong giáo dục của Google (kiến thức, kỹ năng và năng lực ứng dụng AI).
+    en: Demonstrated knowledge, skills, and competencies needed to use Google AI and Gemini in education.
+  image: /certificates/google-gemini-educator.jpg
+  featured: true
+  featuredOrder: 1
+  tags:
+    - cong-nghe
+    - hoc-thuat
+    - viec-lam
+  visibility: public
 - id: cert-ielts
   title:
     vi: IELTS Academic 7.0
@@ -15,7 +38,7 @@
   image: /certificates/ielts-2025.jpg
   pdfUrl: /certificates/ielts-2025.pdf
   featured: true
-  featuredOrder: 1
+  featuredOrder: 2
   tags:
     - ngon-ngu
     - hoc-bong
@@ -42,7 +65,7 @@
     title_en: Religious Site Distribution Map — An Giang Province
     url: https://example.com/gis-project
   featured: true
-  featuredOrder: 2
+  featuredOrder: 3
   tags:
     - cong-nghe
     - nghien-cuu

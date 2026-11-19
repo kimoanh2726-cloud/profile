@@ -122,8 +122,8 @@ export function Skills({
                     ? "bg-[#B45309] text-white shadow-sm"
                     : "bg-[#00D4FF] text-black font-mono shadow-[0_0_15px_rgba(0,212,255,0.3)]"
                   : themeA
-                  ? "bg-white/70 dark:bg-[#1E1A14]/70 border border-[#E5DECE] dark:border-[#3A3228] text-[#66584B] dark:text-[#9E9382] hover:border-[#B45309]/50 hover:text-[#B45309]"
-                  : "bg-white/5 border border-white/10 text-stone-300 hover:border-white/20 hover:text-white"
+                    ? "bg-white/70 dark:bg-[#1E1A14]/70 border border-[#E5DECE] dark:border-[#3A3228] text-[#66584B] dark:text-[#9E9382] hover:border-[#B45309]/50 hover:text-[#B45309]"
+                    : "bg-white/5 border border-white/10 text-stone-300 hover:border-white/20 hover:text-white"
               )}
             >
               {tab.icon}
@@ -136,8 +136,8 @@ export function Skills({
                       ? "bg-white/20 text-white"
                       : "bg-black/20 text-black"
                     : themeA
-                    ? "bg-[#FAF7F2] dark:bg-[#2A241F] text-[#8C7E72]"
-                    : "bg-white/10 text-stone-400"
+                      ? "bg-[#FAF7F2] dark:bg-[#2A241F] text-[#8C7E72]"
+                      : "bg-white/10 text-stone-400"
                 )}
               >
                 {tab.count}

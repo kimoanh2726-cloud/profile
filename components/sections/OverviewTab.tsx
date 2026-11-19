@@ -278,8 +278,8 @@ export function OverviewTab({
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                     <span>
                       {lang === "vi"
-                        ? "32 Chứng chỉ quốc tế HP Foundation (HP LIFE): AI, Dữ liệu, Quản trị Agile, An ninh mạng, Khởi nghiệp..."
-                        : "32 HP Foundation (HP LIFE) Global Certificates: AI, Analytics, Agile, Cybersecurity..."}
+                        ? "Google for Education: Gemini Certified Educator (Chuyên gia Giáo dục AI)"
+                        : "Google for Education: Gemini Certified Educator"}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
@@ -296,6 +296,14 @@ export function OverviewTab({
                       {lang === "vi"
                         ? "GIS, Mapping, and Spatial Analysis (University of Toronto/Coursera)"
                         : "GIS & Spatial Analysis (University of Toronto/Coursera)"}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                    <span>
+                      {lang === "vi"
+                        ? "32 Chứng chỉ quốc tế HP Foundation (HP LIFE): AI, Dữ liệu, Quản trị Agile, An ninh mạng, Khởi nghiệp..."
+                        : "32 HP Foundation (HP LIFE) Global Certificates: AI, Analytics, Agile, Cybersecurity..."}
                     </span>
                   </li>
                 </ul>
