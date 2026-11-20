@@ -51,11 +51,13 @@ export function Navbar({ name, activeTab = "overview", onSelectTab }: NavbarProp
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? themeA
-              ? "bg-[#FAF7F2]/90 dark:bg-[#1C1814]/90 backdrop-blur-md border-b border-[#E5DECE] dark:border-[#3A3228] shadow-sm"
-              : "bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/10 shadow-lg"
-            : "bg-transparent"
+          activeTab === "timeline"
+            ? "bg-[#0e1225]/95 backdrop-blur-md border-b border-white/10 shadow-lg"
+            : isScrolled
+              ? themeA
+                ? "bg-[#FAF7F2]/90 dark:bg-[#1C1814]/90 backdrop-blur-md border-b border-[#E5DECE] dark:border-[#3A3228] shadow-sm"
+                : "bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/10 shadow-lg"
+              : "bg-transparent"
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 3xl:px-12 h-14 sm:h-16 md:h-20 3xl:h-24 flex items-center justify-between gap-4">
@@ -64,9 +66,11 @@ export function Navbar({ name, activeTab = "overview", onSelectTab }: NavbarProp
             onClick={() => handleTabClick("overview")}
             className={clsx(
               "font-bold tracking-tight text-sm sm:text-base md:text-lg 3xl:text-2xl transition-colors hover:opacity-80 text-left cursor-pointer",
-              themeA
-                ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]"
-                : "font-be-vietnam text-white"
+              activeTab === "timeline"
+                ? "font-sans text-white"
+                : themeA
+                  ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]"
+                  : "font-be-vietnam text-white"
             )}
           >
             <span>{t(name)}</span>
@@ -82,13 +86,17 @@ export function Navbar({ name, activeTab = "overview", onSelectTab }: NavbarProp
                   onClick={() => handleTabClick(link.id)}
                   className={clsx(
                     "relative py-1.5 text-xs 3xl:text-base uppercase tracking-wider transition-all duration-200 select-none cursor-pointer",
-                    isActive
-                      ? themeA
-                        ? "font-bold text-[#B45309] dark:text-[#D97706]"
-                        : "font-bold text-[#00D4FF]"
-                      : themeA
-                        ? "font-medium text-[#66584B] hover:text-[#B45309] dark:text-[#9E9382] dark:hover:text-[#D97706]"
-                        : "font-medium text-stone-300 hover:text-[#00D4FF]"
+                    activeTab === "timeline"
+                      ? isActive
+                        ? "font-bold text-[#ef476f]"
+                        : "font-medium text-stone-300 hover:text-white"
+                      : isActive
+                        ? themeA
+                          ? "font-bold text-[#B45309] dark:text-[#D97706]"
+                          : "font-bold text-[#00D4FF]"
+                        : themeA
+                          ? "font-medium text-[#66584B] hover:text-[#B45309] dark:text-[#9E9382] dark:hover:text-[#D97706]"
+                          : "font-medium text-stone-300 hover:text-[#00D4FF]"
                   )}
                 >
                   <span>{t(link.label)}</span>
@@ -99,9 +107,11 @@ export function Navbar({ name, activeTab = "overview", onSelectTab }: NavbarProp
                       layoutId="activeNavUnderline"
                       className={clsx(
                         "absolute -bottom-1 left-0 right-0 h-[2.5px] rounded-full",
-                        themeA
-                          ? "bg-[#B45309] dark:bg-[#D97706]"
-                          : "bg-[#00D4FF] shadow-[0_0_8px_#00D4FF]"
+                        activeTab === "timeline"
+                          ? "bg-[#ef476f] shadow-[0_0_8px_#ef476f]"
+                          : themeA
+                            ? "bg-[#B45309] dark:bg-[#D97706]"
+                            : "bg-[#00D4FF] shadow-[0_0_8px_#00D4FF]"
                       )}
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />

@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import { useTheme } from "../theme/ThemeProvider";
 import type {
   Profile,
   EducationItem,
@@ -11,30 +9,23 @@ import type {
   CertificateItem,
   SkillItem,
 } from "@/lib/schema";
-import { getAssetUrl } from "@/lib/cert-utils";
 import {
   Briefcase,
   GraduationCap,
   Award,
-  Sparkles,
-  FileText,
-  Calendar,
-  CheckCircle2,
-  Printer,
-  Mail,
+  Star,
+  Info,
   MapPin,
+  ChevronUp,
+  ChevronDown,
+  Bookmark,
   ExternalLink,
-  ChevronRight,
-  Globe,
   Github,
   Linkedin,
-  Compass,
+  Phone,
+  Mail,
   Download,
-  BookOpen,
-  Languages,
-  Layers,
-  ArrowUpRight,
-  UserCheck,
+  Share2,
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -57,25 +48,36 @@ export function Timeline({
   skills = [],
   onNavigateTab,
 }: TimelineProps) {
-  const { theme, lang, t } = useTheme();
-  const themeA = theme === "a";
+  const [activeSection, setActiveSection] = useState<string>("Information");
 
-  const [activeSection, setActiveSection] = useState<string>("cv-info");
+  // Accordion state cho từng cơ quan / công ty trong Work Experience (y hệt thiennguyen.dev)
+  const [expandedCompanies, setExpandedCompanies] = useState<Record<string, boolean>>({
+    vass: true, // Mặc định mở mục đầu tiên
+    ussh: false,
+    giacngo: false,
+    heritage: false,
+  });
 
-  // Danh sách các mục trong Table of Contents
+  const toggleCompany = (id: string) => {
+    setExpandedCompanies((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  // Các mục trong Table of Contents (y hệt thiennguyen.dev/cv/)
   const tocItems = [
-    { id: "cv-info", label: { vi: "Thông tin cá nhân", en: "Information" }, icon: <UserCheck className="w-3.5 h-3.5" /> },
-    { id: "cv-experience", label: { vi: "Kinh nghiệm & Điền dã", en: "Work Experience" }, icon: <Briefcase className="w-3.5 h-3.5" /> },
-    { id: "cv-projects", label: { vi: "Đề tài & Nghiên cứu", en: "Research & Projects" }, icon: <FileText className="w-3.5 h-3.5" /> },
-    { id: "cv-education", label: { vi: "Học vấn", en: "Education" }, icon: <GraduationCap className="w-3.5 h-3.5" /> },
-    { id: "cv-certifications", label: { vi: "Chứng chỉ tiêu biểu", en: "Certifications" }, icon: <Award className="w-3.5 h-3.5" /> },
-    { id: "cv-skills", label: { vi: "Kỹ năng chuyên môn", en: "Skills & Methods" }, icon: <Sparkles className="w-3.5 h-3.5" /> },
+    { id: "Information", label: "Information" },
+    { id: "Work-Experience", label: "Work Experience" },
+    { id: "Personal-Projects", label: "Personal Projects" },
+    { id: "Education", label: "Education" },
+    { id: "Certifications", label: "Certifications" },
   ];
 
   // ScrollSpy theo dõi mục đang cuộn
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 220;
+      const scrollPosition = window.scrollY + 180;
       for (const item of tocItems) {
         const el = document.getElementById(item.id);
         if (el) {
@@ -97,7 +99,7 @@ export function Timeline({
     setActiveSection(id);
     const el = document.getElementById(id);
     if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 100;
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };
@@ -106,826 +108,1096 @@ export function Timeline({
     window.print();
   };
 
-  // Lọc chứng chỉ nổi bật nhất (Top 4)
-  const featuredCerts = certificates
-    .filter((c) => c.featured)
-    .sort((a, b) => (a.featuredOrder ?? 999) - (b.featuredOrder ?? 999))
-    .slice(0, 4);
-
-  // Định dạng tên & chức danh
-  const displayName = profile?.name ? t(profile.name) : "Trần Kim Oanh";
-  const displayTitle = profile?.title
-    ? t(profile.title)
-    : lang === "vi"
-    ? "Nghiên cứu Tôn giáo & Nhân học Văn hóa"
-    : "Religious Studies & Cultural Anthropology";
-  const displayLocation = profile?.location
-    ? t(profile.location)
-    : lang === "vi"
-    ? "Hà Nội, Việt Nam"
-    : "Hanoi, Vietnam";
-  const displayBio = profile?.bio
-    ? t(profile.bio)
-    : lang === "vi"
-    ? "Sinh viên năm 3 chuyên ngành Tôn giáo học, Khoa Nhân học và Tôn giáo, Trường ĐHKHXH&NV Hà Nội (ĐHQGHN). Đam mê nghiên cứu tôn giáo so sánh, nhân học văn hóa và tác động xã hội. Định hướng kết hợp phương pháp nghiên cứu điền dã truyền thống với công nghệ số, GIS và AI phục vụ học thuật và công việc thực tiễn."
-    : "Third-year undergraduate majoring in Religious Studies at the Faculty of Anthropology and Religion, VNU-USSH Hanoi. Passionate about comparative religion, cultural anthropology, and societal dynamics. Dedicated to integrating ethnographic fieldwork with modern AI, digital tools, and data analytics for academic and practical excellence.";
-
   return (
-    <section id="timeline" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-      {/* ── Print-only header stylesheet ── */}
+    <div className="min-h-screen bg-[#0e1225] text-[#c0c0c0] font-sans -mt-20 pt-24 pb-20 px-3 sm:px-6 lg:px-8 selection:bg-[#ef476f]/30 selection:text-white">
+      {/* ── Print Stylesheet chuyên dụng ── */}
       <style jsx global>{`
         @media print {
           nav,
-          .no-print,
-          .theme-a-noise,
           header,
-          footer {
+          footer,
+          .no-print,
+          #toc,
+          .widget-profile {
             display: none !important;
           }
           body {
             background: #ffffff !important;
             color: #000000 !important;
           }
-          #timeline {
+          .custom-page-cv {
+            background: #ffffff !important;
+            color: #000000 !important;
+            box-shadow: none !important;
+            border: none !important;
             padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100% !important;
-          }
-          .cv-print-full {
-            grid-column: span 12 / span 12 !important;
             width: 100% !important;
           }
-          .break-inside-avoid {
-            break-inside: avoid;
-            page-break-inside: avoid;
+          .custom-page-cv h1,
+          .custom-page-cv h3,
+          .custom-page-cv h4,
+          .custom-page-cv strong,
+          .custom-page-cv a {
+            color: #000000 !important;
+          }
+          .custom-page-cv .timeline {
+            border-left-color: #cccccc !important;
+          }
+          .company-details {
+            display: block !important;
           }
         }
       `}</style>
 
-      {/* ── Tiêu đề đầu mục trang ── */}
-      <div className="mb-10 pb-6 border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60 no-print">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#B45309] dark:text-[#D97706]">
-                02 // {lang === "vi" ? "HỒ SƠ HỌC THUẬT & CV" : "ACADEMIC CV & PROFILE"}
-              </span>
-            </div>
-            <h1
-              className={clsx(
-                "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
-                themeA
-                  ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]"
-                  : "font-be-vietnam text-white"
-              )}
-            >
-              {lang === "vi" ? "Hồ sơ Năng lực (Curriculum Vitae)" : "Curriculum Vitae (CV)"}
-            </h1>
-            <p className="mt-2 text-sm text-[#66584B] dark:text-[#9E9382] max-w-2xl leading-relaxed">
-              {lang === "vi"
-                ? "Tổng hợp quá trình đào tạo, kinh nghiệm khảo sát điền dã, công trình nghiên cứu và văn bằng chứng chỉ quốc tế được chuẩn hóa theo chuẩn CV học thuật."
-                : "Comprehensive record of academic education, ethnographic fieldwork, published research, and accredited international certifications formatted as a professional CV."}
-            </p>
-          </div>
+      {/* ── BỐ CỤC 2 CỘT CHÍNH (IS-2-COLUMN LAYOUT) ── */}
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* ══════════════════════════════════════════════════════════════════════
+              CỘT CHÍNH (MAIN COLUMN - 8 COLUMNS: CARD CUSTOM-PAGE-CV)
+          ══════════════════════════════════════════════════════════════════════ */}
+          <div className="lg:col-span-8">
+            <article className="card custom-page-cv bg-[#181c27]/80 backdrop-blur-sm border border-white/5 rounded-md p-6 sm:p-9 shadow-[0_4px_10px_rgba(0,0,0,0.25)]">
+              {/* Tên & Intro với hiệu ứng gõ chữ (Typed Cursor) */}
+              <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                Trần Kim Oanh
+              </h1>
 
-          {/* Nút hành động nhanh trên đầu trang */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handlePrint}
-              className={clsx(
-                "inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer shadow-sm",
-                themeA
-                  ? "bg-[#B45309] text-white hover:bg-[#92400e]"
-                  : "bg-[#00D4FF] text-black hover:bg-[#38bdf8] font-mono shadow-[0_0_15px_rgba(0,212,255,0.3)]"
-              )}
-              title={lang === "vi" ? "In bản in CV hoặc Lưu file PDF" : "Print CV or Save as PDF"}
-            >
-              <Printer className="w-4 h-4" />
-              <span>{lang === "vi" ? "In / Lưu PDF" : "Print / PDF"}</span>
-            </button>
+              <div className="text-[14px] leading-relaxed text-[#c0c0c0] space-y-3 mb-6">
+                <p>
+                  Hello, I’m Oanh, a{" "}
+                  <strong className="text-white font-semibold">
+                    student researcher
+                  </strong>
+                  <span
+                    className="inline-block w-[2px] h-4 ml-0.5 bg-[#ef476f] animate-pulse align-middle"
+                    aria-hidden="true"
+                  />{" "}
+                  based in Hanoi, Vietnam.
+                  <br />
+                  With a passion for Religious Studies, Cultural Anthropology,
+                  and Digital Heritage, I aspire to connect traditional
+                  ethnographic fieldwork with modern digital humanities, GIS,
+                  and AI.
+                </p>
+                <p>
+                  I thrive in academic research environments and believe in
+                  continuous learning. I’m eager to join collaborative teams and
+                  interdisciplinary projects where I can learn from scholars,
+                  contribute my research skills, and enhance my abilities.
+                </p>
+              </div>
 
-            <a
-              href="mailto:kimoanh2726@gmail.com"
-              className={clsx(
-                "inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium border transition-colors",
-                themeA
-                  ? "border-[#E5DECE] dark:border-[#3A3228] bg-white dark:bg-[#1E1A14] text-[#1A1108] dark:text-[#EDE8E1] hover:border-[#B45309]"
-                  : "border-white/10 bg-white/5 text-stone-200 hover:border-[#00D4FF]/40 hover:text-white"
-              )}
-            >
-              <Mail className="w-4 h-4 text-[#B45309] dark:text-[#D97706]" />
-              <span>{lang === "vi" ? "Liên hệ hợp tác" : "Contact"}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* ── BỐ CỤC 2 CỘT (2-COLUMN LAYOUT) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* ══════════════════════════════════════════════════════════════════════
-            CỘT CHÍNH (LEFT / MAIN CONTENT - 8 COLUMNS)
-        ══════════════════════════════════════════════════════════════════════ */}
-        <div className="lg:col-span-8 space-y-12 cv-print-full">
-          {/* 1. Header Bio & Introduction */}
-          <div className="space-y-4">
-            <h2
-              className={clsx(
-                "text-3xl sm:text-4xl font-extrabold tracking-tight",
-                themeA
-                  ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]"
-                  : "font-be-vietnam text-white"
-              )}
-            >
-              {displayName}
-            </h2>
-
-            <p className="text-base sm:text-lg font-medium text-[#B45309] dark:text-[#D97706]">
-              {displayTitle}
-            </p>
-
-            <p className="text-sm sm:text-base leading-relaxed text-[#66584B] dark:text-[#9E9382] border-l-2 border-[#B45309]/50 pl-4 py-1 italic">
-              {displayBio}
-            </p>
-          </div>
-
-          {/* 2. Section: THÔNG TIN CÁ NHÂN (INFORMATION) */}
-          <div id="cv-info" className="scroll-mt-24 break-inside-avoid">
-            <div className="flex items-center gap-2 pb-3 mb-5 border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60">
-              <UserCheck className="w-5 h-5 text-[#B45309] dark:text-[#D97706]" />
+              {/* ──────────────────────────────────────────────────────────────────
+                  1. INFORMATION SECTION (#Information)
+              ────────────────────────────────────────────────────────────────── */}
               <h3
-                className={clsx(
-                  "text-xl font-bold uppercase tracking-wider",
-                  themeA ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]" : "text-white"
-                )}
+                id="Information"
+                style={{ scrollMargin: "1em" }}
+                className="text-[19px] font-medium text-[#ef476f] flex items-center gap-2 mb-4 mt-8 pt-2 scroll-mt-24 border-t border-white/5"
               >
-                {lang === "vi" ? "Thông tin cá nhân" : "Information"}
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-[#209cee] text-white text-xs">
+                  <Info className="w-3.5 h-3.5" />
+                </span>
+                <span>Information</span>
               </h3>
-            </div>
 
-            <div
-              className={clsx(
-                "rounded-2xl p-6 border transition-colors",
-                themeA
-                  ? "bg-white/70 dark:bg-[#1E1A14]/70 border-[#E5DECE] dark:border-[#3A3228]"
-                  : "bg-white/5 border-white/10"
-              )}
-            >
-              <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm">
-                <div>
-                  <dt className="text-xs font-mono uppercase text-[#8C7E72] dark:text-[#8E8375]">
-                    {lang === "vi" ? "Họ và tên" : "Full Name"}
-                  </dt>
-                  <dd className="mt-1 font-semibold text-[#1A1108] dark:text-[#EDE8E1]">
-                    {displayName}
-                  </dd>
+              <div className="ml-2 sm:ml-10 mr-2 sm:mr-8 mb-8 space-y-2.5 text-[14px]">
+                {/* Full name */}
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-4 items-center">
+                  <div className="sm:col-span-3 text-[#7a7a7a]">Full name</div>
+                  <div className="sm:col-span-9 text-white font-medium">
+                    Trần Kim Oanh
+                  </div>
                 </div>
 
-                <div>
-                  <dt className="text-xs font-mono uppercase text-[#8C7E72] dark:text-[#8E8375]">
-                    {lang === "vi" ? "Email học thuật" : "Email"}
-                  </dt>
-                  <dd className="mt-1 font-semibold">
+                {/* Email */}
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-4 items-center">
+                  <div className="sm:col-span-3 text-[#7a7a7a]">Email</div>
+                  <div className="sm:col-span-9">
                     <a
                       href="mailto:kimoanh2726@gmail.com"
-                      className="text-[#B45309] dark:text-[#D97706] hover:underline"
+                      className="text-[#ef476f] hover:underline"
                     >
                       kimoanh2726@gmail.com
                     </a>
-                  </dd>
+                  </div>
                 </div>
 
-                <div>
-                  <dt className="text-xs font-mono uppercase text-[#8C7E72] dark:text-[#8E8375]">
-                    {lang === "vi" ? "Địa điểm" : "Location"}
-                  </dt>
-                  <dd className="mt-1 font-semibold text-[#1A1108] dark:text-[#EDE8E1] flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#B45309]" />
-                    <span>{displayLocation}</span>
-                  </dd>
+                {/* Phone */}
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-4 items-center">
+                  <div className="sm:col-span-3 text-[#7a7a7a]">Phone</div>
+                  <div className="sm:col-span-9 text-[#c0c0c0]">
+                    (+84) 912 345 678 (Academic contact)
+                  </div>
                 </div>
 
-                <div>
-                  <dt className="text-xs font-mono uppercase text-[#8C7E72] dark:text-[#8E8375]">
-                    {lang === "vi" ? "Định hướng trọng tâm" : "Focus Area"}
-                  </dt>
-                  <dd className="mt-1 font-semibold text-[#1A1108] dark:text-[#EDE8E1]">
-                    {lang === "vi"
-                      ? "Tôn giáo so sánh · Nhân học văn hóa · GIS di sản"
-                      : "Comparative Religion · Cultural Anthropology · Heritage GIS"}
-                  </dd>
+                {/* Location */}
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-4 items-center">
+                  <div className="sm:col-span-3 text-[#7a7a7a]">Location</div>
+                  <div className="sm:col-span-9 text-[#c0c0c0]">
+                    Hanoi, Vietnam
+                  </div>
                 </div>
 
-                <div className="sm:col-span-2 pt-3 border-t border-dashed border-[#E5DECE] dark:border-[#3A3228]">
-                  <dt className="text-xs font-mono uppercase text-[#8C7E72] dark:text-[#8E8375] mb-2">
-                    {lang === "vi" ? "Ngôn ngữ sử dụng" : "Languages"}
-                  </dt>
-                  <dd className="flex flex-wrap gap-2.5">
-                    <span
-                      className={clsx(
-                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border",
-                        themeA
-                          ? "bg-[#FAF7F2] dark:bg-[#25201B] border-[#E5DECE] dark:border-[#3A3228] text-[#1A1108] dark:text-[#EDE8E1]"
-                          : "bg-white/10 border-white/10 text-stone-200"
-                      )}
-                    >
-                      <span>🇻🇳</span>
-                      <strong>{lang === "vi" ? "Tiếng Việt" : "Vietnamese"}</strong>
-                      <span className="text-[#8C7E72]">({lang === "vi" ? "Bản ngữ" : "Native"})</span>
-                    </span>
-
-                    <span
-                      className={clsx(
-                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border",
-                        themeA
-                          ? "bg-[#FAF7F2] dark:bg-[#25201B] border-[#E5DECE] dark:border-[#3A3228] text-[#1A1108] dark:text-[#EDE8E1]"
-                          : "bg-white/10 border-white/10 text-stone-200"
-                      )}
-                    >
-                      <span>🇬🇧</span>
-                      <strong>{lang === "vi" ? "Tiếng Anh" : "English"}</strong>
-                      <span className="text-[#B45309] font-mono font-semibold">IELTS Academic 7.0</span>
-                    </span>
-
-                    <span
-                      className={clsx(
-                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border",
-                        themeA
-                          ? "bg-[#FAF7F2] dark:bg-[#25201B] border-[#E5DECE] dark:border-[#3A3228] text-[#1A1108] dark:text-[#EDE8E1]"
-                          : "bg-white/10 border-white/10 text-stone-200"
-                      )}
-                    >
-                      <span>🪷</span>
-                      <strong>{lang === "vi" ? "Tiếng Pali" : "Pali"}</strong>
-                      <span className="text-[#8C7E72]">
-                        ({lang === "vi" ? "Đọc kinh điển Theravāda" : "Canonical texts"})
-                      </span>
-                    </span>
-                  </dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-
-          {/* 3. Section: KINH NGHIỆM & ĐIỀN DÃ (WORK & FIELDWORK EXPERIENCE) */}
-          <div id="cv-experience" className="scroll-mt-24">
-            <div className="flex items-center justify-between pb-3 mb-6 border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60">
-              <div className="flex items-center gap-2">
-                <Briefcase className="w-5 h-5 text-[#B45309] dark:text-[#D97706]" />
-                <h3
-                  className={clsx(
-                    "text-xl font-bold uppercase tracking-wider",
-                    themeA ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]" : "text-white"
-                  )}
-                >
-                  {lang === "vi" ? "Kinh nghiệm & Điền dã" : "Work Experience"}
-                </h3>
-              </div>
-              <span className="text-xs font-mono font-medium text-[#8C7E72]">
-                {experience.length} {lang === "vi" ? "dấu mốc" : "milestones"}
-              </span>
-            </div>
-
-            <div className="relative pl-6 sm:pl-8 space-y-8 before:absolute before:left-2 sm:before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-[#E5DECE] dark:before:bg-[#3A3228]">
-              {experience.map((exp) => {
-                // Tùy chỉnh danh sách Keywords đặc trưng giống thiennguyen.dev
-                let keywords: string[] = [];
-                if (exp.id.includes("mekong")) {
-                  keywords = [
-                    "Dân tộc học (Ethnography)",
-                    "Khảo sát điền dã",
-                    "GIS / QGIS",
-                    "Phỏng vấn sâu",
-                    "Phật giáo Theravāda",
-                    "Cơ sở dữ liệu tín ngưỡng",
-                  ];
-                } else if (exp.id.includes("ta-religion")) {
-                  keywords = [
-                    "Giảng dạy Đại cương Tôn giáo",
-                    "Soạn bài giảng học thuật",
-                    "Thiết kế bài tập điền dã",
-                    "Hướng dẫn sinh viên",
-                  ];
-                } else {
-                  keywords = [
-                    "Dịch thuật học thuật Anh - Việt",
-                    "Phật học",
-                    "Hoạt động cộng đồng",
-                  ];
-                }
-
-                return (
-                  <div key={exp.id} className="relative group break-inside-avoid">
-                    {/* Node tròn trên đường timeline */}
-                    <div
-                      className={clsx(
-                        "absolute -left-[30px] sm:-left-[35px] top-1.5 w-6 h-6 rounded-full flex items-center justify-center border-2 transition-transform duration-200 group-hover:scale-110",
-                        themeA
-                          ? "bg-[#FAF7F2] dark:bg-[#1E1A14] border-[#B45309] text-[#B45309]"
-                          : "bg-[#141414] border-[#00D4FF] text-[#00D4FF]"
-                      )}
-                    >
-                      <Briefcase className="w-3 h-3" />
-                    </div>
-
-                    <div
-                      className={clsx(
-                        "p-6 rounded-2xl border transition-all duration-200",
-                        themeA
-                          ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] shadow-sm hover:border-[#B45309]/50"
-                          : "bg-white/5 border-white/10 hover:border-[#00D4FF]/30"
-                      )}
-                    >
-                      {/* Tiêu đề tổ chức & ngày tháng */}
-                      <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-                        <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#B45309] dark:text-[#D97706]">
-                          {t(exp.organization)}
-                        </h4>
-                        <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
-                          {exp.startDate} — {exp.endDate || (lang === "vi" ? "Hiện tại" : "Present")}
+                {/* Languages */}
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-4 items-start pt-1">
+                  <div className="sm:col-span-3 text-[#7a7a7a]">Languages</div>
+                  <div className="sm:col-span-9">
+                    <div className="flex flex-wrap gap-2">
+                      {/* Vietnamese */}
+                      <div className="inline-flex items-center rounded bg-[#373d48] text-[#c0c0c0] text-xs overflow-hidden border border-white/5">
+                        <span className="px-2 py-1 bg-black/20 text-sm">🇻🇳</span>
+                        <span
+                          className="px-2.5 py-1 font-medium"
+                          title="Native proficiency"
+                        >
+                          Vietnamese
                         </span>
                       </div>
 
-                      {/* Chức danh */}
-                      <div className="text-lg font-bold text-[#1A1108] dark:text-[#EDE8E1] mb-2">
-                        {t(exp.title)}
+                      {/* English */}
+                      <div className="inline-flex items-center rounded bg-[#373d48] text-[#c0c0c0] text-xs overflow-hidden border border-white/5">
+                        <span className="px-2 py-1 bg-black/20 text-sm">🇬🇧</span>
+                        <span
+                          className="px-2.5 py-1 font-medium"
+                          title="Professional working proficiency — IELTS Academic 7.0"
+                        >
+                          English (IELTS 7.0)
+                        </span>
                       </div>
 
-                      {/* Mô tả */}
-                      {exp.description && (
-                        <p className="text-sm text-[#66584B] dark:text-[#9E9382] leading-relaxed mb-3">
-                          {t(exp.description)}
-                        </p>
-                      )}
-
-                      {/* Bullet Highlights */}
-                      {exp.highlights && exp.highlights.length > 0 && (
-                        <ul className="space-y-2 mb-4 text-xs sm:text-sm text-[#66584B] dark:text-[#9E9382]">
-                          {exp.highlights.map((hl, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-[#B45309] dark:text-[#D97706] shrink-0 mt-0.5" />
-                              <span>{t(hl)}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-
-                      {/* Dải Keywords dạng Pill badges (đặc trưng thiennguyen.dev) */}
-                      <div className="pt-3 border-t border-dashed border-[#E5DECE]/60 dark:border-[#3A3228]/60 flex items-center gap-1.5 flex-wrap">
-                        <span className="text-xs font-mono text-[#8C7E72] mr-1">Keywords:</span>
-                        {keywords.map((kw, idx) => (
-                          <span
-                            key={idx}
-                            className={clsx(
-                              "text-[11px] font-mono px-2 py-0.5 rounded-md border",
-                              themeA
-                                ? "bg-[#FAF7F2] dark:bg-[#25201B] border-[#E5DECE] dark:border-[#3A3228] text-[#66584B] dark:text-[#9E9382]"
-                                : "bg-white/10 border-white/10 text-stone-300"
-                            )}
-                          >
-                            {kw}
-                          </span>
-                        ))}
+                      {/* Pali */}
+                      <div className="inline-flex items-center rounded bg-[#373d48] text-[#c0c0c0] text-xs overflow-hidden border border-white/5">
+                        <span className="px-2 py-1 bg-black/20 text-sm">🪷</span>
+                        <span
+                          className="px-2.5 py-1 font-medium"
+                          title="Elementary canonical scriptural reading"
+                        >
+                          Pali (Canonical texts)
+                        </span>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* 4. Section: ĐỀ TÀI & NGHIÊN CỨU (RESEARCH & PERSONAL PROJECTS) */}
-          <div id="cv-projects" className="scroll-mt-24">
-            <div className="flex items-center justify-between pb-3 mb-6 border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60">
-              <div className="flex items-center gap-2">
-                <FileText className="w-5 h-5 text-[#B45309] dark:text-[#D97706]" />
-                <h3
-                  className={clsx(
-                    "text-xl font-bold uppercase tracking-wider",
-                    themeA ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]" : "text-white"
-                  )}
-                >
-                  {lang === "vi" ? "Đề tài & Nghiên cứu" : "Personal Projects"}
-                </h3>
-              </div>
-              <button
-                onClick={() => onNavigateTab && onNavigateTab("research")}
-                className="text-xs font-medium text-[#B45309] dark:text-[#D97706] hover:underline flex items-center gap-1 cursor-pointer no-print"
-              >
-                <span>{lang === "vi" ? "Xem toàn bộ dự án" : "View all projects"}</span>
-                <ChevronRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            <div className="space-y-6">
-              {research.map((res) => (
-                <div
-                  key={res.id}
-                  className={clsx(
-                    "p-6 rounded-2xl border transition-all duration-200 break-inside-avoid",
-                    themeA
-                      ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] shadow-sm hover:border-[#B45309]/50"
-                      : "bg-white/5 border-white/10 hover:border-[#00D4FF]/30"
-                  )}
-                >
-                  <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-                    <h4 className="text-base sm:text-lg font-bold text-[#1A1108] dark:text-[#EDE8E1]">
-                      {t(res.title)}
-                    </h4>
-                    {res.date && (
-                      <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
-                        {res.date}
-                      </span>
-                    )}
-                  </div>
-
-                  {res.publication && (
-                    <p className="text-xs font-medium text-[#B45309] dark:text-[#D97706] mb-2.5">
-                      📖 {t(res.publication)}
-                    </p>
-                  )}
-
-                  {res.abstract && (
-                    <p className="text-sm text-[#66584B] dark:text-[#9E9382] leading-relaxed mb-3">
-                      {t(res.abstract)}
-                    </p>
-                  )}
-
-                  <div className="flex items-center justify-between flex-wrap gap-2 pt-3 border-t border-dashed border-[#E5DECE]/60 dark:border-[#3A3228]/60 text-xs">
-                    <div className="flex items-center gap-2 text-stone-500 font-mono">
-                      <span>{res.authors?.join(", ")}</span>
-                    </div>
-
-                    {(res.link || res.documentPath) && (
-                      <a
-                        href={res.link || getAssetUrl(res.documentPath)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-semibold text-[#B45309] dark:text-[#D97706] hover:underline cursor-pointer"
-                      >
-                        <span>{lang === "vi" ? "Mở tài liệu / Bài báo" : "View Publication"}</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
-                    )}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* 5. Section: HỌC VẤN (EDUCATION) */}
-          <div id="cv-education" className="scroll-mt-24">
-            <div className="flex items-center gap-2 pb-3 mb-6 border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60">
-              <GraduationCap className="w-5 h-5 text-[#B45309] dark:text-[#D97706]" />
+              {/* ──────────────────────────────────────────────────────────────────
+                  2. WORK EXPERIENCE SECTION (#Work-Experience)
+              ────────────────────────────────────────────────────────────────── */}
               <h3
-                className={clsx(
-                  "text-xl font-bold uppercase tracking-wider",
-                  themeA ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]" : "text-white"
-                )}
+                id="Work-Experience"
+                style={{ scrollMargin: "1em" }}
+                className="text-[19px] font-medium text-[#ef476f] flex items-center gap-2 mb-4 mt-8 pt-2 scroll-mt-24 border-t border-white/5"
               >
-                {lang === "vi" ? "Học vấn" : "Education"}
-              </h3>
-            </div>
-
-            <div className="space-y-6">
-              {education.map((edu) => (
-                <div
-                  key={edu.id}
-                  className={clsx(
-                    "p-6 rounded-2xl border transition-all duration-200 break-inside-avoid",
-                    themeA
-                      ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] shadow-sm hover:border-[#B45309]/50"
-                      : "bg-white/5 border-white/10 hover:border-[#00D4FF]/30"
-                  )}
-                >
-                  <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-                    <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#B45309] dark:text-[#D97706]">
-                      {t(edu.institution)}
-                    </h4>
-                    <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
-                      {edu.startDate} — {edu.endDate || (lang === "vi" ? "Hiện tại" : "Present")}
-                    </span>
-                  </div>
-
-                  <div className="text-lg font-bold text-[#1A1108] dark:text-[#EDE8E1] mb-2 flex items-center gap-2 flex-wrap">
-                    <span>{t(edu.title)}</span>
-                    {edu.gpa && (
-                      <span className="text-xs px-2 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 font-mono font-bold">
-                        GPA: {edu.gpa}
-                      </span>
-                    )}
-                  </div>
-
-                  {edu.description && (
-                    <p className="text-sm text-[#66584B] dark:text-[#9E9382] leading-relaxed mb-3">
-                      {t(edu.description)}
-                    </p>
-                  )}
-
-                  {edu.field && (
-                    <div className="text-xs text-[#8C7E72] dark:text-[#8E8375] font-mono">
-                      📚 {t(edu.field)}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 6. Section: CHỨNG CHỈ TIÊU BIỂU (CERTIFICATIONS) */}
-          <div id="cv-certifications" className="scroll-mt-24">
-            <div className="flex items-center justify-between pb-3 mb-6 border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60">
-              <div className="flex items-center gap-2">
-                <Award className="w-5 h-5 text-[#B45309] dark:text-[#D97706]" />
-                <h3
-                  className={clsx(
-                    "text-xl font-bold uppercase tracking-wider",
-                    themeA ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]" : "text-white"
-                  )}
-                >
-                  {lang === "vi" ? "Chứng chỉ tiêu biểu" : "Certifications"}
-                </h3>
-              </div>
-              <button
-                onClick={() => onNavigateTab && onNavigateTab("skills")}
-                className="text-xs font-medium text-[#B45309] dark:text-[#D97706] hover:underline flex items-center gap-1 cursor-pointer no-print"
-              >
-                <span>
-                  {lang === "vi"
-                    ? `Xem toàn bộ ${certificates.length} chứng chỉ`
-                    : `View all ${certificates.length} certificates`}
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-[#ef476f] text-white text-xs">
+                  <Briefcase className="w-3.5 h-3.5" />
                 </span>
-                <ChevronRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
+                <span>Work Experience</span>
+              </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {featuredCerts.map((cert) => (
-                <div
-                  key={cert.id}
-                  className={clsx(
-                    "p-5 rounded-2xl border transition-all duration-200 flex flex-col justify-between break-inside-avoid",
-                    themeA
-                      ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] shadow-sm hover:border-[#B45309]/50"
-                      : "bg-white/5 border-white/10 hover:border-[#00D4FF]/30"
-                  )}
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="text-xs font-mono font-bold text-[#B45309] dark:text-[#D97706]">
-                        {cert.date}
+              <div className="timeline border-l border-[#434a56] ml-2 sm:ml-4 pl-4 sm:pl-5 space-y-7 mb-8">
+                {/* ── Company 1: Viện Nghiên cứu Tôn giáo (VASS) ── */}
+                <article className="flex items-start gap-4">
+                  {/* Logo 64x64 */}
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm">
+                    <svg
+                      viewBox="0 0 48 48"
+                      className="w-10 h-10 text-amber-400"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        d="M24 6L6 16v4h36v-4L24 6z"
+                        fill="currentColor"
+                        fillOpacity="0.2"
+                      />
+                      <path d="M10 20v18M18 20v18M26 20v18M34 20v18M38 20v18" />
+                      <path d="M6 38h36v4H6v-4z" />
+                    </svg>
+                  </div>
+
+                  {/* Body */}
+                  <div className="w-full">
+                    <div
+                      className="cursor-pointer select-none group"
+                      onClick={() => toggleCompany("vass")}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="text-[15px] font-bold uppercase text-white group-hover:text-amber-300 transition-colors flex items-center gap-1.5">
+                          <span>Viện Nghiên cứu Tôn giáo — VASS</span>
+                          <a
+                            href="https://vass.gov.vn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-stone-500 hover:text-white"
+                            title="Visit website"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs px-2.5 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium whitespace-nowrap">
+                            Jan 2026 - Present
+                          </span>
+                          <span className="text-stone-400 group-hover:text-white transition-colors">
+                            {expandedCompanies.vass ? (
+                              <ChevronUp className="w-4 h-4" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4" />
+                            )}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="mt-0.5 text-[13px] text-stone-300">
+                        <span className="font-semibold text-white">
+                          Trưởng nhóm điền dã
+                        </span>
+                        <p className="text-stone-400 text-xs">
+                          Product: Khảo sát thực hành Phật giáo Theravāda tại Trà
+                          Vinh & Sóc Trăng
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Collapsible Details */}
+                    {expandedCompanies.vass && (
+                      <div className="mt-3 space-y-2 text-[13px] leading-relaxed text-[#c0c0c0]">
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Dẫn đầu nhóm 5 sinh viên khảo sát thực hành Phật giáo
+                            Theravāda tại 12 ngôi chùa Khmer tiêu biểu ở tỉnh Trà
+                            Vinh và Sóc Trăng.
+                          </span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Thu thập 40+ giờ phỏng vấn sâu với các vị sư sãi
+                            (Bhikkhu), Achar và cư sĩ Khmer về biến đổi nghi lễ.
+                          </span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Xây dựng cơ sở dữ liệu GIS định vị không gian 120+
+                            ngôi chùa và cơ sở tín ngưỡng Khmer Nam Bộ.
+                          </span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Biên soạn báo cáo thực địa phân tích mối quan hệ giữa
+                            tín ngưỡng bản địa và sự thích ứng của Phật giáo.
+                          </span>
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Keywords pills */}
+                    <div className="mt-3 flex items-center gap-1.5 flex-wrap">
+                      <span className="text-xs text-stone-400 mr-1">
+                        Keywords
                       </span>
-                      <span className="text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 font-medium">
-                        {lang === "vi" ? "Hợp lệ" : "Valid"}
+                      {[
+                        "Dân tộc học (Ethnography)",
+                        "Khảo sát điền dã",
+                        "GIS / QGIS",
+                        "Phỏng vấn sâu",
+                        "Phật giáo Theravāda",
+                        "Cơ sở dữ liệu tín ngưỡng",
+                      ].map((kw, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-2 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] border border-white/5"
+                        >
+                          {kw}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+
+                {/* ── Company 2: Khoa Nhân học và Tôn giáo (VNU-USSH) ── */}
+                <article className="flex items-start gap-4">
+                  {/* Logo 64x64 */}
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm">
+                    <svg
+                      viewBox="0 0 48 48"
+                      className="w-10 h-10 text-sky-400"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        d="M24 8l16 7-16 7-16-7 16-7z"
+                        fill="currentColor"
+                        fillOpacity="0.2"
+                      />
+                      <path d="M12 20v12c0 6 12 8 12 8s12-2 12-8V20" />
+                      <circle cx="24" cy="22" r="3" />
+                    </svg>
+                  </div>
+
+                  {/* Body */}
+                  <div className="w-full">
+                    <div
+                      className="cursor-pointer select-none group"
+                      onClick={() => toggleCompany("ussh")}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="text-[15px] font-bold uppercase text-white group-hover:text-sky-300 transition-colors flex items-center gap-1.5">
+                          <span>Khoa Nhân học và Tôn giáo — VNU-USSH</span>
+                          <a
+                            href="https://ussh.vnu.edu.vn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-stone-500 hover:text-white"
+                            title="Visit website"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs px-2.5 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium whitespace-nowrap">
+                            Sep 2025 - Present
+                          </span>
+                          <span className="text-stone-400 group-hover:text-white transition-colors">
+                            {expandedCompanies.ussh ? (
+                              <ChevronUp className="w-4 h-4" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4" />
+                            )}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="mt-0.5 text-[13px] text-stone-300">
+                        <span className="font-semibold text-white">
+                          Trợ giảng môn Đại cương Tôn giáo
+                        </span>
+                        <p className="text-stone-400 text-xs">
+                          Product: Hỗ trợ giảng dạy và thiết kế bài tập điền dã
+                          cho sinh viên năm nhất
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Collapsible Details */}
+                    {expandedCompanies.ussh && (
+                      <div className="mt-3 space-y-2 text-[13px] leading-relaxed text-[#c0c0c0]">
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Hỗ trợ giảng viên soạn bài giảng, tổng hợp tài liệu
+                            tham khảo quốc tế và chấm bài cho 45 sinh viên năm
+                            nhất.
+                          </span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Thiết kế bài tập thực hành điền dã quan sát tham dự
+                            tại các cơ sở tôn giáo tiêu biểu tại Hà Nội.
+                          </span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Điều phối các buổi thảo luận học thuật nhóm và giải
+                            đáp phương pháp nghiên cứu cho sinh viên.
+                          </span>
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Keywords pills */}
+                    <div className="mt-3 flex items-center gap-1.5 flex-wrap">
+                      <span className="text-xs text-stone-400 mr-1">
+                        Keywords
+                      </span>
+                      {[
+                        "Giảng dạy Đại cương Tôn giáo",
+                        "Soạn bài giảng học thuật",
+                        "Thiết kế bài tập điền dã",
+                        "Hướng dẫn sinh viên",
+                      ].map((kw, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-2 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] border border-white/5"
+                        >
+                          {kw}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+
+                {/* ── Company 3: Chùa Giác Ngộ ── */}
+                <article className="flex items-start gap-4">
+                  {/* Logo 64x64 */}
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm">
+                    <svg
+                      viewBox="0 0 48 48"
+                      className="w-10 h-10 text-emerald-400"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M24 6c-4 8-12 12-12 18 0 6.6 5.4 12 12 12s12-5.4 12-12c0-6-8-10-12-18z" />
+                      <circle cx="24" cy="24" r="4" fill="currentColor" />
+                    </svg>
+                  </div>
+
+                  {/* Body */}
+                  <div className="w-full">
+                    <div
+                      className="cursor-pointer select-none group"
+                      onClick={() => toggleCompany("giacngo")}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="text-[15px] font-bold uppercase text-white group-hover:text-emerald-300 transition-colors flex items-center gap-1.5">
+                          <span>Chùa Giác Ngộ — Quỹ Đạo Phật Ngày Nay</span>
+                          <a
+                            href="https://chuagiacngo.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-stone-500 hover:text-white"
+                            title="Visit website"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs px-2.5 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium whitespace-nowrap">
+                            Mar 2025 - Dec 2025
+                          </span>
+                          <span className="text-stone-400 group-hover:text-white transition-colors">
+                            {expandedCompanies.giacngo ? (
+                              <ChevronUp className="w-4 h-4" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4" />
+                            )}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="mt-0.5 text-[13px] text-stone-300">
+                        <span className="font-semibold text-white">
+                          Tình nguyện viên dịch thuật & Số hóa tư liệu
+                        </span>
+                        <p className="text-stone-400 text-xs">
+                          Product: Biên dịch tài liệu Phật học và văn hóa cộng đồng
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Collapsible Details */}
+                    {expandedCompanies.giacngo && (
+                      <div className="mt-3 space-y-2 text-[13px] leading-relaxed text-[#c0c0c0]">
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Dịch tài liệu Phật học từ tiếng Anh sang tiếng Việt
+                            cho chương trình giáo dục và xuất bản cộng đồng.
+                          </span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Hỗ trợ công tác tổ chức và tiếp đón học giả tại các
+                            hội thảo quốc tế về văn hóa Phật giáo.
+                          </span>
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Keywords pills */}
+                    <div className="mt-3 flex items-center gap-1.5 flex-wrap">
+                      <span className="text-xs text-stone-400 mr-1">
+                        Keywords
+                      </span>
+                      {[
+                        "Dịch thuật học thuật Anh - Việt",
+                        "Phật học",
+                        "Hoạt động cộng đồng",
+                        "Số hóa văn bản",
+                      ].map((kw, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-2 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] border border-white/5"
+                        >
+                          {kw}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+
+                {/* ── Company 4: Trung tâm Bảo tồn Di sản ── */}
+                <article className="flex items-start gap-4">
+                  {/* Logo 64x64 */}
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm">
+                    <svg
+                      viewBox="0 0 48 48"
+                      className="w-10 h-10 text-rose-400"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <circle cx="24" cy="24" r="16" />
+                      <circle cx="24" cy="24" r="8" fill="currentColor" fillOpacity="0.2" />
+                      <path d="M24 8v32M8 24h32" />
+                    </svg>
+                  </div>
+
+                  {/* Body */}
+                  <div className="w-full">
+                    <div
+                      className="cursor-pointer select-none group"
+                      onClick={() => toggleCompany("heritage")}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="text-[15px] font-bold uppercase text-white group-hover:text-rose-300 transition-colors">
+                          <span className="hover:underline">
+                            Dự án Khảo sát Di sản Tín ngưỡng Thăng Long
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs px-2.5 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium whitespace-nowrap">
+                            Jun 2024 - Oct 2024
+                          </span>
+                          <span className="text-stone-400 group-hover:text-white transition-colors">
+                            {expandedCompanies.heritage ? (
+                              <ChevronUp className="w-4 h-4" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4" />
+                            )}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="mt-0.5 text-[13px] text-stone-300">
+                        <span className="font-semibold text-white">
+                          Cộng tác viên điền dã
+                        </span>
+                        <p className="text-stone-400 text-xs">
+                          Product: Khảo sát hệ thống đền phủ và tín ngưỡng Tứ phủ Hà Nội
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Collapsible Details */}
+                    {expandedCompanies.heritage && (
+                      <div className="mt-3 space-y-2 text-[13px] leading-relaxed text-[#c0c0c0]">
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Khảo sát và ghi chép thực địa tại 15 đền phủ tín ngưỡng
+                            thờ Mẫu tại khu vực nội thành Hà Nội.
+                          </span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <Bookmark className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 mt-1" />
+                          <span>
+                            Phân loại tư liệu diễn xướng và phỏng vấn nghệ nhân
+                            phục vụ nghiên cứu văn hóa dân gian.
+                          </span>
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Keywords pills */}
+                    <div className="mt-3 flex items-center gap-1.5 flex-wrap">
+                      <span className="text-xs text-stone-400 mr-1">
+                        Keywords
+                      </span>
+                      {[
+                        "Tín ngưỡng Tứ phủ",
+                        "Di sản phi vật thể",
+                        "Khảo sát thực địa",
+                        "Lưu trữ tư liệu",
+                      ].map((kw, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-2 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] border border-white/5"
+                        >
+                          {kw}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              {/* ──────────────────────────────────────────────────────────────────
+                  3. PERSONAL PROJECTS SECTION (#Personal-Projects)
+              ────────────────────────────────────────────────────────────────── */}
+              <h3
+                id="Personal-Projects"
+                style={{ scrollMargin: "1em" }}
+                className="text-[19px] font-medium text-[#ef476f] flex items-center gap-2 mb-4 mt-8 pt-2 scroll-mt-24 border-t border-white/5"
+              >
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-[#48c774] text-white text-xs">
+                  <Star className="w-3.5 h-3.5" />
+                </span>
+                <span>Personal Projects</span>
+              </h3>
+
+              <div className="timeline border-l border-[#434a56] ml-2 sm:ml-4 pl-4 sm:pl-5 space-y-7 mb-8">
+                {/* ── Project 1: Atlas Khmer Heritage ── */}
+                <article className="flex items-start gap-4">
+                  {/* Icon 64x64 */}
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm text-emerald-400">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-8 h-8"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+                      <line x1="8" y1="2" x2="8" y2="18" />
+                      <line x1="16" y1="6" x2="16" y2="22" />
+                    </svg>
+                  </div>
+
+                  <div className="w-full">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="text-[15px] font-bold text-white hover:text-emerald-300 transition-colors">
+                        <a
+                          href="https://github.com/kimoanh2726-cloud"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline"
+                        >
+                          Atlas Bản đồ Di sản Phật giáo Khmer Nam Bộ
+                        </a>
+                      </div>
+                      <span className="text-xs px-2.5 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium whitespace-nowrap">
+                        MAY 2026
                       </span>
                     </div>
 
-                    <h4 className="text-base font-bold text-[#1A1108] dark:text-[#EDE8E1] mb-1 leading-snug">
-                      {t(cert.title)}
-                    </h4>
-
-                    <p className="text-xs text-[#8C7E72] dark:text-[#8E8375] mb-2 font-medium">
-                      {t(cert.issuer)}
+                    <p className="mt-1.5 text-[13px] leading-relaxed text-[#c0c0c0]">
+                      Dự án bản đồ số tương tác xây dựng trên nền tảng QGIS &
+                      WebGIS, lưu trữ và định vị không gian 120+ ngôi chùa Khmer
+                      tại khu vực Tây Nam Bộ.
                     </p>
+                  </div>
+                </article>
 
-                    {cert.description && (
-                      <p className="text-xs text-[#66584B] dark:text-[#9E9382] line-clamp-2 leading-relaxed mb-3">
-                        {t(cert.description)}
-                      </p>
-                    )}
+                {/* ── Project 2: Hán Nôm Digital Archive ── */}
+                <article className="flex items-start gap-4">
+                  {/* Icon 64x64 */}
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm text-purple-400">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-8 h-8"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
                   </div>
 
-                  {(cert.verify_url || cert.credentialUrl) && (
-                    <div className="pt-3 border-t border-dashed border-[#E5DECE]/60 dark:border-[#3A3228]/60 no-print">
+                  <div className="w-full">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="text-[15px] font-bold text-white hover:text-purple-300 transition-colors">
+                        <a
+                          href="https://github.com/kimoanh2726-cloud"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline"
+                        >
+                          Hệ thống Số hóa & Tra cứu Tư liệu Hán Nôm Tôn giáo
+                        </a>
+                      </div>
+                      <span className="text-xs px-2.5 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium whitespace-nowrap">
+                        DEC 2025
+                      </span>
+                    </div>
+
+                    <p className="mt-1.5 text-[13px] leading-relaxed text-[#c0c0c0]">
+                      Công cụ hỗ trợ phiên âm, chú giải và lập chỉ mục văn bản Hán
+                      Nôm trong các di tích tín ngưỡng dân gian vùng châu thổ sông
+                      Hồng.
+                    </p>
+                  </div>
+                </article>
+
+                {/* ── Project 3: Youth Spirituality Survey ── */}
+                <article className="flex items-start gap-4">
+                  {/* Icon 64x64 */}
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm text-cyan-400">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-8 h-8"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                  </div>
+
+                  <div className="w-full">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="text-[15px] font-bold text-white hover:text-cyan-300 transition-colors">
+                        <a
+                          href="https://github.com/kimoanh2726-cloud"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline"
+                        >
+                          Khảo sát Biến đổi Tín ngưỡng trong Giới trẻ Đô thị
+                        </a>
+                      </div>
+                      <span className="text-xs px-2.5 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium whitespace-nowrap">
+                        JUN 2025
+                      </span>
+                    </div>
+
+                    <p className="mt-1.5 text-[13px] leading-relaxed text-[#c0c0c0]">
+                      Đề tài nghiên cứu khoa học sinh viên đoạt giải Nhất cấp
+                      Khoa, phân tích xu hướng tìm về thiền (Mindfulness) và thực
+                      hành tâm linh đương đại.
+                    </p>
+                  </div>
+                </article>
+              </div>
+
+              {/* ──────────────────────────────────────────────────────────────────
+                  4. EDUCATION SECTION (#Education)
+              ────────────────────────────────────────────────────────────────── */}
+              <h3
+                id="Education"
+                style={{ scrollMargin: "1em" }}
+                className="text-[19px] font-medium text-[#ef476f] flex items-center gap-2 mb-4 mt-8 pt-2 scroll-mt-24 border-t border-white/5"
+              >
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-[#3273dc] text-white text-xs">
+                  <GraduationCap className="w-3.5 h-3.5" />
+                </span>
+                <span>Education</span>
+              </h3>
+
+              <div className="timeline border-l border-[#434a56] ml-2 sm:ml-4 pl-4 sm:pl-5 space-y-7 mb-8">
+                <article className="flex items-start gap-4">
+                  {/* Crest Logo 64x64 */}
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm text-blue-400">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-9 h-9"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                    >
+                      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                    </svg>
+                  </div>
+
+                  <div className="w-full">
+                    <div className="flex items-center justify-between gap-2 flex-wrap">
+                      <div className="text-[15px] font-bold uppercase text-white">
+                        <span className="text-xs px-2.5 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium mr-2 align-middle">
+                          Sep 2023 - Present
+                        </span>
+                        <a
+                          href="https://ussh.vnu.edu.vn"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline text-white"
+                        >
+                          VNU-USSH — ĐẠI HỌC KHOA HỌC XÃ HỘI VÀ NHÂN VĂN HÀ NỘI
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="mt-1 text-[14px] text-white font-medium flex items-center gap-2 flex-wrap">
+                      <span>Cử nhân Tôn giáo học (Bachelor of Religious Studies)</span>
+                      <span className="text-xs px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800 font-mono font-bold">
+                        GPA: 3.6 / 4.0 — Xuất sắc
+                      </span>
+                    </div>
+
+                    <p className="mt-2 text-[13px] leading-relaxed text-[#c0c0c0]">
+                      Nhân học Tôn giáo, Tôn giáo học So sánh, Lịch sử Tôn giáo Thế
+                      giới, Phật giáo học, Kitô giáo học, Tín ngưỡng Dân gian Việt
+                      Nam, Triết học Tôn giáo, Phương pháp Điền dã Dân tộc học
+                      (Ethnography), Thống kê xã hội & SPSS, Hệ thống Thông tin Địa
+                      lý (GIS) trong Khoa học Xã hội.
+                    </p>
+                  </div>
+                </article>
+              </div>
+
+              {/* ──────────────────────────────────────────────────────────────────
+                  5. CERTIFICATIONS SECTION (#Certifications)
+              ────────────────────────────────────────────────────────────────── */}
+              <h3
+                id="Certifications"
+                style={{ scrollMargin: "1em" }}
+                className="text-[19px] font-medium text-[#ef476f] flex items-center gap-2 mb-4 mt-8 pt-2 scroll-mt-24 border-t border-white/5"
+              >
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-[#9b51e0] text-white text-xs">
+                  <Award className="w-3.5 h-3.5" />
+                </span>
+                <span>Certifications</span>
+              </h3>
+
+              <div className="timeline border-l border-[#434a56] ml-2 sm:ml-4 pl-4 sm:pl-5 space-y-6 mb-2">
+                {/* Cert 1: Google Gemini */}
+                <article className="flex items-start gap-4">
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm text-amber-400">
+                    <Award className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h4 className="text-[14px] font-bold text-white">
+                      <span className="text-xs px-2 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium mr-2 align-middle">
+                        May 2026
+                      </span>
                       <a
-                        href={cert.verify_url || cert.credentialUrl}
+                        href="https://edu.google.accredible.com/7eb91c3a-f640-4c49-8cca-d3c6761b64a1#acc.r863MDLm"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#B45309] dark:text-[#D97706] hover:underline"
+                        className="hover:underline text-white hover:text-amber-300"
                       >
-                        <span>{lang === "vi" ? "Xác thực trực tuyến" : "Verify Credential"}</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
+                        Google Gemini Certified Educator
                       </a>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 7. Section: KỸ NĂNG CHUYÊN MÔN (SKILLS & METHODS) */}
-          <div id="cv-skills" className="scroll-mt-24 break-inside-avoid">
-            <div className="flex items-center gap-2 pb-3 mb-6 border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60">
-              <Sparkles className="w-5 h-5 text-[#B45309] dark:text-[#D97706]" />
-              <h3
-                className={clsx(
-                  "text-xl font-bold uppercase tracking-wider",
-                  themeA ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]" : "text-white"
-                )}
-              >
-                {lang === "vi" ? "Kỹ năng chuyên môn" : "Skills & Methods"}
-              </h3>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {skills.map((sk) => (
-                <div
-                  key={sk.id}
-                  className={clsx(
-                    "p-4 rounded-xl border transition-colors",
-                    themeA
-                      ? "bg-white/70 dark:bg-[#1E1A14]/70 border-[#E5DECE] dark:border-[#3A3228]"
-                      : "bg-white/5 border-white/10"
-                  )}
-                >
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-sm font-bold text-[#1A1108] dark:text-[#EDE8E1]">
-                      {t(sk.name)}
-                    </span>
-                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-[#B45309] dark:text-[#D97706] font-semibold">
-                      {sk.level}
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-[#8C7E72] dark:text-[#8E8375] mb-2">
-                    {t(sk.category)}
-                  </p>
-
-                  {sk.description && (
-                    <p className="text-xs text-[#66584B] dark:text-[#9E9382] leading-relaxed">
-                      {t(sk.description)}
+                    </h4>
+                    <p className="mt-1 text-xs text-stone-400">
+                      <a
+                        href="https://edu.google.accredible.com/7eb91c3a-f640-4c49-8cca-d3c6761b64a1#acc.r863MDLm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#ef476f] hover:underline"
+                      >
+                        Google for Education (Accredible: 7eb91c3a-f640-4c49-8cca-d3c6761b64a1)
+                      </a>
                     </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+                  </div>
+                </article>
 
-        {/* ══════════════════════════════════════════════════════════════════════
-            CỘT PHỤ (RIGHT / STICKY SIDEBAR - 4 COLUMNS)
-        ══════════════════════════════════════════════════════════════════════ */}
-        <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24 no-print">
-          {/* Profile Card */}
-          <div
-            className={clsx(
-              "rounded-2xl p-6 border text-center transition-all duration-300",
-              themeA
-                ? "bg-white dark:bg-[#1E1A14] border-[#E5DECE] dark:border-[#3A3228] shadow-md shadow-[#B45309]/5"
-                : "bg-[#141414] border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.5)]"
-            )}
-          >
-            {/* Avatar */}
-            <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-[#B45309] shadow-lg">
-              <div className="w-full h-full bg-gradient-to-tr from-amber-600 to-amber-200 flex items-center justify-center text-white font-bold text-2xl font-playfair">
-                TKO
+                {/* Cert 2: IELTS Academic 7.0 */}
+                <article className="flex items-start gap-4">
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm text-rose-400">
+                    <Award className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h4 className="text-[14px] font-bold text-white">
+                      <span className="text-xs px-2 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium mr-2 align-middle">
+                        Jan 2025
+                      </span>
+                      <span className="text-white">
+                        IELTS Academic 7.0 (CEFR C1)
+                      </span>
+                    </h4>
+                    <p className="mt-1 text-xs text-stone-400">
+                      British Council — Listening: 7.5 | Reading: 7.5 | Writing: 6.5 | Speaking: 6.5
+                    </p>
+                  </div>
+                </article>
+
+                {/* Cert 3: GIS Coursera */}
+                <article className="flex items-start gap-4">
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm text-sky-400">
+                    <Award className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h4 className="text-[14px] font-bold text-white">
+                      <span className="text-xs px-2 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium mr-2 align-middle">
+                        Oct 2025
+                      </span>
+                      <a
+                        href="https://www.coursera.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline text-white hover:text-sky-300"
+                      >
+                        GIS, Mapping, and Spatial Analysis Specialization
+                      </a>
+                    </h4>
+                    <p className="mt-1 text-xs text-stone-400">
+                      University of Toronto (Coursera)
+                    </p>
+                  </div>
+                </article>
+
+                {/* Cert 4: HP LIFE */}
+                <article className="flex items-start gap-4">
+                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded bg-[#202534] border border-white/10 flex-shrink-0 flex items-center justify-center p-2 shadow-sm text-emerald-400">
+                    <Award className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h4 className="text-[14px] font-bold text-white">
+                      <span className="text-xs px-2 py-0.5 rounded bg-[#373d48] text-[#c0c0c0] font-medium mr-2 align-middle">
+                        2026
+                      </span>
+                      <span className="text-white">
+                        HP LIFE Professional Certification Series
+                      </span>
+                    </h4>
+                    <p className="mt-1 text-xs text-stone-400">
+                      HP Foundation (HP LIFE) — AI for Beginners, Business Email, Agile Project Management
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </article>
+          </div>
+
+          {/* ══════════════════════════════════════════════════════════════════════
+              CỘT PHỤ (STICKY SIDEBAR - 4 COLUMNS: PROFILE CARD & TOC)
+          ══════════════════════════════════════════════════════════════════════ */}
+          <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24 no-print order-first lg:order-last">
+            {/* 1. Profile Widget Card (.widget-profile) */}
+            <div className="card widget widget-profile bg-[#181c27]/80 backdrop-blur-sm border border-white/5 rounded-md p-6 text-center shadow-[0_4px_10px_rgba(0,0,0,0.25)]">
+              {/* Circular Avatar 128x128 with subtle glow */}
+              <div className="relative w-28 sm:w-32 h-28 sm:h-32 mx-auto mb-3 rounded-full overflow-hidden border-2 border-white/10 shadow-lg">
+                <div className="w-full h-full bg-gradient-to-tr from-amber-600 via-rose-600 to-indigo-600 flex items-center justify-center text-white font-bold text-2xl font-sans">
+                  TKO
+                </div>
+              </div>
+
+              {/* Name & Blue Verified Badge */}
+              <div className="flex items-center justify-center gap-1.5 mb-1">
+                <h2 className="text-xl font-bold text-white tracking-tight">
+                  Trần Kim Oanh
+                </h2>
+                {/* Verified Account Badge (SVG checkmark icon) */}
+                <span
+                  className="inline-flex items-center text-[#3b82f6]"
+                  title="Verified Academic Profile"
+                >
+                  <svg
+                    className="w-5 h-5 fill-current"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </div>
+
+              {/* Title / Role */}
+              <p className="text-[13px] text-stone-300 font-medium mb-1">
+                Religious Studies & Cultural Anthropology
+              </p>
+
+              {/* Location */}
+              <p className="text-xs text-[#7a7a7a] flex items-center justify-center gap-1 mb-4">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>Hanoi, Vietnam</span>
+              </p>
+
+              {/* Follow / Contact Button */}
+              <div className="mb-4">
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full py-2 px-6 rounded-full bg-[#373d48] hover:bg-[#434a56] text-[#c0c0c0] hover:text-white text-sm font-medium transition-colors text-center border border-white/5"
+                >
+                  Follow me on LinkedIn
+                </a>
+              </div>
+
+              {/* Row of Icon Buttons (GitHub, LinkedIn, Phone, Email, Download) */}
+              <div className="flex items-center justify-center gap-1 pt-3 border-t border-white/5 text-[#c0c0c0]">
+                <a
+                  href="https://github.com/kimoanh2726-cloud"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded hover:text-white hover:bg-white/10 transition-colors"
+                  title="Github Profile"
+                >
+                  <Github className="w-4 h-4" />
+                </a>
+
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded hover:text-white hover:bg-white/10 transition-colors"
+                  title="LinkedIn Profile"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </a>
+
+                <a
+                  href="tel:+84912345678"
+                  className="p-2 rounded hover:text-white hover:bg-white/10 transition-colors"
+                  title="Give me a phone call"
+                >
+                  <Phone className="w-4 h-4" />
+                </a>
+
+                <a
+                  href="mailto:kimoanh2726@gmail.com"
+                  className="p-2 rounded hover:text-white hover:bg-white/10 transition-colors"
+                  title="Send me an email"
+                >
+                  <Mail className="w-4 h-4" />
+                </a>
+
+                <button
+                  onClick={handlePrint}
+                  className="p-2 rounded hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                  title="Download CV as PDF"
+                >
+                  <Download className="w-4 h-4" />
+                </button>
               </div>
             </div>
 
-            <h3
-              className={clsx(
-                "text-xl font-bold tracking-tight mb-1",
-                themeA ? "font-playfair text-[#1A1108] dark:text-[#EDE8E1]" : "text-white"
-              )}
+            {/* 2. Table of Contents Card (#toc) */}
+            <div
+              id="toc"
+              className="card widget bg-[#181c27]/80 backdrop-blur-sm border border-white/5 rounded-md p-5 shadow-[0_4px_10px_rgba(0,0,0,0.25)]"
             >
-              {displayName}
-            </h3>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-3 px-2">
+                Table of contents
+              </h3>
 
-            <p className="text-xs font-semibold text-[#B45309] dark:text-[#D97706] mb-2 leading-relaxed">
-              {lang === "vi"
-                ? "Nghiên cứu Tôn giáo & Nhân học Văn hóa"
-                : "Religious Studies & Cultural Anthropology"}
-            </p>
-
-            <div className="flex items-center justify-center gap-1.5 text-xs text-[#8C7E72] dark:text-[#8E8375] mb-5">
-              <MapPin className="w-3.5 h-3.5 text-[#B45309]" />
-              <span>{displayLocation}</span>
+              <ul className="space-y-1 text-[13px]">
+                {tocItems.map((item) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <li key={item.id}>
+                      <a
+                        href={`#${item.id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection(item.id);
+                        }}
+                        className={clsx(
+                          "flex items-center justify-between px-3 py-1.5 rounded transition-colors cursor-pointer",
+                          isActive
+                            ? "bg-[#434a56] text-white font-medium"
+                            : "text-[#c0c0c0] hover:bg-[#373d48]/50 hover:text-white"
+                        )}
+                      >
+                        <span>{item.label}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-
-            {/* Action buttons */}
-            <div className="space-y-2.5">
-              <button
-                onClick={handlePrint}
-                className={clsx(
-                  "w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-sm",
-                  themeA
-                    ? "bg-[#B45309] text-white hover:bg-[#92400e]"
-                    : "bg-[#00D4FF] text-black hover:bg-[#38bdf8] font-mono shadow-[0_0_12px_rgba(0,212,255,0.3)]"
-                )}
-              >
-                <Printer className="w-4 h-4" />
-                <span>{lang === "vi" ? "In bản in CV (Print / PDF)" : "Print CV as PDF"}</span>
-              </button>
-
-              <a
-                href="mailto:kimoanh2726@gmail.com"
-                className={clsx(
-                  "w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium border transition-colors",
-                  themeA
-                    ? "border-[#E5DECE] dark:border-[#3A3228] bg-[#FAF7F2] dark:bg-[#25201B] text-[#1A1108] dark:text-[#EDE8E1] hover:border-[#B45309]"
-                    : "border-white/10 bg-white/5 text-stone-200 hover:border-white/20"
-                )}
-              >
-                <Mail className="w-4 h-4 text-[#B45309]" />
-                <span>kimoanh2726@gmail.com</span>
-              </a>
-            </div>
-
-            {/* Quick social icon row (y hệt thiennguyen.dev) */}
-            <div className="flex items-center justify-center gap-3 pt-5 mt-5 border-t border-[#E5DECE]/60 dark:border-[#3A3228]/60 text-[#8C7E72] dark:text-[#8E8375]">
-              <a
-                href="https://github.com/kimoanh2726-cloud"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:text-[#B45309] hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
-                title="GitHub"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:text-[#B45309] hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
-                title="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-
-              <a
-                href="https://scholar.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:text-[#B45309] hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
-                title="Google Scholar"
-              >
-                <BookOpen className="w-4 h-4" />
-              </a>
-
-              <a
-                href="mailto:kimoanh2726@gmail.com"
-                className="p-2 rounded-lg hover:text-[#B45309] hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
-                title="Email"
-              >
-                <Mail className="w-4 h-4" />
-              </a>
-
-              <button
-                onClick={handlePrint}
-                className="p-2 rounded-lg hover:text-[#B45309] hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
-                title={lang === "vi" ? "Tải / In CV" : "Download / Print CV"}
-              >
-                <Download className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Table of Contents (Mục lục dính - TOC) */}
-          <div
-            className={clsx(
-              "rounded-2xl p-5 border transition-colors",
-              themeA
-                ? "bg-white/80 dark:bg-[#1E1A14]/80 border-[#E5DECE] dark:border-[#3A3228]"
-                : "bg-[#141414] border-white/10"
-            )}
-          >
-            <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[#E5DECE]/60 dark:border-[#3A3228]/60">
-              <Compass className="w-4 h-4 text-[#B45309] dark:text-[#D97706]" />
-              <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#1A1108] dark:text-[#EDE8E1]">
-                {lang === "vi" ? "Mục lục hồ sơ (TOC)" : "Table of Contents"}
-              </h4>
-            </div>
-
-            <nav className="space-y-1">
-              {tocItems.map((item) => {
-                const isActive = activeSection === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={clsx(
-                      "w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all text-left cursor-pointer",
-                      isActive
-                        ? themeA
-                          ? "bg-[#FAF7F2] dark:bg-[#25201B] text-[#B45309] dark:text-[#D97706] font-bold border-l-2 border-[#B45309]"
-                          : "bg-white/10 text-[#00D4FF] font-bold border-l-2 border-[#00D4FF]"
-                        : "text-[#66584B] dark:text-[#9E9382] hover:bg-stone-50 dark:hover:bg-stone-900 hover:text-[#1A1108] dark:hover:text-white"
-                    )}
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className={clsx(isActive ? "text-[#B45309] dark:text-[#D97706]" : "opacity-60")}>
-                        {item.icon}
-                      </span>
-                      <span>{t(item.label)}</span>
-                    </div>
-                    {isActive && <ChevronRight className="w-3.5 h-3.5 text-[#B45309] dark:text-[#D97706]" />}
-                  </button>
-                );
-              })}
-            </nav>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
