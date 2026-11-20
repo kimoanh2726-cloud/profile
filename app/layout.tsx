@@ -58,6 +58,16 @@ export const metadata: Metadata = {
   title: "Trần Kim Oanh — Religious Studies Portfolio",
   description:
     "Hồ sơ học thuật & Portfolio của Trần Kim Oanh — Sinh viên năm 3 chuyên ngành Tôn giáo học, Khoa Nhân học và Tôn giáo, Trường ĐHKHXH&NV Hà Nội (ĐHQGHN).",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "Trần Kim Oanh — Religious Studies Portfolio",
     description:
