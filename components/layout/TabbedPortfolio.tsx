@@ -41,6 +41,7 @@ interface TabbedPortfolioProps {
   certificates: CertificateItem[];
   tagDefinitions: TagDefinition[];
   skills: SkillItem[];
+  initialTab?: TabId;
 }
 
 export function TabbedPortfolio({
@@ -51,8 +52,9 @@ export function TabbedPortfolio({
   certificates,
   tagDefinitions,
   skills,
+  initialTab = "overview",
 }: TabbedPortfolioProps) {
-  const [activeTab, setActiveTab] = useState<TabId>("overview");
+  const [activeTab, setActiveTab] = useState<TabId>(initialTab);
 
   // Đồng bộ với URL hash khi tải trang hoặc khi người dùng bấm nút Back/Forward
   useEffect(() => {
@@ -71,7 +73,9 @@ export function TabbedPortfolio({
         raw === "ho-so" ||
         raw === "profile" ||
         raw === "quatrinh" ||
-        raw === "qua-trinh"
+        raw === "qua-trinh" ||
+        raw === "cv" ||
+        raw === "resume"
       ) {
         setActiveTab("timeline");
       } else if (raw === "projects" || raw === "project") {
@@ -136,7 +140,15 @@ export function TabbedPortfolio({
 
             {activeTab === "timeline" && (
               <div className="pt-20">
-                <Timeline education={education} experience={experience} />
+                <Timeline
+                  profile={profile}
+                  education={education}
+                  experience={experience}
+                  research={research}
+                  certificates={certificates}
+                  skills={skills}
+                  onNavigateTab={handleSelectTab}
+                />
               </div>
             )}
 
